@@ -18,9 +18,12 @@ const RootLayout = () => {
       <SafeAreaView className="flex flex-1 bg-background">
         <Stack>
           <Stack.Screen name="index" />
-          <Stack.Screen name="value/index" options={{ headerShown: false }} />
           <Stack.Screen
-            name="onboarding/index"
+            name="value/index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(onboarding)"
             options={{ headerShown: false }}
           />
         </Stack>

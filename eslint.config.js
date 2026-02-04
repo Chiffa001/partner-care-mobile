@@ -35,6 +35,30 @@ module.exports = defineConfig([
           prop: 'parens-new-line',
         },
       ],
+      'react/jsx-indent': ['error', 2],
+      'react/jsx-indent-props': ['error', 2],
+      'react/jsx-child-element-spacing': 'error',
+      'react/jsx-max-props-per-line': [
+        'error',
+        {
+          maximum: 1,
+          when: 'always',
+        },
+      ],
+      'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
+      'react/jsx-one-expression-per-line': [
+        'error',
+        {
+          allow: 'none',
+        },
+      ],
+      'react/jsx-closing-bracket-location': [
+        'error',
+        {
+          nonEmpty: 'line-aligned',
+          selfClosing: 'line-aligned',
+        },
+      ],
       'sort-imports': [
         'error',
         {
@@ -70,6 +94,13 @@ module.exports = defineConfig([
           namedComponents: 'arrow-function',
           unnamedComponents: 'arrow-function',
         },
+      ],
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+        { blankLine: 'always', prev: '*', next: 'return' },
+        { blankLine: 'always', prev: '*', next: 'function' },
       ],
     },
   },

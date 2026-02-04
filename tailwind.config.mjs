@@ -17,7 +17,7 @@ export default {
         },
         paragraphs: {
           primary: "#4A4A4A",
-          secondary: "#7A7A7A",
+          secondary: "#6A6A6A",
           title: "#3E3E3E"
         },
         buttons: {

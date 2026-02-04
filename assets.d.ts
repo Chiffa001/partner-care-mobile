@@ -1,9 +1,9 @@
 declare module '*.ttf' {
-  const value: number;
+  const value: FontSource;
   export default value;
 }
 
 declare module '*.png' {
-  const value: number;
+  const value: ImageSourcePropType;
   export default value;
 }
