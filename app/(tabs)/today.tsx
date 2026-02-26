@@ -1,14 +1,38 @@
-import { Text } from "react-native";
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView } from 'react-native';
 
-import { ScreenContainer } from "@/components/screen-container";
+import sadWomanImage from '@/assets/images/bg/sad-woman.png';
+import { InsightCard } from '@/components/insight-card';
+import { ScreenContainer } from '@/components/screen-container';
+import type { TodayCardsOverrides } from '@/utils/today-cards';
+import { buildTodayCards } from '@/utils/today-cards';
 
 const Today = () => {
+  const { t } = useTranslation();
+
+  const backendOverrides: TodayCardsOverrides | undefined = undefined;
+
+  const { stateCard, actionsCard, dontsCard } = useMemo(
+    () => buildTodayCards(t, backendOverrides),
+    [t, backendOverrides],
+  );
 
   return (
-    <ScreenContainer>
-      <Text>
-        today
-      </Text>
+    <ScreenContainer className="items-stretch justify-start">
+      <ScrollView
+        contentContainerClassName="gap-3 px-4 pb-6 pt-3"
+        showsVerticalScrollIndicator={false}
+      >
+        <InsightCard
+          {...stateCard}
+          imageSource={sadWomanImage}
+        />
+
+        <InsightCard {...actionsCard} />
+
+        <InsightCard {...dontsCard} />
+      </ScrollView>
     </ScreenContainer>
   );
 };
