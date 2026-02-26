@@ -5,11 +5,15 @@ import { ScrollView } from 'react-native';
 import sadWomanImage from '@/assets/images/bg/sad-woman.png';
 import { InsightCard } from '@/components/insight-card';
 import { ScreenContainer } from '@/components/screen-container';
+import { usePreloadAssets } from '@/hooks/use-preload-assets';
 import type { TodayCardsOverrides } from '@/utils/today-cards';
 import { buildTodayCards } from '@/utils/today-cards';
 
+const todayScreenImages = [sadWomanImage];
+
 const Today = () => {
   const { t } = useTranslation();
+  const isStateCardImageReady = usePreloadAssets(todayScreenImages);
 
   const backendOverrides: TodayCardsOverrides | undefined = undefined;
 
@@ -21,17 +25,22 @@ const Today = () => {
   return (
     <ScreenContainer className="items-stretch justify-start">
       <ScrollView
-        contentContainerClassName="gap-3 px-4 pb-6 pt-3"
+        contentContainerClassName="gap-4 px-4 pb-6 pt-3"
         showsVerticalScrollIndicator={false}
       >
         <InsightCard
           {...stateCard}
           imageSource={sadWomanImage}
+          isLoading={!isStateCardImageReady}
         />
 
-        <InsightCard {...actionsCard} />
+        <InsightCard
+          {...actionsCard}
+        />
 
-        <InsightCard {...dontsCard} />
+        <InsightCard
+          {...dontsCard}
+        />
       </ScrollView>
     </ScreenContainer>
   );
