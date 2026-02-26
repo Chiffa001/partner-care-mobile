@@ -41,6 +41,11 @@ const i18nOptions: InitOptions = {
           description: 'На чём стоит сосредоточиться сейчас',
           button: 'Начать',
         },
+        tabs: {
+          today: 'Сегодня',
+          years: 'Роды',
+          settings: 'Настройки',
+        },
       },
     },
     en: {
@@ -64,6 +69,11 @@ const i18nOptions: InitOptions = {
           title: 'Один день — один фокус',
           description: 'На чём стоит сосредоточиться сейчас',
           button: 'Начать',
+        },
+        tabs: {
+          today: 'Сегодня',
+          years: 'Роды',
+          settings: 'Настройки',
         },
       },
     },
@@ -89,6 +99,11 @@ const i18nOptions: InitOptions = {
           description: 'На чём стоит сосредоточиться сейчас',
           button: 'Начать',
         },
+        tabs: {
+          today: 'Сегодня',
+          years: 'Роды',
+          settings: 'Настройки',
+        },
       },
     },
     es: {
@@ -112,6 +127,11 @@ const i18nOptions: InitOptions = {
           title: 'Один день — один фокус',
           description: 'На чём стоит сосредоточиться сейчас',
           button: 'Начать',
+        },
+        tabs: {
+          today: 'Сегодня',
+          years: 'Роды',
+          settings: 'Настройки',
         },
       },
     },
