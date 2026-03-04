@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 
 import { CommunicationToneModal } from '@/components/communication-tone-modal';
+import { DueDateModal } from '@/components/due-date-modal';
 import { SettingsRow } from '@/components/settings-row';
 import { SettingsSwitch } from '@/components/settings-switch';
 import {
@@ -12,6 +13,8 @@ import {
   getCommunicationToneOptions,
   isCommunicationTone,
 } from '@/utils/communication-tone-options';
+import { getDefaultDueDate } from '@/utils/due-date/get-default-due-date';
+import { getWeeksFromDueDate } from '@/utils/due-date/get-weeks-from-due-date';
 
 type ProfileSettingsSectionProps = {
   isLivingTogether: boolean;
@@ -27,9 +30,13 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
   onFirstPregnancyChange,
 }) => {
   const { t } = useTranslation();
+  const [dueDate, setDueDate] = useState(getDefaultDueDate);
+  const [isDueDateModalVisible, setIsDueDateModalVisible] = useState(false);
   const [communicationTone, setCommunicationTone] = useState<CommunicationTone>('soft');
   const [isCommunicationToneModalVisible, setIsCommunicationToneModalVisible] = useState(false);
   const communicationToneOptions = getCommunicationToneOptions(t);
+  const pregnancyWeeks = getWeeksFromDueDate(dueDate);
+  const pregnancyWeeksLabel = `${pregnancyWeeks} ${t('settingsScreen.values.weeksForms.one')}`;
 
   const handleSelectCommunicationTone = (value: string) => {
     if (!isCommunicationTone(value)) {
@@ -58,9 +65,10 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
       >
         <SettingsRow
           title={t('settingsScreen.rows.pregnancyTerm')}
-          value={t('settingsScreen.values.pregnancyWeeks')}
+          value={pregnancyWeeksLabel}
           withChevron
           withDivider
+          onPress={() => setIsDueDateModalVisible(true)}
           leftIcon={(
             <MaterialCommunityIcons
               name="calendar-month-outline"
@@ -125,6 +133,16 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
         selectedValue={communicationTone}
         onClose={() => setIsCommunicationToneModalVisible(false)}
         onSelect={handleSelectCommunicationTone}
+      />
+
+      <DueDateModal
+        visible={isDueDateModalVisible}
+        selectedDate={dueDate}
+        onClose={() => setIsDueDateModalVisible(false)}
+        onConfirm={(nextDueDate) => {
+          setDueDate(nextDueDate);
+          setIsDueDateModalVisible(false);
+        }}
       />
     </>
   );

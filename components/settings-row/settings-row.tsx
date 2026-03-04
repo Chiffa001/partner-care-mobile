@@ -22,15 +22,10 @@ export const SettingsRow: FC<SettingsRowProps> = ({
   withDivider = false,
   rightControl,
   onPress,
-}) => (
-  <>
-    <AnimatedPressable
-      className={`flex-row items-center justify-between ${Platform.OS === 'android' ? 'h-[52px]' : 'py-3.5'}`}
-      disabled={!onPress}
-      onPress={onPress}
-      activeScale={0.976}
-      activeOpacity={0.82}
-    >
+}) => {
+  const rowClassName = `flex-row items-center justify-between ${Platform.OS === 'android' ? 'h-[52px]' : 'py-3.5'}`;
+  const rowContent = (
+    <>
       <View className="mr-3 flex-1 flex-row items-center">
         {leftIcon}
         <Text
@@ -63,9 +58,28 @@ export const SettingsRow: FC<SettingsRowProps> = ({
           ) : null}
         </View>
       )}
-    </AnimatedPressable>
-    {withDivider ? (
-      <View className="h-px bg-[#DED7D8]" />
+    </>
+  );
+
+  return (
+    <>
+      {onPress ? (
+        <AnimatedPressable
+          className={rowClassName}
+          onPress={onPress}
+          activeScale={0.976}
+          activeOpacity={0.82}
+        >
+          {rowContent}
+        </AnimatedPressable>
+      ) : (
+        <View className={rowClassName}>
+          {rowContent}
+        </View>
+      )}
+      {withDivider ? (
+        <View className="h-px bg-[#DED7D8]" />
     ) : null}
-  </>
-);
+    </>
+  );
+};

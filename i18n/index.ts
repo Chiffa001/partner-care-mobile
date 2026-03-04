@@ -84,6 +84,16 @@ const i18nOptions: InitOptions = {
           },
           values: {
             pregnancyWeeks: '17 недель',
+            weeksForms: {
+              one: 'неделя',
+              few: 'недели',
+              many: 'недель',
+            },
+          },
+          dueDate: {
+            title: 'Предполагаемая дата родов',
+            cancel: 'Отмена',
+            confirm: 'Сохранить',
           },
           communicationTone: {
             title: 'Как с тобой говорить',
@@ -170,6 +180,16 @@ const i18nOptions: InitOptions = {
           },
           values: {
             pregnancyWeeks: '17 недель',
+            weeksForms: {
+              one: 'неделя',
+              few: 'недели',
+              many: 'недель',
+            },
+          },
+          dueDate: {
+            title: 'Предполагаемая дата родов',
+            cancel: 'Отмена',
+            confirm: 'Сохранить',
           },
           communicationTone: {
             title: 'Как с тобой говорить',
@@ -256,6 +276,16 @@ const i18nOptions: InitOptions = {
           },
           values: {
             pregnancyWeeks: '17 недель',
+            weeksForms: {
+              one: 'неделя',
+              few: 'недели',
+              many: 'недель',
+            },
+          },
+          dueDate: {
+            title: 'Предполагаемая дата родов',
+            cancel: 'Отмена',
+            confirm: 'Сохранить',
           },
           communicationTone: {
             title: 'Как с тобой говорить',
@@ -342,6 +372,16 @@ const i18nOptions: InitOptions = {
           },
           values: {
             pregnancyWeeks: '17 недель',
+            weeksForms: {
+              one: 'неделя',
+              few: 'недели',
+              many: 'недель',
+            },
+          },
+          dueDate: {
+            title: 'Предполагаемая дата родов',
+            cancel: 'Отмена',
+            confirm: 'Сохранить',
           },
           communicationTone: {
             title: 'Как с тобой говорить',
