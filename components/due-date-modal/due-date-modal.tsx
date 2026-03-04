@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal, Pressable, Text, View } from 'react-native';
 
 import { AnimatedPressable } from '@/components/animated-pressable';
+import { Button } from '@/components/button';
 import { buildCalendarDays } from '@/utils/due-date/build-calendar-days';
 import { getWeekdayNames } from '@/utils/due-date/get-weekday-names';
 import { isSameDay } from '@/utils/due-date/is-same-day';
@@ -134,9 +135,18 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                     activeScale={0.94}
                     activeOpacity={isPastDate ? 1 : 0.85}
                   >
-                    <View
-                      className={`h-8 w-8 items-center justify-center rounded-full ${isSelected ? 'bg-[#E09AA0]' : ''}`}
-                    >
+                    <View style={{ width: 32, height: 32, alignItems: 'center', justifyContent: 'center' }}>
+                      {isSelected ? (
+                        <View
+                          style={{
+                            position: 'absolute',
+                            width: 32,
+                            height: 32,
+                            borderRadius: 16,
+                            backgroundColor: '#E09AA0',
+                          }}
+                        />
+                      ) : null}
                       <Text
                         className="font-sans text-[14px] leading-[20px]"
                         style={{ color: isPastDate ? '#CFC7CB' : dayTextColor }}
@@ -150,16 +160,18 @@ export const DueDateModal: FC<DueDateModalProps> = ({
             </View>
 
             <View className="mt-3 flex-row justify-end">
-              <AnimatedPressable
-                className="mr-2 rounded-full px-4 py-2"
+              <Button
+                className="mr-2 w-auto rounded-full bg-transparent px-4 py-[8px] shadow-none"
+                fullWidth={false}
                 onPress={onClose}
               >
                 <Text className="font-semibold text-[14px] leading-[20px] text-[#8A828A]">
                   {t('settingsScreen.dueDate.cancel')}
                 </Text>
-              </AnimatedPressable>
-              <AnimatedPressable
-                className="rounded-full bg-[#E09AA0] px-4 py-2"
+              </Button>
+              <Button
+                className="w-auto rounded-full bg-[#E09AA0] px-4 py-[8px] shadow-none"
+                fullWidth={false}
                 onPress={() => {
                   if (draftDate < minDate) {
                     return;
@@ -171,7 +183,7 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 <Text className="font-semibold text-[14px] leading-[20px] text-white">
                   {t('settingsScreen.dueDate.confirm')}
                 </Text>
-              </AnimatedPressable>
+              </Button>
             </View>
           </View>
         </Pressable>
