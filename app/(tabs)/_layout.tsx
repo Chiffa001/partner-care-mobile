@@ -1,6 +1,8 @@
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useTranslation } from "react-i18next";
+import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 enum TabCode {
   TODAY = 'today',
@@ -10,6 +12,8 @@ enum TabCode {
 
 const TabsLayout = () => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const tabBarBottomPadding = Platform.OS === 'ios' ? 8 : Math.max(insets.bottom, 8);
 
   return (
     <Tabs
@@ -30,6 +34,8 @@ const TabsLayout = () => {
         tabBarStyle: {
           backgroundColor: '#FFF7F4',
           borderTopWidth: 1,
+          height: 62 + tabBarBottomPadding,
+          paddingBottom: tabBarBottomPadding,
         },
         headerStyle: {
           backgroundColor: '#FFF7F4',

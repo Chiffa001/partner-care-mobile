@@ -89,13 +89,13 @@ export const InsightCard: FC<InsightCardProps> = ({
       <View className="px-5 py-1">
         {[0, 1, 2].map((index) => (
           <View key={`skeleton-item-${index}`}>
-            <View className="flex-row items-center py-2.5">
+            <View className="flex-row items-center py-2">
               <View
                 className="mr-3 h-6 w-6 rounded-full"
                 style={{ backgroundColor: skeletonSecondaryColor }}
               />
               <View
-                className="h-5 rounded-full"
+                className="h-4.5 rounded-full"
                 style={{
                   width: index === 1 ? '62%' : '74%',
                   backgroundColor: skeletonColor,
@@ -103,7 +103,7 @@ export const InsightCard: FC<InsightCardProps> = ({
               />
             </View>
             {index < 2 ? (
-              <View className="h-px bg-[#D9D2CF]" />
+              <View className="my-1 h-px bg-[#D9D2CF]" />
             ) : null}
           </View>
         ))}
@@ -146,9 +146,9 @@ export const InsightCard: FC<InsightCardProps> = ({
           />
         ) : null}
         <Text
-          className="pr-2 font-sans text-[16px] leading-[24px] text-paragraphs-primary"
+          className="font-sans text-[16px] leading-[24px] text-paragraphs-primary"
           style={{
-            maxWidth: descriptionAreaWidth
+            maxWidth: descriptionAreaWidth && normalizedDescriptionWidthPercent < 100
               ? (descriptionAreaWidth * normalizedDescriptionWidthPercent) / 100
               : undefined,
           }}
@@ -170,7 +170,7 @@ export const InsightCard: FC<InsightCardProps> = ({
 
           return (
             <View key={`${type}-${text}-${index}`}>
-              <View className="flex-row items-center py-2.5">
+              <View className="flex-row items-center py-2">
                 <View
                   className="mr-3 h-6 w-6 items-center justify-center rounded-full"
                   style={{ backgroundColor: iconBgColor }}
@@ -181,12 +181,15 @@ export const InsightCard: FC<InsightCardProps> = ({
                     color="#FFFFFF"
                   />
                 </View>
-                <Text className="flex-1 font-sans text-[16px] leading-[24px] text-paragraphs-primary">
+                <Text
+                  className="flex-1 font-sans text-[16px] leading-[20px] text-paragraphs-primary"
+                  style={{ textAlignVertical: 'center', includeFontPadding: false }}
+                >
                   {text}
                 </Text>
               </View>
               {showDivider ? (
-                <View className="h-px bg-[#D9D2CF]" />
+                <View className="my-1 h-px bg-[#D9D2CF]" />
               ) : null}
             </View>
           );
