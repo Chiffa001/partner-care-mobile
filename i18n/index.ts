@@ -68,6 +68,41 @@ const i18nOptions: InitOptions = {
           years: 'Роды',
           settings: 'Настройки',
         },
+        settingsScreen: {
+          sections: {
+            profile: 'Профиль',
+            notifications: 'Уведомления',
+            subscription: 'Подписка',
+          },
+          rows: {
+            pregnancyTerm: 'Срок беременности',
+            livingTogether: 'Живём вместе',
+            firstPregnancy: 'Первая беременность',
+            communicationStyle: 'Как с тобой говорить',
+            pushNotifications: 'Push-уведомления',
+            mySubscription: 'Моя подписка',
+          },
+          values: {
+            pregnancyWeeks: '17 недель',
+          },
+          communicationTone: {
+            title: 'Как с тобой говорить',
+            options: {
+              soft: {
+                title: 'Мягко',
+                description: 'С поддержкой и объяснениями',
+              },
+              direct: {
+                title: 'Прямо',
+                description: 'Коротко и по делу',
+              },
+              brief: {
+                title: 'Очень коротко',
+                description: 'Только главное',
+              },
+            },
+          },
+        },
       },
     },
     en: {
@@ -118,6 +153,41 @@ const i18nOptions: InitOptions = {
           today: 'Сегодня',
           years: 'Роды',
           settings: 'Настройки',
+        },
+        settingsScreen: {
+          sections: {
+            profile: 'Профиль',
+            notifications: 'Уведомления',
+            subscription: 'Подписка',
+          },
+          rows: {
+            pregnancyTerm: 'Срок беременности',
+            livingTogether: 'Живём вместе',
+            firstPregnancy: 'Первая беременность',
+            communicationStyle: 'Как с тобой говорить',
+            pushNotifications: 'Push-уведомления',
+            mySubscription: 'Моя подписка',
+          },
+          values: {
+            pregnancyWeeks: '17 недель',
+          },
+          communicationTone: {
+            title: 'Как с тобой говорить',
+            options: {
+              soft: {
+                title: 'Мягко',
+                description: 'С поддержкой и объяснениями',
+              },
+              direct: {
+                title: 'Прямо',
+                description: 'Коротко и по делу',
+              },
+              brief: {
+                title: 'Очень коротко',
+                description: 'Только главное',
+              },
+            },
+          },
         },
       },
     },
@@ -170,6 +240,41 @@ const i18nOptions: InitOptions = {
           years: 'Роды',
           settings: 'Настройки',
         },
+        settingsScreen: {
+          sections: {
+            profile: 'Профиль',
+            notifications: 'Уведомления',
+            subscription: 'Подписка',
+          },
+          rows: {
+            pregnancyTerm: 'Срок беременности',
+            livingTogether: 'Живём вместе',
+            firstPregnancy: 'Первая беременность',
+            communicationStyle: 'Как с тобой говорить',
+            pushNotifications: 'Push-уведомления',
+            mySubscription: 'Моя подписка',
+          },
+          values: {
+            pregnancyWeeks: '17 недель',
+          },
+          communicationTone: {
+            title: 'Как с тобой говорить',
+            options: {
+              soft: {
+                title: 'Мягко',
+                description: 'С поддержкой и объяснениями',
+              },
+              direct: {
+                title: 'Прямо',
+                description: 'Коротко и по делу',
+              },
+              brief: {
+                title: 'Очень коротко',
+                description: 'Только главное',
+              },
+            },
+          },
+        },
       },
     },
     es: {
@@ -220,6 +325,41 @@ const i18nOptions: InitOptions = {
           today: 'Сегодня',
           years: 'Роды',
           settings: 'Настройки',
+        },
+        settingsScreen: {
+          sections: {
+            profile: 'Профиль',
+            notifications: 'Уведомления',
+            subscription: 'Подписка',
+          },
+          rows: {
+            pregnancyTerm: 'Срок беременности',
+            livingTogether: 'Живём вместе',
+            firstPregnancy: 'Первая беременность',
+            communicationStyle: 'Как с тобой говорить',
+            pushNotifications: 'Push-уведомления',
+            mySubscription: 'Моя подписка',
+          },
+          values: {
+            pregnancyWeeks: '17 недель',
+          },
+          communicationTone: {
+            title: 'Как с тобой говорить',
+            options: {
+              soft: {
+                title: 'Мягко',
+                description: 'С поддержкой и объяснениями',
+              },
+              direct: {
+                title: 'Прямо',
+                description: 'Коротко и по делу',
+              },
+              brief: {
+                title: 'Очень коротко',
+                description: 'Только главное',
+              },
+            },
+          },
         },
       },
     },
