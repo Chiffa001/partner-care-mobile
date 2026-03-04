@@ -7,7 +7,7 @@ import { AnimatedPressable } from '@/components/animated-pressable';
 export type CommunicationToneOption = {
   value: string;
   title: string;
-  description: string;
+  description?: string;
 };
 
 type CommunicationToneModalProps = {
@@ -78,9 +78,11 @@ export const CommunicationToneModal: FC<CommunicationToneModalProps> = ({
                     <Text className="font-sans text-[17px] leading-[22px] text-[#675F67]">
                       {optionTitle}
                     </Text>
-                    <Text className="mt-0.5 font-sans text-[15px] leading-[20px] text-[#8A828A]">
-                      {description}
-                    </Text>
+                    {description ? (
+                      <Text className="mt-0.5 font-sans text-[15px] leading-[20px] text-[#8A828A]">
+                        {description}
+                      </Text>
+                    ) : null}
                   </View>
 
                   {isSelected ? (

@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import type { FC } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 
@@ -23,21 +23,35 @@ type ProfileSettingsSectionProps = {
   onFirstPregnancyChange: (nextValue: boolean) => void;
 };
 
+type AppLanguage = 'ru' | 'en' | 'pl' | 'es';
+const supportedLanguages: AppLanguage[] = ['ru', 'en', 'pl', 'es'];
+
 export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
   isLivingTogether,
   onLivingTogetherChange,
   isFirstPregnancy,
   onFirstPregnancyChange,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const closeToneModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [dueDate, setDueDate] = useState(getDefaultDueDate);
   const [isDueDateModalVisible, setIsDueDateModalVisible] = useState(false);
   const [communicationTone, setCommunicationTone] = useState<CommunicationTone>('soft');
   const [isCommunicationToneModalVisible, setIsCommunicationToneModalVisible] = useState(false);
+  const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
   const communicationToneOptions = getCommunicationToneOptions(t);
+  const languageOptions = useMemo(
+    () => supportedLanguages.map((language) => ({
+      value: language,
+      title: t(`settingsScreen.language.options.${language}`),
+    })),
+    [t],
+  );
   const pregnancyWeeks = getWeeksFromDueDate(dueDate);
   const pregnancyWeeksLabel = `${pregnancyWeeks} ${t('settingsScreen.values.weeksForms.one')}`;
+  const currentLanguage = supportedLanguages.includes(i18n.resolvedLanguage as AppLanguage)
+    ? (i18n.resolvedLanguage as AppLanguage)
+    : 'ru';
 
   const handleSelectCommunicationTone = (value: string) => {
     if (!isCommunicationTone(value)) {
@@ -53,6 +67,14 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
     closeToneModalTimeoutRef.current = setTimeout(() => {
       setIsCommunicationToneModalVisible(false);
     }, 35);
+  };
+  const handleSelectLanguage = (value: string) => {
+    if (!supportedLanguages.includes(value as AppLanguage)) {
+      return;
+    }
+
+    void i18n.changeLanguage(value);
+    setIsLanguageModalVisible(false);
   };
 
   useEffect(
@@ -131,6 +153,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
         <SettingsRow
           title={t('settingsScreen.rows.communicationStyle')}
           value={t(`settingsScreen.communicationTone.options.${communicationTone}.title`)}
+          withDivider
           withChevron
           onPress={() => setIsCommunicationToneModalVisible(true)}
           leftIcon={(
@@ -138,6 +161,19 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
               name="emoticon-happy-outline"
               size={29}
               color="#D8B178"
+            />
+          )}
+        />
+        <SettingsRow
+          title={t('settingsScreen.rows.language')}
+          value={t(`settingsScreen.language.options.${currentLanguage}`)}
+          withChevron
+          onPress={() => setIsLanguageModalVisible(true)}
+          leftIcon={(
+            <MaterialCommunityIcons
+              name="translate"
+              size={28}
+              color="#8FAFB4"
             />
           )}
         />
@@ -160,6 +196,15 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
           setDueDate(nextDueDate);
           setIsDueDateModalVisible(false);
         }}
+      />
+
+      <CommunicationToneModal
+        visible={isLanguageModalVisible}
+        title={t('settingsScreen.language.title')}
+        options={languageOptions}
+        selectedValue={currentLanguage}
+        onClose={() => setIsLanguageModalVisible(false)}
+        onSelect={handleSelectLanguage}
       />
     </>
   );
