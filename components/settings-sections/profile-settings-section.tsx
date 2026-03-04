@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 
@@ -30,6 +30,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
   onFirstPregnancyChange,
 }) => {
   const { t } = useTranslation();
+  const closeToneModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [dueDate, setDueDate] = useState(getDefaultDueDate);
   const [isDueDateModalVisible, setIsDueDateModalVisible] = useState(false);
   const [communicationTone, setCommunicationTone] = useState<CommunicationTone>('soft');
@@ -44,8 +45,24 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
     }
 
     setCommunicationTone(value);
-    setIsCommunicationToneModalVisible(false);
+
+    if (closeToneModalTimeoutRef.current) {
+      clearTimeout(closeToneModalTimeoutRef.current);
+    }
+
+    closeToneModalTimeoutRef.current = setTimeout(() => {
+      setIsCommunicationToneModalVisible(false);
+    }, 35);
   };
+
+  useEffect(
+    () => () => {
+      if (closeToneModalTimeoutRef.current) {
+        clearTimeout(closeToneModalTimeoutRef.current);
+      }
+    },
+    [],
+  );
 
   return (
     <>
