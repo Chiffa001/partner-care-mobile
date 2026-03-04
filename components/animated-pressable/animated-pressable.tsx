@@ -8,6 +8,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+const ReanimatedPressable = Animated.createAnimatedComponent(Pressable);
+
 type AnimatedPressableProps = {
   children: ReactNode;
   className?: string;
@@ -50,10 +52,8 @@ export const AnimatedPressable: FC<AnimatedPressableProps> = ({
     animatedStyle,
   ];
 
-  const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
   return (
-    <AnimatedPressable
+    <ReanimatedPressable
       className={className}
       style={animatedPressableStyle}
       disabled={disabled}
@@ -62,6 +62,6 @@ export const AnimatedPressable: FC<AnimatedPressableProps> = ({
       onPressOut={animatePressedOut}
     >
       {children}
-    </AnimatedPressable>
+    </ReanimatedPressable>
   );
 };
