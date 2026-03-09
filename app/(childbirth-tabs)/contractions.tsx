@@ -1,12 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Easing, Image, ScrollView, Text, View } from 'react-native';
+import { Animated, Image, ScrollView, Text, View } from 'react-native';
 
 import laborContractionsImage from '@/assets/images/childbirth/labor-contractions-img.png';
 import { ChildbirthTimer } from '@/components/childbirth-timer';
 import { InsightCard } from '@/components/insight-card';
 import { ScreenContainer } from '@/components/screen-container';
+import { usePulseScale } from '@/hooks/use-pulse-scale';
 import {
   selectHasTimerData,
   selectIsContractionActive,
@@ -17,8 +17,8 @@ const ContractionsScreen = () => {
   const { t } = useTranslation();
   const isContractionActive = useChildbirthTimerStore(selectIsContractionActive);
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
-  const waitingIconScale = useRef(new Animated.Value(1)).current;
-  const activeIconScale = useRef(new Animated.Value(1)).current;
+  const waitingIconScale = usePulseScale({ enabled: !isContractionActive, duration: 700 });
+  const activeIconScale = usePulseScale({ enabled: isContractionActive, duration: 550 });
   const statusText = !hasTimerData
     ? t('childbirthScreen.contractions.timerNotStartedHint')
     : isContractionActive
@@ -28,66 +28,6 @@ const ContractionsScreen = () => {
     text: t(`childbirthScreen.contractions.whatToDoItems.${index}`),
     type: 'positive' as const,
   }));
-
-  useEffect(() => {
-    if (isContractionActive) {
-      waitingIconScale.stopAnimation();
-      waitingIconScale.setValue(1);
-
-      return undefined;
-    }
-
-    const pulseAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(waitingIconScale, {
-          toValue: 1.18,
-          duration: 700,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: true,
-        }),
-        Animated.timing(waitingIconScale, {
-          toValue: 1,
-          duration: 700,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
-
-    pulseAnimation.start();
-
-    return () => pulseAnimation.stop();
-  }, [isContractionActive, waitingIconScale]);
-
-  useEffect(() => {
-    if (!isContractionActive) {
-      activeIconScale.stopAnimation();
-      activeIconScale.setValue(1);
-
-      return undefined;
-    }
-
-    const pulseAnimation = Animated.loop(
-      Animated.sequence([
-        Animated.timing(activeIconScale, {
-          toValue: 1.18,
-          duration: 550,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: true,
-        }),
-        Animated.timing(activeIconScale, {
-          toValue: 1,
-          duration: 550,
-          easing: Easing.inOut(Easing.ease),
-          useNativeDriver: true,
-        }),
-      ]),
-    );
-
-    pulseAnimation.start();
-
-    return () => pulseAnimation.stop();
-  }, [activeIconScale, isContractionActive]);
 
   return (
     <ScreenContainer className="items-stretch justify-start">
