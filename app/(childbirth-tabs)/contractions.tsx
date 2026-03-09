@@ -28,6 +28,10 @@ const ContractionsScreen = () => {
     text: t(`childbirthScreen.contractions.whatToDoItems.${index}`),
     type: 'positive' as const,
   }));
+  const howToRecognizeItems = [0, 1, 2].map((index) => ({
+    text: t(`childbirthScreen.contractions.howToRecognizeItems.${index}`),
+    type: 'positive' as const,
+  }));
 
   return (
     <ScreenContainer className="items-stretch justify-start">
@@ -36,6 +40,14 @@ const ContractionsScreen = () => {
         contentContainerClassName="gap-4 px-4 pb-5 pt-3"
         showsVerticalScrollIndicator={false}
       >
+        <InsightCard
+          title={t('childbirthScreen.contractions.howToRecognizeTitle')}
+          titleColor="#8F757B"
+          headerBackgroundColor="#FBEDE7"
+          bodyBackgroundColor="#FEFAF8"
+          items={howToRecognizeItems}
+        />
+
         <View className="justify-center rounded-2xl border border-[#EFE4E2] bg-[#F7EFEE] px-4 py-3">
           <View className="flex-row items-center justify-center">
             {isContractionActive ? (

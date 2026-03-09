@@ -90,11 +90,17 @@ const i18nOptions: InitOptions = {
             historyTitle: 'История схваток',
             historyEmpty: 'Пока нет записей',
             historyClose: 'Закрыть',
-            whatToDoTitle: 'Что делать сейчас:',
+            whatToDoTitle: 'Что делать сейчас',
             whatToDoItems: [
               'Напомни ей дышать',
               'Помоги выбрать удобную позу',
               'Говори спокойно',
+            ],
+            howToRecognizeTitle: 'Как распознать схватки',
+            howToRecognizeItems: [
+              'Появляются регулярно и становятся чаще',
+              'Боль усиливается и не проходит в покое',
+              'Схватка длится около 30-60 секунд',
             ],
           },
           sheIsTired: {
@@ -253,11 +259,17 @@ const i18nOptions: InitOptions = {
             historyTitle: 'Contractions history',
             historyEmpty: 'No records yet',
             historyClose: 'Close',
-            whatToDoTitle: 'What to do now:',
+            whatToDoTitle: 'What to do now',
             whatToDoItems: [
               'Remind her to breathe',
               'Help her find a comfortable position',
               'Speak calmly',
+            ],
+            howToRecognizeTitle: 'How to recognize contractions',
+            howToRecognizeItems: [
+              'They appear regularly and become more frequent',
+              'Pain increases and does not go away at rest',
+              'Each contraction lasts around 30-60 seconds',
             ],
           },
           sheIsTired: {
@@ -416,11 +428,17 @@ const i18nOptions: InitOptions = {
             historyTitle: 'Historia skurczów',
             historyEmpty: 'Brak zapisów',
             historyClose: 'Zamknij',
-            whatToDoTitle: 'Co robić teraz:',
+            whatToDoTitle: 'Co robić teraz',
             whatToDoItems: [
               'Przypomnij jej o oddychaniu',
               'Pomóż wybrać wygodną pozycję',
               'Mów spokojnie',
+            ],
+            howToRecognizeTitle: 'Jak rozpoznać skurcze',
+            howToRecognizeItems: [
+              'Pojawiają się regularnie i są coraz częstsze',
+              'Ból narasta i nie ustępuje w spoczynku',
+              'Skurcz trwa około 30-60 sekund',
             ],
           },
           sheIsTired: {
@@ -579,11 +597,17 @@ const i18nOptions: InitOptions = {
             historyTitle: 'Historial de contracciones',
             historyEmpty: 'Aún no hay registros',
             historyClose: 'Cerrar',
-            whatToDoTitle: 'Qué hacer ahora:',
+            whatToDoTitle: 'Qué hacer ahora',
             whatToDoItems: [
               'Recuérdale que respire',
               'Ayúdala a encontrar una postura cómoda',
               'Habla con calma',
+            ],
+            howToRecognizeTitle: 'Cómo reconocer contracciones',
+            howToRecognizeItems: [
+              'Aparecen de forma regular y cada vez más frecuentes',
+              'El dolor aumenta y no cede en reposo',
+              'Cada contracción dura alrededor de 30-60 segundos',
             ],
           },
           sheIsTired: {
