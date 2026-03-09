@@ -2,14 +2,14 @@ import { Text } from "react-native";
 
 import { ScreenContainer } from "@/components/screen-container";
 
-const Years = () => {
+const Childbirth = () => {
   return (
     <ScreenContainer>
       <Text>
-        years
+        childbirth
       </Text>
     </ScreenContainer>
   );
 };
 
-export default Years;
+export default Childbirth;

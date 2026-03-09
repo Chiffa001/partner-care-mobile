@@ -65,7 +65,7 @@ const i18nOptions: InitOptions = {
         },
         tabs: {
           today: 'Сегодня',
-          years: 'Роды',
+          childbirth: 'Роды',
           settings: 'Настройки',
         },
         settingsScreen: {
@@ -171,7 +171,7 @@ const i18nOptions: InitOptions = {
         },
         tabs: {
           today: 'Today',
-          years: 'Birth',
+          childbirth: 'Childbirth',
           settings: 'Settings',
         },
         settingsScreen: {
@@ -277,7 +277,7 @@ const i18nOptions: InitOptions = {
         },
         tabs: {
           today: 'Dzisiaj',
-          years: 'Poród',
+          childbirth: 'Poród',
           settings: 'Ustawienia',
         },
         settingsScreen: {
@@ -383,7 +383,7 @@ const i18nOptions: InitOptions = {
         },
         tabs: {
           today: 'Hoy',
-          years: 'Parto',
+          childbirth: 'Parto',
           settings: 'Ajustes',
         },
         settingsScreen: {

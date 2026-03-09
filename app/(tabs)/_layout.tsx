@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 enum TabCode {
   TODAY = 'today',
-  YEARS = 'years',
+  CHILDBIRTH = 'childbirth',
   SETTINGS = 'settings',
 }
 
@@ -60,9 +60,9 @@ const TabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name={TabCode.YEARS}
+        name={TabCode.CHILDBIRTH}
         options={{
-          title: t(`tabs.${TabCode.YEARS}`),
+          title: t(`tabs.${TabCode.CHILDBIRTH}`),
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="office-building"
