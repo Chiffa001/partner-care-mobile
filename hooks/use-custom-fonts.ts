@@ -1,6 +1,9 @@
 import { useFonts } from 'expo-font';
 import { Text, TextInput } from 'react-native';
 
+import NunitoMedium from '@/assets/fonts/nunito/Nunito-Medium.ttf';
+import NunitoRegular from '@/assets/fonts/nunito/Nunito-Regular.ttf';
+import NunitoSemiBold from '@/assets/fonts/nunito/Nunito-SemiBold.ttf';
 import PoppinsMedium from '@/assets/fonts/poppins/Poppins-Medium.ttf';
 import PoppinsRegular from '@/assets/fonts/poppins/Poppins-Regular.ttf';
 import PoppinsSemiBold from '@/assets/fonts/poppins/Poppins-SemiBold.ttf';
@@ -10,6 +13,9 @@ export const useCustomFonts = () => {
     'Poppins-Regular': PoppinsRegular,
     'Poppins-Medium': PoppinsMedium,
     'Poppins-SemiBold': PoppinsSemiBold,
+    'Nunito-Regular': NunitoRegular,
+    'Nunito-Medium': NunitoMedium,
+    'Nunito-SemiBold': NunitoSemiBold,
   });
 
   if (!loaded) {

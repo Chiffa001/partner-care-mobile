@@ -1,53 +1,28 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { TextStyle } from 'react-native';
 import { Text, View } from 'react-native';
 
 import { Button } from '@/components/button';
 import { TitledCard } from '@/components/titled-card';
-import {
-  selectAverageIntervalSec,
-  selectCurrentDurationSec,
-  selectHasTimerData,
-  selectIsContractionActive,
-  selectLatestIntervalSec,
-  selectResetTimer,
-  selectTickNow,
-  selectToggleTimer,
-  useChildbirthTimerStore,
-} from '@/stores/childbirth-timer-store';
+import { useChildbirthTimer } from '@/hooks/use-childbirth-timer';
+import { formatTime } from '@/utils/format-time';
 
-const formatTime = (value: number) => {
-  const safeValue = Math.max(0, Math.round(value));
-  const minutes = Math.floor(safeValue / 60)
-    .toString()
-    .padStart(2, '0');
-  const seconds = (safeValue % 60).toString().padStart(2, '0');
-
-  return `${minutes}:${seconds}`;
+const timerValueStyle: TextStyle = {
+  fontVariant: ['tabular-nums'],
+  fontFamily: 'Nunito-SemiBold',
 };
 
 export const ChildbirthTimer = () => {
   const { t } = useTranslation();
-  const isActive = useChildbirthTimerStore(selectIsContractionActive);
-  const currentDurationSec = useChildbirthTimerStore(selectCurrentDurationSec);
-  const latestIntervalSec = useChildbirthTimerStore(selectLatestIntervalSec);
-  const averageIntervalSec = useChildbirthTimerStore(selectAverageIntervalSec);
-  const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
-  const onPress = useChildbirthTimerStore(selectToggleTimer);
-  const onReset = useChildbirthTimerStore(selectResetTimer);
-  const tickNow = useChildbirthTimerStore(selectTickNow);
-
-  useEffect(() => {
-    if (!isActive) {
-      return undefined;
-    }
-
-    const intervalId = setInterval(() => {
-      tickNow();
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [isActive, tickNow]);
+  const {
+    isActive,
+    currentDurationSec,
+    latestIntervalSec,
+    averageIntervalSec,
+    hasTimerData,
+    onPress,
+    onReset,
+  } = useChildbirthTimer();
 
   return (
     <TitledCard
@@ -66,25 +41,40 @@ export const ChildbirthTimer = () => {
             <Text className="font-sans text-[14px] text-[#9A858A]">
               {t('childbirthScreen.contractions.durationLabel')}
             </Text>
-            <Text className="font-semibold text-[20px] leading-[24px] text-[#8F757B]">
-              {formatTime(currentDurationSec)}
-            </Text>
+            <View className="w-[84px] shrink-0 items-end">
+              <Text
+                className="text-right font-semibold text-[20px] leading-[24px] text-[#8F757B]"
+                style={timerValueStyle}
+              >
+                {formatTime(currentDurationSec)}
+              </Text>
+            </View>
           </View>
           <View className="flex-row items-center justify-between">
             <Text className="font-sans text-[14px] text-[#9A858A]">
               {t('childbirthScreen.contractions.intervalLabel')}
             </Text>
-            <Text className="font-semibold text-[20px] leading-[24px] text-[#8F757B]">
-              {formatTime(latestIntervalSec)}
-            </Text>
+            <View className="w-[84px] shrink-0 items-end">
+              <Text
+                className="text-right font-semibold text-[20px] leading-[24px] text-[#8F757B]"
+                style={timerValueStyle}
+              >
+                {formatTime(latestIntervalSec)}
+              </Text>
+            </View>
           </View>
           <View className="flex-row items-center justify-between">
             <Text className="font-sans text-[14px] text-[#9A858A]">
               {t('childbirthScreen.contractions.averageIntervalLabel')}
             </Text>
-            <Text className="font-semibold text-[20px] leading-[24px] text-[#8F757B]">
-              {formatTime(averageIntervalSec)}
-            </Text>
+            <View className="w-[84px] shrink-0 items-end">
+              <Text
+                className="text-right font-semibold text-[20px] leading-[24px] text-[#8F757B]"
+                style={timerValueStyle}
+              >
+                {formatTime(averageIntervalSec)}
+              </Text>
+            </View>
           </View>
         </View>
 

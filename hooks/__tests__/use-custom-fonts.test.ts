@@ -30,6 +30,14 @@ describe('useCustomFonts', () => {
     const result = useCustomFonts();
 
     expect(result).toBe(false);
+    expect(useFontsMock).toHaveBeenCalledWith(expect.objectContaining({
+      'Poppins-Regular': expect.anything(),
+      'Poppins-Medium': expect.anything(),
+      'Poppins-SemiBold': expect.anything(),
+      'Nunito-Regular': expect.anything(),
+      'Nunito-Medium': expect.anything(),
+      'Nunito-SemiBold': expect.anything(),
+    }));
     expect(TextMock.defaultProps).toBeUndefined();
     expect(TextInputMock.defaultProps).toBeUndefined();
   });

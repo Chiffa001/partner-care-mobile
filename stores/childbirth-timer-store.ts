@@ -8,6 +8,7 @@ type ContractionRecord = {
 
 type ChildbirthTimerState = {
   activeContractionStartAt: number | null;
+  activeContractionIntervalSec: number | null;
   contractions: ContractionRecord[];
   now: number;
   tickNow: () => void;
@@ -17,6 +18,7 @@ type ChildbirthTimerState = {
 
 export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) => ({
   activeContractionStartAt: null,
+  activeContractionIntervalSec: null,
   contractions: [],
   now: Date.now(),
   tickNow: () => set({ now: Date.now() }),
@@ -24,35 +26,38 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) =
     set({
       now: Date.now(),
       activeContractionStartAt: null,
+      activeContractionIntervalSec: null,
       contractions: [],
     }),
   toggleTimer: () => {
-    const { activeContractionStartAt, contractions } = get();
+    const { activeContractionStartAt, activeContractionIntervalSec, contractions } = get();
     const currentTimestamp = Date.now();
 
     if (activeContractionStartAt === null) {
+      const previousContraction = contractions.at(-1);
+      const nextIntervalSec = previousContraction
+        ? (currentTimestamp - (previousContraction.startAt + (previousContraction.durationSec * 1000))) / 1000
+        : null;
+
       set({
         now: currentTimestamp,
         activeContractionStartAt: currentTimestamp,
+        activeContractionIntervalSec: nextIntervalSec,
       });
 
       return;
     }
 
-    const previousContraction = contractions.at(-1);
-    const intervalSec = previousContraction
-      ? (activeContractionStartAt - previousContraction.startAt) / 1000
-      : null;
-
     set({
       now: currentTimestamp,
       activeContractionStartAt: null,
+      activeContractionIntervalSec: null,
       contractions: [
         ...contractions,
         {
           startAt: activeContractionStartAt,
           durationSec: (currentTimestamp - activeContractionStartAt) / 1000,
-          intervalSec,
+          intervalSec: activeContractionIntervalSec,
         },
       ],
     });
@@ -70,7 +75,21 @@ export const selectCurrentDurationSec = (state: ChildbirthTimerState) => {
 };
 
 export const selectLatestIntervalSec = (state: ChildbirthTimerState) => (
-  state.contractions.at(-1)?.intervalSec ?? 0
+  (() => {
+    if (state.activeContractionStartAt !== null) {
+      return state.activeContractionIntervalSec ?? state.contractions.at(-1)?.intervalSec ?? 0;
+    }
+
+    const lastContraction = state.contractions.at(-1);
+
+    if (!lastContraction) {
+      return 0;
+    }
+
+    const lastContractionEndAt = lastContraction.startAt + (lastContraction.durationSec * 1000);
+
+    return Math.max(0, (state.now - lastContractionEndAt) / 1000);
+  })()
 );
 
 export const selectAverageIntervalSec = (state: ChildbirthTimerState) => {
@@ -78,11 +97,29 @@ export const selectAverageIntervalSec = (state: ChildbirthTimerState) => {
     .map((record) => record.intervalSec)
     .filter((value): value is number => value !== null);
 
-  if (!intervals.length) {
-    return 0;
+  if (state.activeContractionStartAt !== null) {
+    if (state.activeContractionIntervalSec === null) {
+      if (!intervals.length) {
+        return 0;
+      }
+
+      return intervals.reduce((sum, item) => sum + item, 0) / intervals.length;
+    }
+
+    const intervalsSum = intervals.reduce((sum, item) => sum + item, 0);
+
+    return (intervalsSum + state.activeContractionIntervalSec) / (intervals.length + 1);
   }
 
-  return intervals.reduce((sum, item) => sum + item, 0) / intervals.length;
+  const latestIntervalSec = selectLatestIntervalSec(state);
+
+  if (!intervals.length) {
+    return latestIntervalSec;
+  }
+
+  const intervalsSum = intervals.reduce((sum, item) => sum + item, 0);
+
+  return (intervalsSum + latestIntervalSec) / (intervals.length + 1);
 };
 
 export const selectToggleTimer = (state: ChildbirthTimerState) => state.toggleTimer;
