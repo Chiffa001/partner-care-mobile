@@ -32,6 +32,7 @@ const Today = () => {
           {...stateCard}
           imageSource={sadWomanImage}
           isLoading={!isStateCardImageReady}
+          collapsible={false}
         />
 
         <InsightCard
