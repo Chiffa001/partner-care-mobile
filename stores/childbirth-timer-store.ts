@@ -9,24 +9,69 @@ type ContractionRecord = {
 type ChildbirthTimerState = {
   activeContractionStartAt: number | null;
   activeContractionIntervalSec: number | null;
+  isPaused: boolean;
   contractions: ContractionRecord[];
   now: number;
   tickNow: () => void;
   toggleTimer: () => void;
+  pauseTimer: () => void;
+  startAfterPause: () => void;
   resetTimer: () => void;
 };
 
 export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) => ({
   activeContractionStartAt: null,
   activeContractionIntervalSec: null,
+  isPaused: false,
   contractions: [],
   now: Date.now(),
   tickNow: () => set({ now: Date.now() }),
+  pauseTimer: () => {
+    const {
+      activeContractionStartAt,
+      activeContractionIntervalSec,
+      contractions,
+    } = get();
+    const currentTimestamp = Date.now();
+
+    if (activeContractionStartAt === null) {
+      set({ now: currentTimestamp, isPaused: true });
+
+      return;
+    }
+
+    set({
+      now: currentTimestamp,
+      isPaused: true,
+      activeContractionStartAt: null,
+      activeContractionIntervalSec: null,
+      contractions: [
+        ...contractions,
+        {
+          startAt: activeContractionStartAt,
+          durationSec: (currentTimestamp - activeContractionStartAt) / 1000,
+          intervalSec: activeContractionIntervalSec,
+        },
+      ],
+    });
+  },
+  startAfterPause: () => {
+    const currentTimestamp = Date.now();
+
+    set({
+      now: currentTimestamp,
+      activeContractionStartAt: currentTimestamp,
+      activeContractionIntervalSec: null,
+      isPaused: false,
+      contractions: [],
+    });
+  },
   resetTimer: () =>
     set({
       now: Date.now(),
       activeContractionStartAt: null,
       activeContractionIntervalSec: null,
+      isPaused: false,
       contractions: [],
     }),
   toggleTimer: () => {
@@ -43,6 +88,7 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) =
         now: currentTimestamp,
         activeContractionStartAt: currentTimestamp,
         activeContractionIntervalSec: nextIntervalSec,
+        isPaused: false,
       });
 
       return;
@@ -52,6 +98,7 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) =
       now: currentTimestamp,
       activeContractionStartAt: null,
       activeContractionIntervalSec: null,
+      isPaused: false,
       contractions: [
         ...contractions,
         {
@@ -65,6 +112,7 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>((set, get) =
 }));
 
 export const selectIsContractionActive = (state: ChildbirthTimerState) => state.activeContractionStartAt !== null;
+export const selectIsTimerPaused = (state: ChildbirthTimerState) => state.isPaused;
 
 export const selectCurrentDurationSec = (state: ChildbirthTimerState) => {
   if (state.activeContractionStartAt === null) {
@@ -127,6 +175,8 @@ export const selectToggleTimer = (state: ChildbirthTimerState) => state.toggleTi
 export const selectTickNow = (state: ChildbirthTimerState) => state.tickNow;
 
 export const selectResetTimer = (state: ChildbirthTimerState) => state.resetTimer;
+export const selectPauseTimer = (state: ChildbirthTimerState) => state.pauseTimer;
+export const selectStartAfterPause = (state: ChildbirthTimerState) => state.startAfterPause;
 
 export const selectHasTimerData = (state: ChildbirthTimerState) => (
   state.activeContractionStartAt !== null || state.contractions.length > 0

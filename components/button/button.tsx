@@ -7,7 +7,9 @@ type Props = {
   fullWidth?: boolean;
   disabledOpacity?: number;
   style?: StyleProp<ViewStyle>;
-} & Pick<PressableProps, 'onPress' | 'disabled' | 'className'>;
+} & Omit<PressableProps, 'children' | 'style' | 'className'> & {
+  className?: string;
+};
 
 export const Button: FC<Props> = ({
   children,

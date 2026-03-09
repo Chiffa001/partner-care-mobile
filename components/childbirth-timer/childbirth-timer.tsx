@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TextStyle } from 'react-native';
-import { Pressable, Text, View } from 'react-native';
+import { Animated, Easing, Pressable, Text, View } from 'react-native';
 
 import { Button } from '@/components/button';
 import { ChildbirthHistoryModal } from '@/components/childbirth-history-modal';
@@ -19,6 +19,7 @@ export const ChildbirthTimer = () => {
   const { t } = useTranslation();
   const {
     isActive,
+    isPaused,
     currentDurationSec,
     latestIntervalSec,
     averageIntervalSec,
@@ -26,8 +27,88 @@ export const ChildbirthTimer = () => {
     contractions,
     onPress,
     onReset,
+    onPause,
+    onStartAfterPause,
   } = useChildbirthTimer();
   const [isHistoryVisible, setHistoryVisible] = useState(false);
+  const holdProgress = useRef(new Animated.Value(0)).current;
+  const pauseTriggeredByHold = useRef(false);
+  const pressBlockedUntilRef = useRef(0);
+
+  useEffect(() => {
+    holdProgress.stopAnimation();
+    holdProgress.setValue(0);
+    pauseTriggeredByHold.current = false;
+  }, [holdProgress, isActive, isPaused]);
+
+  const startPauseHoldAnimation = () => {
+    if (!isActive || isPaused) {
+      return;
+    }
+
+    holdProgress.stopAnimation();
+    holdProgress.setValue(0);
+
+    Animated.timing(holdProgress, {
+      toValue: 1,
+      duration: 900,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start(({ finished }) => {
+      if (!finished) {
+        return;
+      }
+
+      pauseTriggeredByHold.current = true;
+      pressBlockedUntilRef.current = Date.now() + 900;
+      onPause();
+    });
+  };
+
+  const cancelPauseHoldAnimation = () => {
+    if (pauseTriggeredByHold.current) {
+      return;
+    }
+
+    holdProgress.stopAnimation();
+    Animated.timing(holdProgress, {
+      toValue: 0,
+      duration: 150,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const handlePrimaryButtonPress = () => {
+    if (Date.now() < pressBlockedUntilRef.current) {
+      return;
+    }
+
+    if (pauseTriggeredByHold.current) {
+      pauseTriggeredByHold.current = false;
+
+      return;
+    }
+
+    if (isPaused) {
+      onStartAfterPause();
+
+      return;
+    }
+
+    onPress();
+  };
+
+  const primaryButtonLabel = isPaused
+    ? t('childbirthScreen.contractions.startButton')
+    : isActive
+      ? t('childbirthScreen.contractions.stopButton')
+      : t('childbirthScreen.contractions.startButton');
+
+  const holdFillWidth = holdProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%'],
+  });
   const historyRows = useMemo(() => {
     let sumIntervals = 0;
     let intervalsCount = 0;
@@ -120,18 +201,31 @@ export const ChildbirthTimer = () => {
 
           <View className="mt-4 flex-row items-center justify-center">
             <Button
-              className="h-11 w-[138px] items-center justify-center rounded-full bg-[#F3A27B] px-3 shadow-none"
+              className="h-11 w-[138px] items-center justify-center overflow-hidden rounded-full bg-[#F3A27B]"
               fullWidth={false}
-              onPress={onPress}
+              onPress={handlePrimaryButtonPress}
+              onPressIn={startPauseHoldAnimation}
+              onPressOut={cancelPauseHoldAnimation}
             >
-              <Text
-                className="text-center font-semibold text-[18px] leading-[22px] text-white"
-                numberOfLines={1}
-              >
-                {isActive
-                ? t('childbirthScreen.contractions.stopButton')
-                : t('childbirthScreen.contractions.startButton')}
-              </Text>
+              <Animated.View
+                pointerEvents="none"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  width: holdFillWidth,
+                  backgroundColor: '#D37852',
+                }}
+              />
+              <View className="h-full w-full items-center justify-center px-3">
+                <Text
+                  className="text-center font-semibold text-[18px] leading-[22px] text-white"
+                  numberOfLines={1}
+                >
+                  {primaryButtonLabel}
+                </Text>
+              </View>
             </Button>
 
             <Button

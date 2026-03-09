@@ -7,8 +7,11 @@ import {
   selectCurrentDurationSec,
   selectHasTimerData,
   selectIsContractionActive,
+  selectIsTimerPaused,
   selectLatestIntervalSec,
+  selectPauseTimer,
   selectResetTimer,
+  selectStartAfterPause,
   selectTickNow,
   selectToggleTimer,
   useChildbirthTimerStore,
@@ -20,19 +23,22 @@ export const useChildbirthTimer = () => {
   const latestIntervalSec = useChildbirthTimerStore(selectLatestIntervalSec);
   const averageIntervalSec = useChildbirthTimerStore(selectAverageIntervalSec);
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
+  const isPaused = useChildbirthTimerStore(selectIsTimerPaused);
   const contractions = useChildbirthTimerStore(selectContractions);
   const onPress = useChildbirthTimerStore(selectToggleTimer);
   const onReset = useChildbirthTimerStore(selectResetTimer);
+  const onPause = useChildbirthTimerStore(selectPauseTimer);
+  const onStartAfterPause = useChildbirthTimerStore(selectStartAfterPause);
   const tickNow = useChildbirthTimerStore(selectTickNow);
 
   useFocusEffect(useCallback(() => {
-    if (hasTimerData) {
+    if (hasTimerData && !isPaused) {
       tickNow();
     }
-  }, [hasTimerData, tickNow]));
+  }, [hasTimerData, isPaused, tickNow]));
 
   useEffect(() => {
-    if (!hasTimerData) {
+    if (!hasTimerData || isPaused) {
       return undefined;
     }
 
@@ -43,10 +49,11 @@ export const useChildbirthTimer = () => {
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [hasTimerData, tickNow]);
+  }, [hasTimerData, isPaused, tickNow]);
 
   return {
     isActive,
+    isPaused,
     currentDurationSec,
     latestIntervalSec,
     averageIntervalSec,
@@ -54,5 +61,7 @@ export const useChildbirthTimer = () => {
     contractions,
     onPress,
     onReset,
+    onPause,
+    onStartAfterPause,
   };
 };

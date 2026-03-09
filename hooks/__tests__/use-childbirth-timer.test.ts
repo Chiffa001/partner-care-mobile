@@ -25,6 +25,7 @@ const {
   useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) => selector(storeState)),
   storeState: {
     isActive: false,
+    isPaused: false,
     currentDurationSec: 0,
     latestIntervalSec: 0,
     averageIntervalSec: 0,
@@ -32,6 +33,8 @@ const {
     contractions: [] as { startAt: number; durationSec: number; intervalSec: number | null }[],
     toggleTimer: vi.fn(),
     resetTimer: vi.fn(),
+    pauseTimer: vi.fn(),
+    startAfterPause: vi.fn(),
     tickNow: vi.fn(),
   },
 }));
@@ -48,6 +51,7 @@ vi.mock('@react-navigation/native', () => ({
 vi.mock('@/stores/childbirth-timer-store', () => ({
   useChildbirthTimerStore: useStoreMock,
   selectIsContractionActive: (state: typeof storeState) => state.isActive,
+  selectIsTimerPaused: (state: typeof storeState) => state.isPaused,
   selectCurrentDurationSec: (state: typeof storeState) => state.currentDurationSec,
   selectLatestIntervalSec: (state: typeof storeState) => state.latestIntervalSec,
   selectAverageIntervalSec: (state: typeof storeState) => state.averageIntervalSec,
@@ -55,6 +59,8 @@ vi.mock('@/stores/childbirth-timer-store', () => ({
   selectContractions: (state: typeof storeState) => state.contractions,
   selectToggleTimer: (state: typeof storeState) => state.toggleTimer,
   selectResetTimer: (state: typeof storeState) => state.resetTimer,
+  selectPauseTimer: (state: typeof storeState) => state.pauseTimer,
+  selectStartAfterPause: (state: typeof storeState) => state.startAfterPause,
   selectTickNow: (state: typeof storeState) => state.tickNow,
 }));
 
@@ -65,6 +71,7 @@ describe('useChildbirthTimer', () => {
     effectCleanups.length = 0;
 
     storeState.isActive = false;
+    storeState.isPaused = false;
     storeState.currentDurationSec = 0;
     storeState.latestIntervalSec = 0;
     storeState.averageIntervalSec = 0;
@@ -72,11 +79,14 @@ describe('useChildbirthTimer', () => {
     storeState.contractions = [];
     storeState.toggleTimer = vi.fn();
     storeState.resetTimer = vi.fn();
+    storeState.pauseTimer = vi.fn();
+    storeState.startAfterPause = vi.fn();
     storeState.tickNow = vi.fn();
   });
 
   it('returns timer data and actions from store selectors', () => {
     storeState.isActive = true;
+    storeState.isPaused = false;
     storeState.currentDurationSec = 11;
     storeState.latestIntervalSec = 7;
     storeState.averageIntervalSec = 9;
@@ -87,6 +97,7 @@ describe('useChildbirthTimer', () => {
 
     expect(result).toEqual({
       isActive: true,
+      isPaused: false,
       currentDurationSec: 11,
       latestIntervalSec: 7,
       averageIntervalSec: 9,
@@ -94,6 +105,8 @@ describe('useChildbirthTimer', () => {
       contractions: [{ startAt: 1, durationSec: 11, intervalSec: null }],
       onPress: storeState.toggleTimer,
       onReset: storeState.resetTimer,
+      onPause: storeState.pauseTimer,
+      onStartAfterPause: storeState.startAfterPause,
     });
   });
 
@@ -131,6 +144,19 @@ describe('useChildbirthTimer', () => {
   });
 
   it('does not tick or start interval when timer has no data', () => {
+    const setIntervalSpy = vi.spyOn(globalThis, 'setInterval');
+
+    useChildbirthTimer();
+
+    expect(storeState.tickNow).not.toHaveBeenCalled();
+    expect(setIntervalSpy).not.toHaveBeenCalled();
+
+    setIntervalSpy.mockRestore();
+  });
+
+  it('does not tick while paused even if timer has data', () => {
+    storeState.hasTimerData = true;
+    storeState.isPaused = true;
     const setIntervalSpy = vi.spyOn(globalThis, 'setInterval');
 
     useChildbirthTimer();

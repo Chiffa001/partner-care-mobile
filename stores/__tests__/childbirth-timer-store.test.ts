@@ -5,6 +5,7 @@ import {
   selectCurrentDurationSec,
   selectHasTimerData,
   selectIsContractionActive,
+  selectIsTimerPaused,
   selectLatestIntervalSec,
   useChildbirthTimerStore,
 } from '../childbirth-timer-store';
@@ -20,6 +21,7 @@ const resetStoreState = (timestamp: number) => {
   useChildbirthTimerStore.setState({
     activeContractionStartAt: null,
     activeContractionIntervalSec: null,
+    isPaused: false,
     contractions: [],
     now: timestamp,
   });
@@ -41,6 +43,7 @@ describe('childbirth-timer-store', () => {
     const state = readState();
 
     expect(selectIsContractionActive(state)).toBe(false);
+    expect(selectIsTimerPaused(state)).toBe(false);
     expect(selectHasTimerData(state)).toBe(false);
     expect(selectCurrentDurationSec(state)).toBe(0);
     expect(selectLatestIntervalSec(state)).toBe(0);
@@ -151,6 +154,7 @@ describe('childbirth-timer-store', () => {
 
     const state = readState();
     expect(selectIsContractionActive(state)).toBe(false);
+    expect(selectIsTimerPaused(state)).toBe(false);
     expect(selectHasTimerData(state)).toBe(false);
     expect(state.activeContractionIntervalSec).toBeNull();
     expect(state.contractions).toEqual([]);
@@ -163,6 +167,7 @@ describe('childbirth-timer-store', () => {
     useChildbirthTimerStore.setState({
       activeContractionStartAt: baseTime + 30_000,
       activeContractionIntervalSec: null,
+      isPaused: false,
       now: baseTime + 35_000,
       contractions: [
         {
@@ -186,5 +191,53 @@ describe('childbirth-timer-store', () => {
     const state = readState();
     expect(selectLatestIntervalSec(state)).toBe(16);
     expect(selectAverageIntervalSec(state)).toBe(13);
+  });
+
+  it('pauses timer without wiping data and restarts from clean state on startAfterPause', () => {
+    const { toggleTimer, pauseTimer, startAfterPause, tickNow } = readState();
+
+    toggleTimer();
+    setNow(baseTime + 9_000);
+    tickNow();
+    toggleTimer();
+
+    const beforePause = readState();
+    expect(beforePause.contractions).toHaveLength(1);
+
+    setNow(baseTime + 13_000);
+    pauseTimer();
+
+    const pausedState = readState();
+    expect(selectIsTimerPaused(pausedState)).toBe(true);
+    expect(selectHasTimerData(pausedState)).toBe(true);
+    expect(pausedState.contractions).toHaveLength(1);
+    expect(selectLatestIntervalSec(pausedState)).toBe(4);
+    expect(selectAverageIntervalSec(pausedState)).toBe(4);
+
+    setNow(baseTime + 20_000);
+    startAfterPause();
+
+    const restartedState = readState();
+    expect(selectIsTimerPaused(restartedState)).toBe(false);
+    expect(selectIsContractionActive(restartedState)).toBe(true);
+    expect(restartedState.contractions).toEqual([]);
+    expect(restartedState.activeContractionIntervalSec).toBeNull();
+    expect(selectCurrentDurationSec(restartedState)).toBe(0);
+  });
+
+  it('stores active contraction in history when paused during running contraction', () => {
+    const { toggleTimer, pauseTimer, tickNow } = readState();
+
+    toggleTimer();
+    setNow(baseTime + 6_000);
+    tickNow();
+    pauseTimer();
+
+    const pausedState = readState();
+    expect(selectIsTimerPaused(pausedState)).toBe(true);
+    expect(selectIsContractionActive(pausedState)).toBe(false);
+    expect(pausedState.contractions).toHaveLength(1);
+    expect(pausedState.contractions[0].durationSec).toBe(6);
+    expect(pausedState.contractions[0].intervalSec).toBeNull();
   });
 });
