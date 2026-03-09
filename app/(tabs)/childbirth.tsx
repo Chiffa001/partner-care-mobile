@@ -1,15 +1,5 @@
-import { Text } from "react-native";
+import { Redirect } from 'expo-router';
 
-import { ScreenContainer } from "@/components/screen-container";
+const ChildbirthEntry = () => <Redirect href="/(childbirth-tabs)/contractions" />;
 
-const Childbirth = () => {
-  return (
-    <ScreenContainer>
-      <Text>
-        childbirth
-      </Text>
-    </ScreenContainer>
-  );
-};
-
-export default Childbirth;
+export default ChildbirthEntry;

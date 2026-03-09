@@ -34,6 +34,7 @@ const Value = () => {
       <View className="mt-auto w-[85%]">
         <Button
           onPress={handleStart}
+          className='py-4'
         >
           {t('value.button')}
         </Button>

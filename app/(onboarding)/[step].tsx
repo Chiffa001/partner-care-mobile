@@ -84,6 +84,7 @@ const OnboardingStep = () => {
       <View className="mt-auto w-[85%]">
         <Button
           onPress={handleNext}
+          className='py-4'
         >
           {t(`onboarding${step}.button`)}
         </Button>

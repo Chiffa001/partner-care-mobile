@@ -68,6 +68,59 @@ const i18nOptions: InitOptions = {
           childbirth: 'Роды',
           settings: 'Настройки',
         },
+        childbirthScreen: {
+          tabs: {
+            contractions: 'Схватки',
+            sheIsTired: 'Она устала',
+            toHospital: 'В роддом',
+            doctor: 'Врач',
+          },
+          contractions: {
+            statusActive: 'Схватки начались',
+            statusIdle: 'Ожидание следующей схватки',
+            timerTitle: 'Таймер схваток',
+            startButton: 'Начать',
+            stopButton: 'Стоп',
+            resetButton: 'Сброс',
+            timerNotStartedHint: 'Таймер еще не запускался',
+            durationLabel: 'Длительность',
+            intervalLabel: 'Интервал',
+            averageIntervalLabel: 'Средний интервал',
+            whatToDoTitle: 'Что делать сейчас:',
+            whatToDoItems: [
+              'Напомни ей дышать',
+              'Помоги выбрать удобную позу',
+              'Говори спокойно',
+            ],
+          },
+          sheIsTired: {
+            status: 'Сейчас: Усталость и слабость',
+            title: 'Что делать, если она устала',
+            items: [
+              'Предложи воду и лёгкий перекус',
+              'Помоги поменять позу и расслабить спину',
+              'Убери лишний шум, говори мягко',
+            ],
+          },
+          toHospital: {
+            status: 'Сейчас: Пора ехать в роддом',
+            title: 'Сборы в роддом',
+            items: [
+              'Проверь документы и обменную карту',
+              'Возьми заранее собранную сумку',
+              'Вызови такси или подготовь машину',
+            ],
+          },
+          doctor: {
+            status: 'Сейчас: Нужна связь с врачом',
+            title: 'Когда звонить врачу',
+            items: [
+              'Схватки идут часто и усиливаются',
+              'Отошли воды или есть необычные выделения',
+              'Появилась сильная боль или тревожные симптомы',
+            ],
+          },
+        },
         settingsScreen: {
           sections: {
             profile: 'Профиль',
@@ -173,6 +226,59 @@ const i18nOptions: InitOptions = {
           today: 'Today',
           childbirth: 'Childbirth',
           settings: 'Settings',
+        },
+        childbirthScreen: {
+          tabs: {
+            contractions: 'Contractions',
+            sheIsTired: 'She is tired',
+            toHospital: 'To hospital',
+            doctor: 'Doctor',
+          },
+          contractions: {
+            statusActive: 'Contractions have started',
+            statusIdle: 'Waiting for the next contraction',
+            timerTitle: 'Contraction timer',
+            startButton: 'Start',
+            stopButton: 'Stop',
+            resetButton: 'Reset',
+            timerNotStartedHint: 'Timer has not been started yet',
+            durationLabel: 'Duration',
+            intervalLabel: 'Interval',
+            averageIntervalLabel: 'Average interval',
+            whatToDoTitle: 'What to do now:',
+            whatToDoItems: [
+              'Remind her to breathe',
+              'Help her find a comfortable position',
+              'Speak calmly',
+            ],
+          },
+          sheIsTired: {
+            status: 'Now: Fatigue and weakness',
+            title: 'What to do if she is tired',
+            items: [
+              'Offer water and a light snack',
+              'Help her change position and relax her back',
+              'Reduce noise and speak gently',
+            ],
+          },
+          toHospital: {
+            status: 'Now: Time to go to the hospital',
+            title: 'Going to the hospital',
+            items: [
+              'Check documents and maternity records',
+              'Take the prepared hospital bag',
+              'Call a taxi or get the car ready',
+            ],
+          },
+          doctor: {
+            status: 'Now: Contact with a doctor is needed',
+            title: 'When to call a doctor',
+            items: [
+              'Contractions are frequent and intensifying',
+              'Water broke or unusual discharge appeared',
+              'Severe pain or alarming symptoms started',
+            ],
+          },
         },
         settingsScreen: {
           sections: {
@@ -280,6 +386,59 @@ const i18nOptions: InitOptions = {
           childbirth: 'Poród',
           settings: 'Ustawienia',
         },
+        childbirthScreen: {
+          tabs: {
+            contractions: 'Skurcze',
+            sheIsTired: 'Jest zmęczona',
+            toHospital: 'Do szpitala',
+            doctor: 'Lekarz',
+          },
+          contractions: {
+            statusActive: 'Skurcze się zaczęły',
+            statusIdle: 'Oczekiwanie na kolejny skurcz',
+            timerTitle: 'Timer skurczów',
+            startButton: 'Start',
+            stopButton: 'Stop',
+            resetButton: 'Reset',
+            timerNotStartedHint: 'Timer nie został jeszcze uruchomiony',
+            durationLabel: 'Czas trwania',
+            intervalLabel: 'Interwał',
+            averageIntervalLabel: 'Średni interwał',
+            whatToDoTitle: 'Co robić teraz:',
+            whatToDoItems: [
+              'Przypomnij jej o oddychaniu',
+              'Pomóż wybrać wygodną pozycję',
+              'Mów spokojnie',
+            ],
+          },
+          sheIsTired: {
+            status: 'Teraz: Zmęczenie i osłabienie',
+            title: 'Co robić, gdy jest zmęczona',
+            items: [
+              'Zaproponuj wodę i lekką przekąskę',
+              'Pomóż zmienić pozycję i rozluźnić plecy',
+              'Ogranicz hałas i mów łagodnie',
+            ],
+          },
+          toHospital: {
+            status: 'Teraz: Czas jechać do szpitala',
+            title: 'Wyjazd do szpitala',
+            items: [
+              'Sprawdź dokumenty i kartę ciąży',
+              'Weź wcześniej spakowaną torbę',
+              'Zamów taksówkę lub przygotuj samochód',
+            ],
+          },
+          doctor: {
+            status: 'Teraz: Potrzebny kontakt z lekarzem',
+            title: 'Kiedy dzwonić do lekarza',
+            items: [
+              'Skurcze są częste i coraz silniejsze',
+              'Odeszły wody lub pojawiła się nietypowa wydzielina',
+              'Wystąpił silny ból lub niepokojące objawy',
+            ],
+          },
+        },
         settingsScreen: {
           sections: {
             profile: 'Profil',
@@ -385,6 +544,59 @@ const i18nOptions: InitOptions = {
           today: 'Hoy',
           childbirth: 'Parto',
           settings: 'Ajustes',
+        },
+        childbirthScreen: {
+          tabs: {
+            contractions: 'Contracciones',
+            sheIsTired: 'Ella está cansada',
+            toHospital: 'Al hospital',
+            doctor: 'Médico',
+          },
+          contractions: {
+            statusActive: 'Las contracciones comenzaron',
+            statusIdle: 'Esperando la siguiente contracción',
+            timerTitle: 'Temporizador de contracciones',
+            startButton: 'Iniciar',
+            stopButton: 'Detener',
+            resetButton: 'Restablecer',
+            timerNotStartedHint: 'El temporizador aún no se ha iniciado',
+            durationLabel: 'Duración',
+            intervalLabel: 'Intervalo',
+            averageIntervalLabel: 'Intervalo medio',
+            whatToDoTitle: 'Qué hacer ahora:',
+            whatToDoItems: [
+              'Recuérdale que respire',
+              'Ayúdala a encontrar una postura cómoda',
+              'Habla con calma',
+            ],
+          },
+          sheIsTired: {
+            status: 'Ahora: Cansancio y debilidad',
+            title: 'Qué hacer si está cansada',
+            items: [
+              'Ofrece agua y un snack ligero',
+              'Ayúdala a cambiar de postura y relajar la espalda',
+              'Reduce el ruido y habla con suavidad',
+            ],
+          },
+          toHospital: {
+            status: 'Ahora: Es hora de ir al hospital',
+            title: 'Salida al hospital',
+            items: [
+              'Revisa documentos y tarjeta de embarazo',
+              'Lleva la bolsa ya preparada',
+              'Pide un taxi o prepara el coche',
+            ],
+          },
+          doctor: {
+            status: 'Ahora: Se necesita contacto con el médico',
+            title: 'Cuándo llamar al médico',
+            items: [
+              'Las contracciones son frecuentes y más intensas',
+              'Se rompió la bolsa o hay flujo inusual',
+              'Apareció dolor fuerte o síntomas alarmantes',
+            ],
+          },
         },
         settingsScreen: {
           sections: {

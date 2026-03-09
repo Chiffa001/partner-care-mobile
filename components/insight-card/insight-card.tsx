@@ -3,6 +3,7 @@ import { type FC, type ReactNode, useMemo, useState } from 'react';
 import type { ImageSourcePropType } from 'react-native';
 import { Image, Text, View } from 'react-native';
 
+import { TitledCard } from '@/components/titled-card';
 import { parseWidthPercent } from '@/utils/parse-width-percent';
 
 export type InsightItem = {
@@ -199,9 +200,12 @@ export const InsightCard: FC<InsightCardProps> = ({
   }
 
   return (
-    <View
-      className="rounded-[22px]"
-      style={{
+    <TitledCard
+      headerContent={headerContent}
+      headerBackgroundColor={headerBackgroundColor}
+      bodyBackgroundColor={bodyBackgroundColor}
+      outerClassName="rounded-[22px]"
+      outerStyle={{
         shadowColor: '#000000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
@@ -209,20 +213,8 @@ export const InsightCard: FC<InsightCardProps> = ({
         elevation: 4,
       }}
     >
-      <View
-        className="overflow-hidden rounded-[22px]"
-        style={{ backgroundColor: bodyBackgroundColor }}
-      >
-        <View
-          className="px-5 py-2.5"
-          style={{ backgroundColor: headerBackgroundColor }}
-        >
-          {headerContent}
-        </View>
-
-        {descriptionSection}
-        {itemsSection}
-      </View>
-    </View>
+      {descriptionSection}
+      {itemsSection}
+    </TitledCard>
   );
 };

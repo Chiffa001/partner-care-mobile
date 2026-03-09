@@ -1,16 +1,21 @@
 import type { FC, ReactNode } from 'react';
-import type { PressableProps } from 'react-native';
+import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 import { Pressable, Text } from 'react-native';
 
 type Props = {
   children: ReactNode;
   fullWidth?: boolean;
+  disabledOpacity?: number;
+  style?: StyleProp<ViewStyle>;
 } & Pick<PressableProps, 'onPress' | 'disabled' | 'className'>;
 
 export const Button: FC<Props> = ({
   children,
   className,
+  disabled,
+  disabledOpacity = 0.5,
   fullWidth = true,
+  style,
   ...others
 }) => {
   const content = typeof children === 'object' ? children : (
@@ -22,7 +27,9 @@ export const Button: FC<Props> = ({
   return (
     <Pressable
       {...others}
-      className={`${fullWidth ? 'w-full' : 'w-auto'} rounded-full bg-buttons-primary-bg px-16 py-4 shadow-md active:opacity-80 ${className}`}
+      disabled={disabled}
+      className={`${fullWidth ? 'w-full' : 'w-auto'} rounded-full bg-buttons-primary-bg shadow-md active:opacity-80 ${className}`}
+      style={[style, { opacity: disabled ? disabledOpacity : 1 }]}
     >
       {content}
     </Pressable>

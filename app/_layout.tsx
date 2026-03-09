@@ -54,6 +54,10 @@ const RootLayout = () => {
             name="(tabs)"
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="(childbirth-tabs)"
+            options={{ headerShown: false }}
+          />
         </Stack>
       </View>
     </SafeAreaProvider>
