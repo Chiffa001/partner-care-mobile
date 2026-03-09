@@ -86,6 +86,9 @@ const i18nOptions: InitOptions = {
             durationLabel: 'Длительность',
             intervalLabel: 'Интервал',
             averageIntervalLabel: 'Средний интервал',
+            historyTitle: 'История схваток',
+            historyEmpty: 'Пока нет записей',
+            historyClose: 'Закрыть',
             whatToDoTitle: 'Что делать сейчас:',
             whatToDoItems: [
               'Напомни ей дышать',
@@ -245,6 +248,9 @@ const i18nOptions: InitOptions = {
             durationLabel: 'Duration',
             intervalLabel: 'Interval',
             averageIntervalLabel: 'Average interval',
+            historyTitle: 'Contractions history',
+            historyEmpty: 'No records yet',
+            historyClose: 'Close',
             whatToDoTitle: 'What to do now:',
             whatToDoItems: [
               'Remind her to breathe',
@@ -404,6 +410,9 @@ const i18nOptions: InitOptions = {
             durationLabel: 'Czas trwania',
             intervalLabel: 'Interwał',
             averageIntervalLabel: 'Średni interwał',
+            historyTitle: 'Historia skurczów',
+            historyEmpty: 'Brak zapisów',
+            historyClose: 'Zamknij',
             whatToDoTitle: 'Co robić teraz:',
             whatToDoItems: [
               'Przypomnij jej o oddychaniu',
@@ -563,6 +572,9 @@ const i18nOptions: InitOptions = {
             durationLabel: 'Duración',
             intervalLabel: 'Intervalo',
             averageIntervalLabel: 'Intervalo medio',
+            historyTitle: 'Historial de contracciones',
+            historyEmpty: 'Aún no hay registros',
+            historyClose: 'Cerrar',
             whatToDoTitle: 'Qué hacer ahora:',
             whatToDoItems: [
               'Recuérdale que respire',

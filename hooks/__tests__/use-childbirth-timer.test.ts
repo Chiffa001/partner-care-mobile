@@ -29,6 +29,7 @@ const {
     latestIntervalSec: 0,
     averageIntervalSec: 0,
     hasTimerData: false,
+    contractions: [] as { startAt: number; durationSec: number; intervalSec: number | null }[],
     toggleTimer: vi.fn(),
     resetTimer: vi.fn(),
     tickNow: vi.fn(),
@@ -51,6 +52,7 @@ vi.mock('@/stores/childbirth-timer-store', () => ({
   selectLatestIntervalSec: (state: typeof storeState) => state.latestIntervalSec,
   selectAverageIntervalSec: (state: typeof storeState) => state.averageIntervalSec,
   selectHasTimerData: (state: typeof storeState) => state.hasTimerData,
+  selectContractions: (state: typeof storeState) => state.contractions,
   selectToggleTimer: (state: typeof storeState) => state.toggleTimer,
   selectResetTimer: (state: typeof storeState) => state.resetTimer,
   selectTickNow: (state: typeof storeState) => state.tickNow,
@@ -67,6 +69,7 @@ describe('useChildbirthTimer', () => {
     storeState.latestIntervalSec = 0;
     storeState.averageIntervalSec = 0;
     storeState.hasTimerData = false;
+    storeState.contractions = [];
     storeState.toggleTimer = vi.fn();
     storeState.resetTimer = vi.fn();
     storeState.tickNow = vi.fn();
@@ -78,6 +81,7 @@ describe('useChildbirthTimer', () => {
     storeState.latestIntervalSec = 7;
     storeState.averageIntervalSec = 9;
     storeState.hasTimerData = true;
+    storeState.contractions = [{ startAt: 1, durationSec: 11, intervalSec: null }];
 
     const result = useChildbirthTimer();
 
@@ -87,6 +91,7 @@ describe('useChildbirthTimer', () => {
       latestIntervalSec: 7,
       averageIntervalSec: 9,
       hasTimerData: true,
+      contractions: [{ startAt: 1, durationSec: 11, intervalSec: null }],
       onPress: storeState.toggleTimer,
       onReset: storeState.resetTimer,
     });

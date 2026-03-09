@@ -131,3 +131,5 @@ export const selectResetTimer = (state: ChildbirthTimerState) => state.resetTime
 export const selectHasTimerData = (state: ChildbirthTimerState) => (
   state.activeContractionStartAt !== null || state.contractions.length > 0
 );
+
+export const selectContractions = (state: ChildbirthTimerState) => state.contractions;

@@ -3,6 +3,7 @@ import { useCallback, useEffect } from 'react';
 
 import {
   selectAverageIntervalSec,
+  selectContractions,
   selectCurrentDurationSec,
   selectHasTimerData,
   selectIsContractionActive,
@@ -19,6 +20,7 @@ export const useChildbirthTimer = () => {
   const latestIntervalSec = useChildbirthTimerStore(selectLatestIntervalSec);
   const averageIntervalSec = useChildbirthTimerStore(selectAverageIntervalSec);
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
+  const contractions = useChildbirthTimerStore(selectContractions);
   const onPress = useChildbirthTimerStore(selectToggleTimer);
   const onReset = useChildbirthTimerStore(selectResetTimer);
   const tickNow = useChildbirthTimerStore(selectTickNow);
@@ -49,6 +51,7 @@ export const useChildbirthTimer = () => {
     latestIntervalSec,
     averageIntervalSec,
     hasTimerData,
+    contractions,
     onPress,
     onReset,
   };
