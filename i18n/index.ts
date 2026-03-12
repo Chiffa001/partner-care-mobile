@@ -104,16 +104,21 @@ const i18nOptions: InitOptions = {
             ],
           },
           sheIsTired: {
-            status: 'Сейчас: Усталость и слабость',
-            title: 'Что делать, если она устала',
-            items: [
-              'Предложи воду и лёгкий перекус',
-              'Помоги поменять позу и расслабить спину',
-              'Убери лишний шум, говори мягко',
+            status: 'Нужен отдых',
+            helpTitle: 'Как помочь',
+            helpItems: [
+              'Позаботиться о тишине',
+              'Сделать ей лёгкий перекус или предложить воду',
+              'Дать ей расслабиться и отдохнуть',
+            ],
+            avoidTitle: 'Чего не делать',
+            avoidItems: [
+              'Не просить об активности',
+              'Не тревожить по пустякам',
             ],
           },
           toHospital: {
-            status: 'Сейчас: Пора ехать в роддом',
+            status: 'Пора ехать в роддом',
             title: 'Сборы в роддом',
             items: [
               'Проверь документы и обменную карту',
@@ -122,7 +127,7 @@ const i18nOptions: InitOptions = {
             ],
           },
           doctor: {
-            status: 'Сейчас: Нужна связь с врачом',
+            status: 'Нужна связь с врачом',
             title: 'Когда звонить врачу',
             items: [
               'Схватки идут часто и усиливаются',
@@ -273,16 +278,21 @@ const i18nOptions: InitOptions = {
             ],
           },
           sheIsTired: {
-            status: 'Now: Fatigue and weakness',
-            title: 'What to do if she is tired',
-            items: [
-              'Offer water and a light snack',
-              'Help her change position and relax her back',
-              'Reduce noise and speak gently',
+            status: 'She needs rest',
+            helpTitle: 'How to help',
+            helpItems: [
+              'Keep the room quiet',
+              'Prepare a light snack or offer water',
+              'Let her relax and rest',
+            ],
+            avoidTitle: 'What not to do',
+            avoidItems: [
+              'Do not ask for activity',
+              'Do not disturb her over minor things',
             ],
           },
           toHospital: {
-            status: 'Now: Time to go to the hospital',
+            status: 'Time to go to the hospital',
             title: 'Going to the hospital',
             items: [
               'Check documents and maternity records',
@@ -291,7 +301,7 @@ const i18nOptions: InitOptions = {
             ],
           },
           doctor: {
-            status: 'Now: Contact with a doctor is needed',
+            status: 'Contact with a doctor is needed',
             title: 'When to call a doctor',
             items: [
               'Contractions are frequent and intensifying',
@@ -442,16 +452,21 @@ const i18nOptions: InitOptions = {
             ],
           },
           sheIsTired: {
-            status: 'Teraz: Zmęczenie i osłabienie',
-            title: 'Co robić, gdy jest zmęczona',
-            items: [
-              'Zaproponuj wodę i lekką przekąskę',
-              'Pomóż zmienić pozycję i rozluźnić plecy',
-              'Ogranicz hałas i mów łagodnie',
+            status: 'Potrzebuje odpoczynku',
+            helpTitle: 'Jak pomóc',
+            helpItems: [
+              'Zadbaj o ciszę',
+              'Przygotuj lekką przekąskę lub zaproponuj wodę',
+              'Pozwól jej się rozluźnić i odpocząć',
+            ],
+            avoidTitle: 'Czego nie robić',
+            avoidItems: [
+              'Nie proś o aktywność',
+              'Nie niepokój jej drobiazgami',
             ],
           },
           toHospital: {
-            status: 'Teraz: Czas jechać do szpitala',
+            status: 'Czas jechać do szpitala',
             title: 'Wyjazd do szpitala',
             items: [
               'Sprawdź dokumenty i kartę ciąży',
@@ -460,7 +475,7 @@ const i18nOptions: InitOptions = {
             ],
           },
           doctor: {
-            status: 'Teraz: Potrzebny kontakt z lekarzem',
+            status: 'Potrzebny kontakt z lekarzem',
             title: 'Kiedy dzwonić do lekarza',
             items: [
               'Skurcze są częste i coraz silniejsze',
@@ -611,16 +626,21 @@ const i18nOptions: InitOptions = {
             ],
           },
           sheIsTired: {
-            status: 'Ahora: Cansancio y debilidad',
-            title: 'Qué hacer si está cansada',
-            items: [
-              'Ofrece agua y un snack ligero',
-              'Ayúdala a cambiar de postura y relajar la espalda',
-              'Reduce el ruido y habla con suavidad',
+            status: 'Necesita descansar',
+            helpTitle: 'Cómo ayudar',
+            helpItems: [
+              'Procura que haya silencio',
+              'Prepárale un snack ligero u ofrécele agua',
+              'Déjala relajarse y descansar',
+            ],
+            avoidTitle: 'Qué no hacer',
+            avoidItems: [
+              'No le pidas actividad',
+              'No la molestes por cosas sin importancia',
             ],
           },
           toHospital: {
-            status: 'Ahora: Es hora de ir al hospital',
+            status: 'Es hora de ir al hospital',
             title: 'Salida al hospital',
             items: [
               'Revisa documentos y tarjeta de embarazo',
@@ -629,7 +649,7 @@ const i18nOptions: InitOptions = {
             ],
           },
           doctor: {
-            status: 'Ahora: Se necesita contacto con el médico',
+            status: 'Se necesita contacto con el médico',
             title: 'Cuándo llamar al médico',
             items: [
               'Las contracciones son frecuentes y más intensas',

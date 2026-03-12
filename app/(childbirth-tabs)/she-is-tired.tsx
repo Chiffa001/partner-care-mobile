@@ -1,14 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, View } from 'react-native';
+import { Image, ScrollView, Text, View } from 'react-native';
 
+import sheIsTiredImage from '@/assets/images/childbirth/she-is-tired-img.png';
 import { InsightCard } from '@/components/insight-card';
 import { ScreenContainer } from '@/components/screen-container';
 
 const SheIsTiredScreen = () => {
   const { t } = useTranslation();
-  const sheIsTiredItems = [0, 1, 2].map((index) => ({
-    text: t(`childbirthScreen.sheIsTired.items.${index}`),
+  const helpItems = [0, 1, 2].map((index) => ({
+    text: t(`childbirthScreen.sheIsTired.helpItems.${index}`),
     type: 'positive' as const,
+  }));
+  const avoidItems = [0, 1].map((index) => ({
+    text: t(`childbirthScreen.sheIsTired.avoidItems.${index}`),
+    type: 'negative' as const,
   }));
 
   return (
@@ -25,11 +30,27 @@ const SheIsTiredScreen = () => {
         </View>
 
         <InsightCard
-          title={t('childbirthScreen.sheIsTired.title')}
+          title={t('childbirthScreen.sheIsTired.helpTitle')}
+          items={helpItems}
           titleColor="#8F757B"
           headerBackgroundColor="#FBEDE7"
           bodyBackgroundColor="#FEFAF8"
-          items={sheIsTiredItems}
+          collapsible={false}
+        />
+
+        <InsightCard
+          title={t('childbirthScreen.sheIsTired.avoidTitle')}
+          items={avoidItems}
+          titleColor="#8F757B"
+          headerBackgroundColor="#FBEDE7"
+          bodyBackgroundColor="#FEFAF8"
+          collapsible={false}
+        />
+
+        <Image
+          source={sheIsTiredImage}
+          resizeMode="contain"
+          className="h-[200px] w-full"
         />
       </ScrollView>
     </ScreenContainer>
