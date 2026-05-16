@@ -7,6 +7,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import { Colors } from '@/constants/colors';
+
 type SettingsSwitchProps = {
   value: boolean;
   onValueChange: (nextValue: boolean) => void;
@@ -35,7 +37,7 @@ const SettingsSwitchComponent: FC<SettingsSwitchProps> = ({ value, onValueChange
     backgroundColor: interpolateColor(
       progress.value,
       [0, 1],
-      ['#D7D2D5', '#8FB482'],
+      [Colors.statusSwitchOff, Colors.statusSwitchOn],
     ),
   }));
 
@@ -61,7 +63,10 @@ const SettingsSwitchComponent: FC<SettingsSwitchProps> = ({ value, onValueChange
         style={[trackStyle, { height: TRACK_HEIGHT }]}
       >
         <Animated.View style={thumbStyle}>
-          <View className="h-[26px] w-[26px] rounded-full bg-[#F8F5F3]" />
+          <View
+            className="h-[26px] w-[26px] rounded-full"
+            style={{ backgroundColor: Colors.bgSwitchThumb }}
+          />
         </Animated.View>
       </Animated.View>
     </Pressable>

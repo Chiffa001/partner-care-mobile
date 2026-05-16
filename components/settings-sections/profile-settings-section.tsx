@@ -8,6 +8,7 @@ import { CommunicationToneModal } from '@/components/communication-tone-modal';
 import { DueDateModal } from '@/components/due-date-modal';
 import { SettingsRow } from '@/components/settings-row';
 import { SettingsSwitch } from '@/components/settings-switch';
+import { Colors } from '@/constants/colors';
 import {
   type CommunicationTone,
   getCommunicationToneOptions,
@@ -68,6 +69,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
       setIsCommunicationToneModalVisible(false);
     }, 35);
   };
+
   const handleSelectLanguage = (value: string) => {
     if (!supportedLanguages.includes(value as AppLanguage)) {
       return;
@@ -88,14 +90,18 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
 
   return (
     <>
-      <Text className="mb-3 ml-1 font-semibold text-[16px] leading-[24px] text-[#8A828A]">
+      <Text
+        className="mb-3 ml-1 font-semibold text-[16px] leading-[24px]"
+        style={{ color: Colors.textSecondary }}
+      >
         {t('settingsScreen.sections.profile')}
       </Text>
 
       <View
-        className="mb-7 overflow-hidden rounded-[22px] bg-[#F8F3F3] px-4"
+        className="mb-7 overflow-hidden rounded-[22px] px-4"
         style={{
-          shadowColor: '#000000',
+          backgroundColor: Colors.bgSettings,
+          shadowColor: Colors.black,
           shadowOffset: { width: 0, height: 3 },
           shadowOpacity: 0.08,
           shadowRadius: 8,
@@ -112,7 +118,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <MaterialCommunityIcons
               name="calendar-month-outline"
               size={27}
-              color="#8FAFB4"
+              color={Colors.iconMint}
             />
           )}
         />
@@ -129,7 +135,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <MaterialCommunityIcons
               name="home-heart"
               size={29}
-              color="#8FB0BC"
+              color={Colors.iconSky}
             />
           )}
         />
@@ -146,7 +152,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <MaterialCommunityIcons
               name="heart"
               size={28}
-              color="#E09AA0"
+              color={Colors.accentMuted}
             />
           )}
         />
@@ -160,7 +166,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <MaterialCommunityIcons
               name="emoticon-happy-outline"
               size={29}
-              color="#D8B178"
+              color={Colors.iconWarm}
             />
           )}
         />
@@ -173,7 +179,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <MaterialCommunityIcons
               name="translate"
               size={28}
-              color="#8FAFB4"
+              color={Colors.iconMint}
             />
           )}
         />

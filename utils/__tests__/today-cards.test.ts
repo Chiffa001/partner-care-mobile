@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
+import { Colors } from '../../constants/colors';
+
 import { buildTodayCards } from '../today-cards';
 
 const translations: Record<string, string> = {
@@ -23,9 +25,9 @@ describe('buildTodayCards', () => {
 
     expect(cards.stateCard).toEqual({
       title: 'State title',
-      titleColor: '#B56A6C',
-      headerBackgroundColor: '#F3D7D3',
-      bodyBackgroundColor: '#F7EFED',
+      titleColor: Colors.textCardStateTitle,
+      headerBackgroundColor: Colors.bgCardStateHeader,
+      bodyBackgroundColor: Colors.bgCardStateBody,
       description: 'State description',
       imageScale: 1.2,
       imageOffsetY: -18,

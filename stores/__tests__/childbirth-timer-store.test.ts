@@ -10,6 +10,8 @@ import {
   useChildbirthTimerStore,
 } from '../childbirth-timer-store';
 
+vi.mock('@react-native-async-storage/async-storage');
+
 const setNow = (timestamp: number) => {
   vi.setSystemTime(new Date(timestamp));
 };

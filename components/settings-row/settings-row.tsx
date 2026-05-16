@@ -3,6 +3,7 @@ import type { FC, ReactNode } from 'react';
 import { Platform, Text, View } from 'react-native';
 
 import { AnimatedPressable } from '@/components/animated-pressable';
+import { Colors } from '@/constants/colors';
 
 export type SettingsRowProps = {
   title: string;
@@ -29,10 +30,13 @@ export const SettingsRow: FC<SettingsRowProps> = ({
       <View className="mr-3 flex-1 flex-row items-center">
         {leftIcon}
         <Text
-          className="ml-3 flex-1 font-sans text-[16px] leading-[22px] text-[#4E4A53]"
+          className="ml-3 flex-1 font-sans text-[16px] leading-[22px]"
           numberOfLines={1}
           ellipsizeMode="tail"
-          style={Platform.OS === 'android' ? { includeFontPadding: false } : undefined}
+          style={[
+            { color: Colors.textRowTitle },
+            Platform.OS === 'android' ? { includeFontPadding: false } : undefined,
+          ]}
         >
           {title}
         </Text>
@@ -41,10 +45,13 @@ export const SettingsRow: FC<SettingsRowProps> = ({
         <View className="flex-row items-center">
           {value ? (
             <Text
-              className="mr-2 font-sans text-[16px] leading-[22px] text-[#7A7580]"
+              className="mr-2 font-sans text-[16px] leading-[22px]"
               numberOfLines={1}
               ellipsizeMode="tail"
-              style={Platform.OS === 'android' ? { includeFontPadding: false } : undefined}
+              style={[
+                { color: Colors.textRowValue },
+                Platform.OS === 'android' ? { includeFontPadding: false } : undefined,
+              ]}
             >
               {value}
             </Text>
@@ -53,7 +60,7 @@ export const SettingsRow: FC<SettingsRowProps> = ({
             <Ionicons
               name="chevron-forward"
               size={22}
-              color="#B4ACB0"
+              color={Colors.iconSubtle}
             />
           ) : null}
         </View>
@@ -78,8 +85,11 @@ export const SettingsRow: FC<SettingsRowProps> = ({
         </View>
       )}
       {withDivider ? (
-        <View className="h-px bg-[#DED7D8]" />
-    ) : null}
+        <View
+          className="h-px"
+          style={{ backgroundColor: Colors.borderModal }}
+        />
+      ) : null}
     </>
   );
 };

@@ -1,6 +1,6 @@
-import type {FC, ReactNode} from 'react';
+import type { FC, ReactNode } from 'react';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { ScreenContainer } from '../screen-container';
 
@@ -8,12 +8,14 @@ type Props = {
   children: ReactNode;
 };
 
-export const InfoScreenContainer: FC<Props> = ({ children }) => (
-  <SafeAreaView className='px-6 bg-background'>
-    <ScreenContainer>
-      <View className='h-full w-full flex flex-col pt-24 pb-24 items-center'>
+export const InfoScreenContainer: FC<Props> = ({ children }) => {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <ScreenContainer style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+      <View className="h-full w-full flex-col items-center px-6 pb-24 pt-24">
         {children}
       </View>
     </ScreenContainer>
-  </SafeAreaView>
-);
+  );
+};

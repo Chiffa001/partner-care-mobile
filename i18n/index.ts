@@ -71,9 +71,8 @@ const i18nOptions: InitOptions = {
         childbirthScreen: {
           tabs: {
             contractions: 'Схватки',
-            sheIsTired: 'Она устала',
-            toHospital: 'В роддом',
-            doctor: 'Врач',
+            timer: 'Таймер',
+            guide: 'Советы',
           },
           contractions: {
             statusActive: 'Схватки начались',
@@ -102,6 +101,8 @@ const i18nOptions: InitOptions = {
               'Боль усиливается и не проходит в покое',
               'Схватка длится около 30-60 секунд',
             ],
+            pauseLabel: 'Пауза',
+            urgentWarning: 'Схватки учащаются — пора ехать в роддом',
           },
           sheIsTired: {
             status: 'Нужен отдых',
@@ -134,6 +135,54 @@ const i18nOptions: InitOptions = {
               'Отошли воды или есть необычные выделения',
               'Появилась сильная боль или тревожные симптомы',
             ],
+          },
+          timerScreen: {
+            phases: {
+              noData: {
+                label: 'Ожидание',
+                dilation: '—',
+                description: 'Запишите хотя бы 2 схватки, чтобы определить фазу родов',
+                items: [
+                  'Засекайте каждую схватку',
+                  'Помогите ей найти удобную позу',
+                  'Следите за её дыханием',
+                  'Оставайтесь спокойным — это передаётся',
+                ],
+              },
+              early: {
+                label: 'Латентная фаза',
+                dilation: '1–4 см',
+                description: 'Схватки нерегулярные, раскрытие только начинается',
+                items: [
+                  'Не спешите в роддом — время ещё есть',
+                  'Помогите ей двигаться или отдохнуть',
+                  'Подготовьте документы и сумку',
+                  'Предложите воду или лёгкий перекус',
+                ],
+              },
+              active: {
+                label: 'Активная фаза',
+                dilation: '4–8 см',
+                description: 'Схватки регулярные и усиливаются — скоро в роддом',
+                items: [
+                  'Пора готовиться к выезду',
+                  'Помогайте с дыханием во время схваток',
+                  'Говорите тихо и уверенно',
+                  'Держите её за руку или поддерживайте спину',
+                ],
+              },
+              transition: {
+                label: 'Фаза перехода',
+                dilation: '8–10 см',
+                description: 'Самые интенсивные схватки — роды совсем близко',
+                items: [
+                  'Немедленно едьте в роддом',
+                  'Она очень устала — будьте рядом',
+                  'Помогайте дышать на каждой схватке',
+                  'Следуйте указаниям медперсонала',
+                ],
+              },
+            },
           },
         },
         settingsScreen: {
@@ -245,9 +294,8 @@ const i18nOptions: InitOptions = {
         childbirthScreen: {
           tabs: {
             contractions: 'Contractions',
-            sheIsTired: 'She is tired',
-            toHospital: 'To hospital',
-            doctor: 'Doctor',
+            timer: 'Timer',
+            guide: 'Guide',
           },
           contractions: {
             statusActive: 'Contractions have started',
@@ -276,6 +324,8 @@ const i18nOptions: InitOptions = {
               'Pain increases and does not go away at rest',
               'Each contraction lasts around 30-60 seconds',
             ],
+            pauseLabel: 'Paused',
+            urgentWarning: 'Contractions are frequent — time to go to hospital',
           },
           sheIsTired: {
             status: 'She needs rest',
@@ -308,6 +358,54 @@ const i18nOptions: InitOptions = {
               'Water broke or unusual discharge appeared',
               'Severe pain or alarming symptoms started',
             ],
+          },
+          timerScreen: {
+            phases: {
+              noData: {
+                label: 'Waiting',
+                dilation: '—',
+                description: 'Record at least 2 contractions to determine the labor phase',
+                items: [
+                  'Time every contraction',
+                  'Help her find a comfortable position',
+                  'Watch her breathing',
+                  'Stay calm — it is contagious',
+                ],
+              },
+              early: {
+                label: 'Latent phase',
+                dilation: '1–4 cm',
+                description: 'Contractions are irregular, dilation is just beginning',
+                items: [
+                  'No rush to the hospital yet',
+                  'Help her walk around or rest',
+                  'Get documents and the bag ready',
+                  'Offer water or a light snack',
+                ],
+              },
+              active: {
+                label: 'Active phase',
+                dilation: '4–8 cm',
+                description: 'Contractions are regular and intensifying — hospital soon',
+                items: [
+                  'Start preparing to leave',
+                  'Help with breathing during contractions',
+                  'Speak quietly and reassuringly',
+                  'Hold her hand or support her back',
+                ],
+              },
+              transition: {
+                label: 'Transition phase',
+                dilation: '8–10 cm',
+                description: 'The most intense contractions — birth is very close',
+                items: [
+                  'Head to the hospital immediately',
+                  'She is exhausted — stay by her side',
+                  'Help her breathe through every contraction',
+                  'Follow the medical staff\'s instructions',
+                ],
+              },
+            },
           },
         },
         settingsScreen: {
@@ -419,9 +517,8 @@ const i18nOptions: InitOptions = {
         childbirthScreen: {
           tabs: {
             contractions: 'Skurcze',
-            sheIsTired: 'Jest zmęczona',
-            toHospital: 'Do szpitala',
-            doctor: 'Lekarz',
+            timer: 'Timer',
+            guide: 'Porady',
           },
           contractions: {
             statusActive: 'Skurcze się zaczęły',
@@ -450,6 +547,8 @@ const i18nOptions: InitOptions = {
               'Ból narasta i nie ustępuje w spoczynku',
               'Skurcz trwa około 30-60 sekund',
             ],
+            pauseLabel: 'Pauza',
+            urgentWarning: 'Skurcze się nasilają — czas jechać do szpitala',
           },
           sheIsTired: {
             status: 'Potrzebuje odpoczynku',
@@ -482,6 +581,54 @@ const i18nOptions: InitOptions = {
               'Odeszły wody lub pojawiła się nietypowa wydzielina',
               'Wystąpił silny ból lub niepokojące objawy',
             ],
+          },
+          timerScreen: {
+            phases: {
+              noData: {
+                label: 'Oczekiwanie',
+                dilation: '—',
+                description: 'Zapisz co najmniej 2 skurcze, aby określić fazę porodu',
+                items: [
+                  'Mierz czas każdego skurczu',
+                  'Pomóż jej znaleźć wygodną pozycję',
+                  'Obserwuj jej oddech',
+                  'Zachowaj spokój — to się udziela',
+                ],
+              },
+              early: {
+                label: 'Faza utajona',
+                dilation: '1–4 cm',
+                description: 'Skurcze nieregularne, rozwarcie dopiero się zaczyna',
+                items: [
+                  'Nie śpiesz się do szpitala',
+                  'Pomóż jej chodzić lub odpocząć',
+                  'Przygotuj dokumenty i torbę',
+                  'Zaproponuj wodę lub lekką przekąskę',
+                ],
+              },
+              active: {
+                label: 'Faza aktywna',
+                dilation: '4–8 cm',
+                description: 'Skurcze regularne i narastające — niedługo do szpitala',
+                items: [
+                  'Czas przygotować się do wyjazdu',
+                  'Pomagaj z oddychaniem podczas skurczów',
+                  'Mów spokojnie i pewnie',
+                  'Trzymaj ją za rękę lub podpieraj plecy',
+                ],
+              },
+              transition: {
+                label: 'Faza przejściowa',
+                dilation: '8–10 cm',
+                description: 'Najintensywniejsze skurcze — poród jest bardzo blisko',
+                items: [
+                  'Natychmiast jedźcie do szpitala',
+                  'Jest bardzo zmęczona — bądź obok',
+                  'Pomagaj oddychać przy każdym skurczu',
+                  'Stosuj się do wskazówek personelu medycznego',
+                ],
+              },
+            },
           },
         },
         settingsScreen: {
@@ -593,9 +740,8 @@ const i18nOptions: InitOptions = {
         childbirthScreen: {
           tabs: {
             contractions: 'Contracciones',
-            sheIsTired: 'Ella está cansada',
-            toHospital: 'Al hospital',
-            doctor: 'Médico',
+            timer: 'Temporizador',
+            guide: 'Guía',
           },
           contractions: {
             statusActive: 'Las contracciones comenzaron',
@@ -624,6 +770,8 @@ const i18nOptions: InitOptions = {
               'El dolor aumenta y no cede en reposo',
               'Cada contracción dura alrededor de 30-60 segundos',
             ],
+            pauseLabel: 'Pausa',
+            urgentWarning: 'Las contracciones son frecuentes — hora de ir al hospital',
           },
           sheIsTired: {
             status: 'Necesita descansar',
@@ -656,6 +804,54 @@ const i18nOptions: InitOptions = {
               'Se rompió la bolsa o hay flujo inusual',
               'Apareció dolor fuerte o síntomas alarmantes',
             ],
+          },
+          timerScreen: {
+            phases: {
+              noData: {
+                label: 'Esperando',
+                dilation: '—',
+                description: 'Registra al menos 2 contracciones para determinar la fase del parto',
+                items: [
+                  'Cronometra cada contracción',
+                  'Ayúdala a encontrar una postura cómoda',
+                  'Observa su respiración',
+                  'Mantén la calma — se contagia',
+                ],
+              },
+              early: {
+                label: 'Fase latente',
+                dilation: '1–4 cm',
+                description: 'Contracciones irregulares, la dilatación recién comienza',
+                items: [
+                  'No hay prisa por ir al hospital todavía',
+                  'Ayúdala a caminar o descansar',
+                  'Prepara documentos y la bolsa',
+                  'Ofrécele agua o una merienda ligera',
+                ],
+              },
+              active: {
+                label: 'Fase activa',
+                dilation: '4–8 cm',
+                description: 'Contracciones regulares e intensas — pronto al hospital',
+                items: [
+                  'Es hora de prepararse para salir',
+                  'Ayuda con la respiración durante las contracciones',
+                  'Habla tranquilo y con seguridad',
+                  'Tómale la mano o apóyale la espalda',
+                ],
+              },
+              transition: {
+                label: 'Fase de transición',
+                dilation: '8–10 cm',
+                description: 'Las contracciones más intensas — el parto está muy cerca',
+                items: [
+                  'Ve al hospital de inmediato',
+                  'Está muy agotada — quédate a su lado',
+                  'Ayúdala a respirar en cada contracción',
+                  'Sigue las indicaciones del personal médico',
+                ],
+              },
+            },
           },
         },
         settingsScreen: {

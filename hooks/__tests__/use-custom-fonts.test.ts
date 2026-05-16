@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { Colors } from '../../constants/colors';
+
 import { useCustomFonts } from '../use-custom-fonts';
 
 const { TextInputMock, TextMock, useFontsMock } = vi.hoisted(() => ({
@@ -60,13 +62,13 @@ describe('useCustomFonts', () => {
 
   it('preserves existing styles when fonts are loaded', () => {
     useFontsMock.mockReturnValue([true]);
-    TextMock.defaultProps = { style: { color: 'red' } };
+    TextMock.defaultProps = { style: { color: Colors.statusDanger } };
     TextInputMock.defaultProps = { style: [{ fontSize: 14 }] };
 
     useCustomFonts();
 
     expect(TextMock.defaultProps?.style).toEqual([
-      { color: 'red' },
+      { color: Colors.statusDanger },
       { fontFamily: 'Poppins-Regular' },
     ]);
     expect(TextInputMock.defaultProps?.style).toEqual([

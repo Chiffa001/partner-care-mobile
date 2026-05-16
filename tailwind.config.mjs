@@ -1,5 +1,17 @@
 /** @type {import('tailwindcss').Config} */
+import fs from 'node:fs';
+import path from 'node:path';
+
 import nativewindPreset from 'nativewind/preset';
+
+const colorsSource = fs.readFileSync(
+  path.join(process.cwd(), 'constants/colors.ts'),
+  'utf8',
+);
+
+const Colors = Object.fromEntries(
+  [...colorsSource.matchAll(/(\w+):\s*'([^']+)'/g)].map(([, key, value]) => [key, value]),
+);
 
 export default {
   content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}',],
@@ -8,22 +20,22 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#FFF7F4',
+          DEFAULT: Colors.bgBase,
         },
         cards: {
-          emotional: "#FDECEA",
-          positive: "#EEF7F1",
-          warning: "#FFF1EB"
+          emotional: Colors.bgCardEmotional,
+          positive: Colors.bgCardPositive,
+          warning: Colors.bgCardWarning,
         },
         paragraphs: {
-          primary: "#4A4A4A",
-          secondary: "#6A6A6A",
-          title: "#3E3E3E"
+          primary: Colors.textParagraphPrimary,
+          secondary: Colors.textParagraphSecondary,
+          title: Colors.textParagraphTitle,
         },
         buttons: {
           primary: {
-            bg: "#E87A73",
-            text: "#FFFFFF",
+            bg: Colors.accentStrong,
+            text: Colors.white,
           },
         }
       },

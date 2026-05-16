@@ -18,14 +18,16 @@ const {
     const cleanup = effect();
     effectCleanups.push(cleanup);
   }),
-  useFocusEffectMock: vi.fn((callback: () => void) => {
-    focusCallbacks.push(callback);
-    callback();
+  useFocusEffectMock: vi.fn((callback: () => (() => void) | void) => {
+    focusCallbacks.push(callback as () => void);
+    const cleanup = callback();
+    effectCleanups.push(cleanup);
   }),
   useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) => selector(storeState)),
   storeState: {
     isActive: false,
     isPaused: false,
+    isUrgent: false,
     currentDurationSec: 0,
     latestIntervalSec: 0,
     averageIntervalSec: 0,
@@ -52,6 +54,7 @@ vi.mock('@/stores/childbirth-timer-store', () => ({
   useChildbirthTimerStore: useStoreMock,
   selectIsContractionActive: (state: typeof storeState) => state.isActive,
   selectIsTimerPaused: (state: typeof storeState) => state.isPaused,
+  selectIsUrgent: (state: typeof storeState) => state.isUrgent,
   selectCurrentDurationSec: (state: typeof storeState) => state.currentDurationSec,
   selectLatestIntervalSec: (state: typeof storeState) => state.latestIntervalSec,
   selectAverageIntervalSec: (state: typeof storeState) => state.averageIntervalSec,
@@ -72,6 +75,7 @@ describe('useChildbirthTimer', () => {
 
     storeState.isActive = false;
     storeState.isPaused = false;
+    storeState.isUrgent = false;
     storeState.currentDurationSec = 0;
     storeState.latestIntervalSec = 0;
     storeState.averageIntervalSec = 0;
@@ -98,6 +102,7 @@ describe('useChildbirthTimer', () => {
     expect(result).toEqual({
       isActive: true,
       isPaused: false,
+      isUrgent: false,
       currentDurationSec: 11,
       latestIntervalSec: 7,
       averageIntervalSec: 9,
@@ -127,12 +132,12 @@ describe('useChildbirthTimer', () => {
 
     useChildbirthTimer();
 
-    expect(storeState.tickNow).toHaveBeenCalledTimes(2);
+    expect(storeState.tickNow).toHaveBeenCalledTimes(1);
     expect(setIntervalSpy).toHaveBeenCalledTimes(1);
     expect(intervalCallbacks).toHaveLength(1);
 
     intervalCallbacks[0]();
-    expect(storeState.tickNow).toHaveBeenCalledTimes(3);
+    expect(storeState.tickNow).toHaveBeenCalledTimes(2);
 
     const cleanup = effectCleanups[0];
     expect(typeof cleanup).toBe('function');

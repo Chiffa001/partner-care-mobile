@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { Modal, Pressable, Text, View } from 'react-native';
 
 import { AnimatedPressable } from '@/components/animated-pressable';
+import { Colors } from '@/constants/colors';
 
 export type CommunicationToneOption = {
   value: string;
@@ -34,15 +35,23 @@ export const CommunicationToneModal: FC<CommunicationToneModalProps> = ({
     onRequestClose={onClose}
   >
     <Pressable
-      className="flex-1 items-center justify-center bg-black/30 px-6"
+      className="flex-1 items-center justify-center px-6"
+      style={{ backgroundColor: Colors.overlay }}
       onPress={onClose}
     >
       <Pressable
-        className="w-full max-w-[440px] overflow-hidden rounded-[24px] bg-[#F8F3F3]"
+        className="w-full max-w-[440px] overflow-hidden rounded-[24px]"
+        style={{ backgroundColor: Colors.bgSettings }}
         onPress={(event) => event.stopPropagation()}
       >
-        <View className="border-b border-[#DED7D8] bg-[#F2E6E2] px-6 py-3.5">
-          <Text className="font-semibold text-[18px] leading-[24px] text-[#675F67]">
+        <View
+          className="border-b px-6 py-3.5"
+          style={{ borderBottomColor: Colors.borderModal, backgroundColor: Colors.bgModalHeader }}
+        >
+          <Text
+            className="font-semibold text-[18px] leading-[24px]"
+            style={{ color: Colors.textDark }}
+          >
             {title}
           </Text>
         </View>
@@ -62,24 +71,36 @@ export const CommunicationToneModal: FC<CommunicationToneModalProps> = ({
                 >
                   <View className="mr-3">
                     {isSelected ? (
-                      <View className="h-8 w-8 items-center justify-center rounded-full bg-[#E09AA0]">
+                      <View
+                        className="h-8 w-8 items-center justify-center rounded-full"
+                        style={{ backgroundColor: Colors.accentMuted }}
+                      >
                         <Ionicons
                           name="checkmark"
                           size={20}
-                          color="#FFFFFF"
+                          color={Colors.white}
                         />
                       </View>
                     ) : (
-                      <View className="h-8 w-8 rounded-full border-2 border-[#BDB3B7]" />
+                      <View
+                        className="h-8 w-8 rounded-full border-2"
+                        style={{ borderColor: Colors.borderSubtle }}
+                      />
                     )}
                   </View>
 
                   <View className="flex-1">
-                    <Text className="font-sans text-[17px] leading-[22px] text-[#675F67]">
+                    <Text
+                      className="font-sans text-[17px] leading-[22px]"
+                      style={{ color: Colors.textDark }}
+                    >
                       {optionTitle}
                     </Text>
                     {description ? (
-                      <Text className="mt-0.5 font-sans text-[15px] leading-[20px] text-[#8A828A]">
+                      <Text
+                        className="mt-0.5 font-sans text-[15px] leading-[20px]"
+                        style={{ color: Colors.textSecondary }}
+                      >
                         {description}
                       </Text>
                     ) : null}
@@ -89,12 +110,15 @@ export const CommunicationToneModal: FC<CommunicationToneModalProps> = ({
                     <Ionicons
                       name="checkmark"
                       size={24}
-                      color="#E09AA0"
+                      color={Colors.accentMuted}
                     />
                   ) : null}
                 </AnimatedPressable>
                 {hasDivider ? (
-                  <View className="h-px bg-[#DED7D8]" />
+                  <View
+                    className="h-px"
+                    style={{ backgroundColor: Colors.borderModal }}
+                  />
                 ) : null}
               </View>
             );

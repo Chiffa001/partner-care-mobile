@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Platform, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Colors } from '@/constants/colors';
+
 const ChildbirthTabsLayout = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -14,8 +16,8 @@ const ChildbirthTabsLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarActiveTintColor: '#DE6760',
-        tabBarInactiveTintColor: '#AA9BA2',
+        tabBarActiveTintColor: Colors.accent,
+        tabBarInactiveTintColor: Colors.textSubtle,
         tabBarLabelStyle: {
           fontSize: 13,
           marginTop: 4,
@@ -27,18 +29,18 @@ const ChildbirthTabsLayout = () => {
           paddingTop: 4,
         },
         tabBarStyle: {
-          backgroundColor: '#FFF7F4',
+          backgroundColor: Colors.bgBase,
           borderTopWidth: 1,
-          borderTopColor: '#E9DEDD',
+          borderTopColor: Colors.borderTabBar,
           height: 62 + tabBarBottomPadding,
           paddingBottom: tabBarBottomPadding,
         },
         headerStyle: {
-          backgroundColor: '#FFF7F4',
+          backgroundColor: Colors.bgBase,
         },
         headerTitleStyle: {
           fontSize: 20,
-          color: '#676565',
+          color: Colors.textHeader,
           fontWeight: '500',
         },
         headerLeft: () => (
@@ -49,7 +51,7 @@ const ChildbirthTabsLayout = () => {
             <Ionicons
               name="chevron-back"
               size={28}
-              color="#8F757B"
+              color={Colors.textPrimary}
             />
           </Pressable>
         ),
@@ -70,13 +72,13 @@ const ChildbirthTabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="she-is-tired"
+        name="timer"
         options={{
-          title: t('childbirthScreen.tabs.sheIsTired'),
-          tabBarLabel: t('childbirthScreen.tabs.sheIsTired'),
+          title: t('childbirthScreen.tabs.timer'),
+          tabBarLabel: t('childbirthScreen.tabs.timer'),
           tabBarIcon: ({ color, size }) => (
             <Ionicons
-              name="briefcase-outline"
+              name="stopwatch-outline"
               size={size}
               color={color}
             />
@@ -84,27 +86,13 @@ const ChildbirthTabsLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="to-hospital"
+        name="guide"
         options={{
-          title: t('childbirthScreen.tabs.toHospital'),
-          tabBarLabel: t('childbirthScreen.tabs.toHospital'),
+          title: t('childbirthScreen.tabs.guide'),
+          tabBarLabel: t('childbirthScreen.tabs.guide'),
           tabBarIcon: ({ color, size }) => (
             <Ionicons
-              name="briefcase"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="doctor"
-        options={{
-          title: t('childbirthScreen.tabs.doctor'),
-          tabBarLabel: t('childbirthScreen.tabs.doctor'),
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons
-              name="headset-outline"
+              name="book-outline"
               size={size}
               color={color}
             />

@@ -1,12 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { Animated, Image, ScrollView, Text, View } from 'react-native';
+import { Animated, ScrollView, Text, View } from 'react-native';
 
-import laborContractionsImage from '@/assets/images/childbirth/labor-contractions-img.png';
 import { ChildbirthTimer } from '@/components/childbirth-timer';
 import { InsightCard } from '@/components/insight-card';
 import { ScreenContainer } from '@/components/screen-container';
 import { Colors } from '@/constants/colors';
+import { useLaborPhase } from '@/hooks/use-labor-phase';
 import { usePulseScale } from '@/hooks/use-pulse-scale';
 import {
   selectHasTimerData,
@@ -14,10 +14,17 @@ import {
   useChildbirthTimerStore,
 } from '@/stores/childbirth-timer-store';
 
-const ContractionsScreen = () => {
+const TimerScreen = () => {
   const { t } = useTranslation();
   const isContractionActive = useChildbirthTimerStore(selectIsContractionActive);
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
+  const {
+    phase,
+    label: phaseLabel,
+    dilation: phaseDilation,
+    description: phaseDescription,
+    items: phaseItems,
+  } = useLaborPhase();
   const waitingIconScale = usePulseScale({ enabled: !isContractionActive, duration: 700 });
   const activeIconScale = usePulseScale({ enabled: isContractionActive, duration: 550 });
   const statusText = !hasTimerData
@@ -25,14 +32,6 @@ const ContractionsScreen = () => {
     : isContractionActive
       ? t('childbirthScreen.contractions.statusActive')
       : t('childbirthScreen.contractions.statusIdle');
-  const whatToDoItems = [0, 1, 2].map((index) => ({
-    text: t(`childbirthScreen.contractions.whatToDoItems.${index}`),
-    type: 'positive' as const,
-  }));
-  const howToRecognizeItems = [0, 1, 2].map((index) => ({
-    text: t(`childbirthScreen.contractions.howToRecognizeItems.${index}`),
-    type: 'positive' as const,
-  }));
 
   return (
     <ScreenContainer className="items-stretch justify-start">
@@ -41,14 +40,6 @@ const ContractionsScreen = () => {
         contentContainerClassName="gap-4 px-4 pb-5 pt-3"
         showsVerticalScrollIndicator={false}
       >
-        <InsightCard
-          title={t('childbirthScreen.contractions.howToRecognizeTitle')}
-          titleColor={Colors.textPrimary}
-          headerBackgroundColor={Colors.bgHeaderCard}
-          bodyBackgroundColor={Colors.bgCardBody}
-          items={howToRecognizeItems}
-        />
-
         <View
           className="justify-center rounded-2xl border px-4 py-3"
           style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
@@ -82,22 +73,50 @@ const ContractionsScreen = () => {
 
         <ChildbirthTimer />
 
+        <View
+          className="rounded-2xl border px-4 py-3"
+          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+        >
+          <View className="flex-row items-center justify-between">
+            <Text
+              className="font-sans text-[17px] font-medium leading-[22px]"
+              style={{ color: Colors.textPrimary }}
+            >
+              {phaseLabel}
+            </Text>
+            {phaseDilation !== '—' && (
+              <View
+                className="rounded-full px-3 py-1"
+                style={{ backgroundColor: Colors.bgHeaderCard }}
+              >
+                <Text
+                  className="font-sans text-[13px] font-medium"
+                  style={{ color: Colors.accentTimer }}
+                >
+                  {phaseDilation}
+                </Text>
+              </View>
+            )}
+          </View>
+          <Text
+            className="mt-1 font-sans text-[14px] leading-[20px]"
+            style={{ color: Colors.textSubtle }}
+          >
+            {phaseDescription}
+          </Text>
+        </View>
+
         <InsightCard
+          key={phase}
           title={t('childbirthScreen.contractions.whatToDoTitle')}
+          items={phaseItems}
           titleColor={Colors.textPrimary}
           headerBackgroundColor={Colors.bgHeaderCard}
           bodyBackgroundColor={Colors.bgCardBody}
-          items={whatToDoItems}
-        />
-
-        <Image
-          source={laborContractionsImage}
-          resizeMode="cover"
-          className="h-[220px] w-full rounded-[20px]"
         />
       </ScrollView>
     </ScreenContainer>
   );
 };
 
-export default ContractionsScreen;
+export default TimerScreen;

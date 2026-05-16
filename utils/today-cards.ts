@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next';
 
 import type { InsightCardProps } from '@/components/insight-card';
+import { Colors } from '../constants/colors';
 
 type CardConfig = Omit<InsightCardProps, 'imageSource'>;
 
@@ -44,9 +45,9 @@ export const buildTodayCards = (
 
   const stateCard: CardConfig = {
     title: getText(overrides?.state?.title, t('todayCards.state.title')),
-    titleColor: '#B56A6C',
-    headerBackgroundColor: '#F3D7D3',
-    bodyBackgroundColor: '#F7EFED',
+    titleColor: Colors.textCardStateTitle,
+    headerBackgroundColor: Colors.bgCardStateHeader,
+    bodyBackgroundColor: Colors.bgCardStateBody,
     description: stateDescription,
     imageScale: 1.2,
     imageOffsetY: -18,
@@ -56,18 +57,18 @@ export const buildTodayCards = (
 
   const actionsCard: CardConfig = {
     title: getText(overrides?.actions?.title, t('todayCards.actions.title')),
-    titleColor: '#4F7E78',
-    headerBackgroundColor: '#DDE9E6',
-    bodyBackgroundColor: '#EDF3F1',
+    titleColor: Colors.textCardActionsTitle,
+    headerBackgroundColor: Colors.bgCardActionsHeader,
+    bodyBackgroundColor: Colors.bgCardActionsBody,
     items: getItems(overrides?.actions?.items, actionsFallbackItems)
       .map((text) => ({ text, type: 'positive' as const })),
   };
 
   const dontsCard: CardConfig = {
     title: getText(overrides?.donts?.title, t('todayCards.donts.title')),
-    titleColor: '#B56A6C',
-    headerBackgroundColor: '#F3DACE',
-    bodyBackgroundColor: '#F9EEE8',
+    titleColor: Colors.textCardStateTitle,
+    headerBackgroundColor: Colors.bgCardDontsHeader,
+    bodyBackgroundColor: Colors.bgCardDontsBody,
     items: getItems(overrides?.donts?.items, dontsFallbackItems)
       .map((text) => ({ text, type: 'negative' as const })),
   };

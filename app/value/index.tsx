@@ -42,4 +42,5 @@ const Value = () => {
     </InfoScreenContainer>
   );
 };
+
 export default Value;

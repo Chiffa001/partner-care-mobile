@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Platform } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { Colors } from "@/constants/colors";
+
 enum TabCode {
   TODAY = 'today',
   CHILDBIRTH = 'childbirth',
@@ -19,8 +21,8 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarActiveTintColor: '#DE6760',
-        tabBarInactiveTintColor: '#7D7886',
+        tabBarActiveTintColor: Colors.accent,
+        tabBarInactiveTintColor: Colors.textTabInactive,
         tabBarLabelStyle: {
           fontSize: 13,
           marginTop: 4,
@@ -32,17 +34,17 @@ const TabsLayout = () => {
           paddingTop: 4,
         },
         tabBarStyle: {
-          backgroundColor: '#FFF7F4',
+          backgroundColor: Colors.bgBase,
           borderTopWidth: 1,
           height: 62 + tabBarBottomPadding,
           paddingBottom: tabBarBottomPadding,
         },
         headerStyle: {
-          backgroundColor: '#FFF7F4',
+          backgroundColor: Colors.bgBase,
         },
         headerTitleStyle: {
           fontSize: 20,
-          color: '#676565',
+          color: Colors.textHeader,
         }
       }}
     >

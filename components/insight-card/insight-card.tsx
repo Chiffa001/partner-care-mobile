@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import {
   type FC,
   type ReactNode,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -9,6 +10,7 @@ import {
 import type { ImageSourcePropType } from 'react-native';
 import {
   Animated,
+  Easing,
   Image,
   Pressable,
   Text,
@@ -16,6 +18,7 @@ import {
 } from 'react-native';
 
 import { TitledCard } from '@/components/titled-card';
+import { Colors } from '@/constants/colors';
 import { useCollapsibleContent } from '@/hooks/use-collapsible-content';
 import { parseWidthPercent } from '@/utils/parse-width-percent';
 
@@ -56,7 +59,10 @@ export const InsightCard: FC<InsightCardProps> = ({
   descriptionMaxWidthPercent = 63,
 }) => {
   const [descriptionAreaWidth, setDescriptionAreaWidth] = useState(0);
+  const [contentHeight, setContentHeight] = useState(0);
   const headerPressProgress = useRef(new Animated.Value(0)).current;
+  const chevronRotationProgress = useRef(new Animated.Value(0)).current;
+  const collapseProgress = useRef(new Animated.Value(1)).current;
   const normalizedDescriptionWidthPercent = useMemo(
     () => parseWidthPercent(descriptionMaxWidthPercent),
     [descriptionMaxWidthPercent],
@@ -68,11 +74,51 @@ export const InsightCard: FC<InsightCardProps> = ({
   const {
     isCollapsed,
     toggleCollapsed,
-    handleContentLayout,
-    contentAnimatedStyle,
   } = useCollapsibleContent({ enabled: canCollapse });
-  const skeletonColor = '#E8E1DE';
-  const skeletonSecondaryColor = '#EDE7E4';
+  const skeletonColor = Colors.skeletonPrimary;
+  const skeletonSecondaryColor = Colors.skeletonSecondary;
+
+  useEffect(() => {
+    Animated.timing(chevronRotationProgress, {
+      toValue: isCollapsed ? 1 : 0,
+      duration: 180,
+      useNativeDriver: true,
+    }).start();
+  }, [chevronRotationProgress, isCollapsed]);
+
+  useEffect(() => {
+    Animated.timing(collapseProgress, {
+      toValue: isCollapsed ? 0 : 1,
+      duration: 220,
+      easing: Easing.inOut(Easing.ease),
+      useNativeDriver: false,
+    }).start();
+  }, [collapseProgress, isCollapsed]);
+
+  const chevronAnimatedStyle = {
+    transform: [{
+      rotate: chevronRotationProgress.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '180deg'],
+      }),
+    }],
+  };
+  const contentAnimatedStyle = {
+    opacity: collapseProgress,
+    transform: [{
+      translateY: collapseProgress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [-6, 0],
+      }),
+    }],
+    height: contentHeight > 0
+      ? collapseProgress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, contentHeight],
+      })
+      : undefined,
+  };
+
   const animateHeaderPressIn = () => {
     if (!canCollapse) {
       return;
@@ -84,6 +130,7 @@ export const InsightCard: FC<InsightCardProps> = ({
       useNativeDriver: true,
     }).start();
   };
+
   const animateHeaderPressOut = () => {
     if (!canCollapse) {
       return;
@@ -119,7 +166,7 @@ export const InsightCard: FC<InsightCardProps> = ({
           right: 0,
           bottom: 0,
           left: 0,
-          backgroundColor: '#000000',
+          backgroundColor: Colors.black,
           opacity: headerPressProgress.interpolate({
             inputRange: [0, 1],
             outputRange: [0, 0.06],
@@ -133,11 +180,13 @@ export const InsightCard: FC<InsightCardProps> = ({
         {title}
       </Text>
       {canCollapse ? (
-        <Ionicons
-          name={isCollapsed ? 'chevron-down' : 'chevron-up'}
-          size={18}
-          color="#8F757B"
-        />
+        <Animated.View style={chevronAnimatedStyle}>
+          <Ionicons
+            name="chevron-up"
+            size={18}
+            color={Colors.textPrimary}
+          />
+        </Animated.View>
       ) : null}
     </Pressable>
   );
@@ -182,7 +231,10 @@ export const InsightCard: FC<InsightCardProps> = ({
               />
             </View>
             {index < 2 ? (
-              <View className="my-1 h-px bg-[#D9D2CF]" />
+              <View
+                className="my-1 h-px"
+                style={{ backgroundColor: Colors.borderDividerSoft }}
+              />
             ) : null}
           </View>
         ))}
@@ -244,7 +296,7 @@ export const InsightCard: FC<InsightCardProps> = ({
         {items.map(({ text, type }, index) => {
           const isNegative = type === 'negative';
           const iconName = isNegative ? 'close' : 'checkmark';
-          const iconBgColor = isNegative ? '#D86B66' : '#7AAF68';
+          const iconBgColor = isNegative ? Colors.statusDanger : Colors.statusSuccess;
           const showDivider = index < items.length - 1;
 
           return (
@@ -257,7 +309,7 @@ export const InsightCard: FC<InsightCardProps> = ({
                   <Ionicons
                     name={iconName}
                     size={14}
-                    color="#FFFFFF"
+                    color={Colors.white}
                   />
                 </View>
                 <Text
@@ -268,7 +320,10 @@ export const InsightCard: FC<InsightCardProps> = ({
                 </Text>
               </View>
               {showDivider ? (
-                <View className="my-1 h-px bg-[#D9D2CF]" />
+                <View
+                  className="my-1 h-px"
+                  style={{ backgroundColor: Colors.borderDividerSoft }}
+                />
               ) : null}
             </View>
           );
@@ -276,6 +331,13 @@ export const InsightCard: FC<InsightCardProps> = ({
       </View>
     );
   }
+
+  const contentSection = (
+    <View>
+      {descriptionSection}
+      {itemsSection}
+    </View>
+  );
 
   return (
     <TitledCard
@@ -285,7 +347,7 @@ export const InsightCard: FC<InsightCardProps> = ({
       headerClassName="p-0"
       outerClassName="rounded-[22px]"
       outerStyle={{
-        shadowColor: '#000000',
+        shadowColor: Colors.black,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 9,
@@ -293,22 +355,33 @@ export const InsightCard: FC<InsightCardProps> = ({
       }}
     >
       {canCollapse ? (
-        <Animated.View
-          style={{
-            overflow: 'hidden',
-            ...contentAnimatedStyle,
-          }}
-        >
-          <View onLayout={(event) => handleContentLayout(event.nativeEvent.layout.height)}>
-            {descriptionSection}
-            {itemsSection}
+        <View className="relative">
+          <View
+            className="absolute left-0 right-0 opacity-0"
+            pointerEvents="none"
+            importantForAccessibility="no-hide-descendants"
+            onLayout={(event) => {
+              const nextHeight = event.nativeEvent.layout.height;
+
+              if (Math.abs(nextHeight - contentHeight) <= 1) {
+                return;
+              }
+
+              setContentHeight(nextHeight);
+            }}
+          >
+            {contentSection}
           </View>
-        </Animated.View>
+
+          <Animated.View
+            style={[{ overflow: 'hidden' }, contentAnimatedStyle]}
+            pointerEvents={isCollapsed ? 'none' : 'auto'}
+          >
+            {contentSection}
+          </Animated.View>
+        </View>
       ) : (
-        <>
-          {descriptionSection}
-          {itemsSection}
-        </>
+        contentSection
       )}
     </TitledCard>
   );

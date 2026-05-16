@@ -6,6 +6,7 @@ import type { TextStyle } from 'react-native';
 import { Modal, Pressable, ScrollView, Text, View } from 'react-native';
 
 import { TitledCard } from '@/components/titled-card';
+import { Colors } from '@/constants/colors';
 
 type HistoryRow = {
   key: string;
@@ -34,12 +35,19 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
   const { t } = useTranslation();
 
   const header = useMemo(() => (
-    <View className="mb-2 flex-row border-b border-[#E5DADD] pb-2">
-      <Text className="w-[54px] font-semibold text-[12px] leading-[18px] text-[#9C9296]">
+    <View
+      className="mb-2 flex-row border-b pb-2"
+      style={{ borderBottomColor: Colors.borderHistoryHeader }}
+    >
+      <Text
+        className="w-[54px] font-semibold text-[12px] leading-[18px]"
+        style={{ color: Colors.textTertiary }}
+      >
         #
       </Text>
       <Text
-        className="flex-1 text-right font-semibold text-[12px] leading-[18px] text-[#9C9296]"
+        className="flex-1 text-right font-semibold text-[12px] leading-[18px]"
+        style={{ color: Colors.textTertiary }}
         numberOfLines={1}
         adjustsFontSizeToFit
         minimumFontScale={0.78}
@@ -47,14 +55,18 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
         {t('childbirthScreen.contractions.durationLabel')}
       </Text>
       <Text
-        className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px] text-[#9C9296]"
+        className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
+        style={{ color: Colors.textTertiary }}
         numberOfLines={1}
         adjustsFontSizeToFit
         minimumFontScale={0.78}
       >
         {t('childbirthScreen.contractions.intervalLabel')}
       </Text>
-      <Text className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px] text-[#9C9296]">
+      <Text
+        className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
+        style={{ color: Colors.textTertiary }}
+      >
         {t('childbirthScreen.contractions.averageIntervalLabel')}
       </Text>
     </View>
@@ -69,33 +81,40 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
     >
       <View className="flex-1 items-center justify-center px-5">
         <Pressable
-          className="absolute inset-0 bg-black/30"
+          className="absolute inset-0"
+          style={{ backgroundColor: Colors.overlay }}
           onPress={onClose}
         />
         <TitledCard
           headerContent={(
             <View className="flex-row items-center justify-between">
-              <Text className="font-semibold text-[18px] leading-[24px] text-[#675F67]">
+              <Text
+                className="font-semibold text-[18px] leading-[24px]"
+                style={{ color: Colors.textDark }}
+              >
                 {t('childbirthScreen.contractions.historyTitle')}
               </Text>
               <Pressable
-                className="h-8 w-8 items-center justify-center rounded-full bg-[#EFDCD5]"
+                className="h-8 w-8 items-center justify-center rounded-full"
+                style={{ backgroundColor: Colors.bgButtonMuted }}
                 onPress={onClose}
                 hitSlop={8}
               >
                 <Ionicons
                   name="close"
                   size={18}
-                  color="#8F757B"
+                  color={Colors.textPrimary}
                 />
               </Pressable>
             </View>
           )}
-          headerBackgroundColor="#F2E6E2"
-          bodyBackgroundColor="#F8F3F3"
+          headerBackgroundColor={Colors.bgModalHeader}
+          bodyBackgroundColor={Colors.bgSettings}
           outerClassName="w-full max-w-[440px]"
-          innerClassName="rounded-[24px] border border-[#DED7D8]"
-          headerClassName="border-b border-[#DED7D8] px-6 py-3.5"
+          innerClassName="rounded-[24px] border"
+          innerStyle={{ borderColor: Colors.borderModal }}
+          headerClassName="border-b px-6 py-3.5"
+          headerStyle={{ borderBottomColor: Colors.borderModal }}
         >
           <View className="px-4 py-3">
             {rows.length ? (
@@ -108,26 +127,30 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
                   {rows.map((item) => (
                     <View
                       key={item.key}
-                      className="flex-row items-center border-b border-[#EFE5E8] py-2.5"
+                      className="flex-row items-center border-b py-2.5"
+                      style={{ borderBottomColor: Colors.borderHistoryRow }}
                     >
-                      <Text className="w-[54px] font-sans text-[13px] leading-[18px] text-[#8F757B]">
+                      <Text
+                        className="w-[54px] font-sans text-[13px] leading-[18px]"
+                        style={{ color: Colors.textPrimary }}
+                      >
                         {item.index}
                       </Text>
                       <Text
-                        className="flex-1 text-right font-semibold text-[15px] leading-[20px] text-[#8F757B]"
-                        style={timerValueStyle}
+                        className="flex-1 text-right font-semibold text-[15px] leading-[20px]"
+                        style={[timerValueStyle, { color: Colors.textPrimary }]}
                       >
                         {item.durationText}
                       </Text>
                       <Text
-                        className="ml-3 flex-1 text-right font-semibold text-[15px] leading-[20px] text-[#8F757B]"
-                        style={timerValueStyle}
+                        className="ml-3 flex-1 text-right font-semibold text-[15px] leading-[20px]"
+                        style={[timerValueStyle, { color: Colors.textPrimary }]}
                       >
                         {item.intervalText}
                       </Text>
                       <Text
-                        className="ml-3 flex-1 text-right font-semibold text-[15px] leading-[20px] text-[#8F757B]"
-                        style={timerValueStyle}
+                        className="ml-3 flex-1 text-right font-semibold text-[15px] leading-[20px]"
+                        style={[timerValueStyle, { color: Colors.textPrimary }]}
                       >
                         {item.averageText}
                       </Text>
@@ -136,7 +159,10 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
                 </ScrollView>
               </View>
             ) : (
-              <Text className="py-6 text-center font-sans text-[14px] leading-[20px] text-[#8F757B]">
+              <Text
+                className="py-6 text-center font-sans text-[14px] leading-[20px]"
+                style={{ color: Colors.textPrimary }}
+              >
                 {t('childbirthScreen.contractions.historyEmpty')}
               </Text>
             )}

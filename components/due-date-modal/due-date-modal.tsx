@@ -6,6 +6,7 @@ import { Modal, Pressable, Text, View } from 'react-native';
 
 import { AnimatedPressable } from '@/components/animated-pressable';
 import { Button } from '@/components/button';
+import { Colors } from '@/constants/colors';
 import { buildCalendarDays } from '@/utils/due-date/build-calendar-days';
 import { getWeekdayNames } from '@/utils/due-date/get-weekday-names';
 import { isSameDay } from '@/utils/due-date/is-same-day';
@@ -52,15 +53,23 @@ export const DueDateModal: FC<DueDateModalProps> = ({
       onRequestClose={onClose}
     >
       <Pressable
-        className="flex-1 items-center justify-center bg-black/30 px-5"
+        className="flex-1 items-center justify-center px-5"
+        style={{ backgroundColor: Colors.overlay }}
         onPress={onClose}
       >
         <Pressable
-          className="w-full max-w-[440px] overflow-hidden rounded-[24px] bg-[#F8F3F3]"
+          className="w-full max-w-[440px] overflow-hidden rounded-[24px]"
+          style={{ backgroundColor: Colors.bgSettings }}
           onPress={(event) => event.stopPropagation()}
         >
-          <View className="border-b border-[#DED7D8] bg-[#F2E6E2] px-6 py-3.5">
-            <Text className="font-semibold text-[18px] leading-[24px] text-[#675F67]">
+          <View
+            className="border-b px-6 py-3.5"
+            style={{ borderBottomColor: Colors.borderModal, backgroundColor: Colors.bgModalHeader }}
+          >
+            <Text
+              className="font-semibold text-[18px] leading-[24px]"
+              style={{ color: Colors.textDark }}
+            >
               {t('settingsScreen.dueDate.title')}
             </Text>
           </View>
@@ -68,7 +77,8 @@ export const DueDateModal: FC<DueDateModalProps> = ({
           <View className="px-4 py-3">
             <View className="mb-2 flex-row items-center justify-between">
               <AnimatedPressable
-                className="h-9 w-9 items-center justify-center rounded-full bg-[#EFE3DF]"
+                className="h-9 w-9 items-center justify-center rounded-full"
+                style={{ backgroundColor: Colors.bgCalendarControl }}
                 onPress={() => {
                   setDisplayedMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() - 1, 1));
                 }}
@@ -76,16 +86,20 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 <Ionicons
                   name="chevron-back"
                   size={18}
-                  color="#8A828A"
+                  color={Colors.textSecondary}
                 />
               </AnimatedPressable>
 
-              <Text className="font-semibold text-[16px] leading-[22px] text-[#675F67]">
+              <Text
+                className="font-semibold text-[16px] leading-[22px]"
+                style={{ color: Colors.textDark }}
+              >
                 {monthTitle}
               </Text>
 
               <AnimatedPressable
-                className="h-9 w-9 items-center justify-center rounded-full bg-[#EFE3DF]"
+                className="h-9 w-9 items-center justify-center rounded-full"
+                style={{ backgroundColor: Colors.bgCalendarControl }}
                 onPress={() => {
                   setDisplayedMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() + 1, 1));
                 }}
@@ -93,7 +107,7 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 <Ionicons
                   name="chevron-forward"
                   size={18}
-                  color="#8A828A"
+                  color={Colors.textSecondary}
                 />
               </AnimatedPressable>
             </View>
@@ -102,7 +116,8 @@ export const DueDateModal: FC<DueDateModalProps> = ({
               {weekdayNames.map((dayName) => (
                 <Text
                   key={dayName}
-                  className="flex-1 text-center font-semibold text-[12px] leading-[18px] text-[#9C9296]"
+                  className="flex-1 text-center font-semibold text-[12px] leading-[18px]"
+                  style={{ color: Colors.textTertiary }}
                 >
                   {dayName}
                 </Text>
@@ -114,10 +129,10 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 const isSelected = isSameDay(date, draftDate);
                 const isPastDate = date < minDate;
                 const dayTextColor = isSelected
-                  ? '#FFFFFF'
+                  ? Colors.white
                   : isCurrentMonth
-                    ? '#675F67'
-                    : '#BDB3B7';
+                    ? Colors.textDark
+                    : Colors.borderSubtle;
 
                 return (
                   <AnimatedPressable
@@ -143,13 +158,13 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                             width: 32,
                             height: 32,
                             borderRadius: 16,
-                            backgroundColor: '#E09AA0',
+                            backgroundColor: Colors.accentMuted,
                           }}
                         />
                       ) : null}
                       <Text
                         className="font-sans text-[14px] leading-[20px]"
-                        style={{ color: isPastDate ? '#CFC7CB' : dayTextColor }}
+                        style={{ color: isPastDate ? Colors.textDisabled : dayTextColor }}
                       >
                         {date.getDate()}
                       </Text>
@@ -161,17 +176,22 @@ export const DueDateModal: FC<DueDateModalProps> = ({
 
             <View className="mt-3 flex-row justify-end">
               <Button
-                className="mr-2 w-auto rounded-full bg-transparent px-4 py-[8px] shadow-none"
+                className="mr-2 w-auto rounded-full px-4 py-[8px] shadow-none"
                 fullWidth={false}
+                style={{ backgroundColor: Colors.transparent }}
                 onPress={onClose}
               >
-                <Text className="font-semibold text-[14px] leading-[20px] text-[#8A828A]">
+                <Text
+                  className="font-semibold text-[14px] leading-[20px]"
+                  style={{ color: Colors.textSecondary }}
+                >
                   {t('settingsScreen.dueDate.cancel')}
                 </Text>
               </Button>
               <Button
-                className="w-auto rounded-full bg-[#E09AA0] px-4 py-[8px] shadow-none"
+                className="w-auto rounded-full px-4 py-[8px] shadow-none"
                 fullWidth={false}
+                style={{ backgroundColor: Colors.accentMuted }}
                 onPress={() => {
                   if (draftDate < minDate) {
                     return;
@@ -180,7 +200,10 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                   onConfirm(draftDate);
                 }}
               >
-                <Text className="font-semibold text-[14px] leading-[20px] text-white">
+                <Text
+                  className="font-semibold text-[14px] leading-[20px]"
+                  style={{ color: Colors.white }}
+                >
                   {t('settingsScreen.dueDate.confirm')}
                 </Text>
               </Button>

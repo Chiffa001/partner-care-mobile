@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 
 import { SettingsRow } from '@/components/settings-row';
 import { SubscriptionStatus } from '@/components/subscription-status';
+import { Colors } from '@/constants/colors';
 
 type SubscriptionSettingsSectionProps = {
   hasActiveSubscription: boolean;
@@ -17,14 +18,18 @@ export const SubscriptionSettingsSection: FC<SubscriptionSettingsSectionProps> =
 
   return (
     <>
-      <Text className="mb-3 ml-1 font-semibold text-[16px] leading-[24px] text-[#8A828A]">
+      <Text
+        className="mb-3 ml-1 font-semibold text-[16px] leading-[24px]"
+        style={{ color: Colors.textSecondary }}
+      >
         {t('settingsScreen.sections.subscription')}
       </Text>
 
       <View
-        className="overflow-hidden rounded-[22px] bg-[#F8F3F3] px-4"
+        className="overflow-hidden rounded-[22px] px-4"
         style={{
-          shadowColor: '#000000',
+          backgroundColor: Colors.bgSettings,
+          shadowColor: Colors.black,
           shadowOffset: { width: 0, height: 3 },
           shadowOpacity: 0.08,
           shadowRadius: 8,
@@ -38,7 +43,7 @@ export const SubscriptionSettingsSection: FC<SubscriptionSettingsSectionProps> =
             <MaterialCommunityIcons
               name="wallet-membership"
               size={28}
-              color="#85AF8A"
+              color={Colors.statusSuccessMuted}
             />
           )}
         />

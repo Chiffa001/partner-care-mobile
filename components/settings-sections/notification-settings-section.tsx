@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 
 import { SettingsRow } from '@/components/settings-row';
 import { SettingsSwitch } from '@/components/settings-switch';
+import { Colors } from '@/constants/colors';
 
 type NotificationSettingsSectionProps = {
   isPushEnabled: boolean;
@@ -19,14 +20,18 @@ export const NotificationSettingsSection: FC<NotificationSettingsSectionProps> =
 
   return (
     <>
-      <Text className="mb-3 ml-1 font-semibold text-[16px] leading-[24px] text-[#8A828A]">
+      <Text
+        className="mb-3 ml-1 font-semibold text-[16px] leading-[24px]"
+        style={{ color: Colors.textSecondary }}
+      >
         {t('settingsScreen.sections.notifications')}
       </Text>
 
       <View
-        className="mb-7 overflow-hidden rounded-[22px] bg-[#F8F3F3] px-4"
+        className="mb-7 overflow-hidden rounded-[22px] px-4"
         style={{
-          shadowColor: '#000000',
+          backgroundColor: Colors.bgSettings,
+          shadowColor: Colors.black,
           shadowOffset: { width: 0, height: 3 },
           shadowOpacity: 0.08,
           shadowRadius: 8,
@@ -45,7 +50,7 @@ export const NotificationSettingsSection: FC<NotificationSettingsSectionProps> =
             <Ionicons
               name="notifications"
               size={27}
-              color="#D8B178"
+              color={Colors.iconWarm}
             />
           )}
         />

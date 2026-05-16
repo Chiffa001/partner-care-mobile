@@ -1,5 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import {
   selectAverageIntervalSec,
@@ -8,6 +8,7 @@ import {
   selectHasTimerData,
   selectIsContractionActive,
   selectIsTimerPaused,
+  selectIsUrgent,
   selectLatestIntervalSec,
   selectPauseTimer,
   selectResetTimer,
@@ -24,6 +25,7 @@ export const useChildbirthTimer = () => {
   const averageIntervalSec = useChildbirthTimerStore(selectAverageIntervalSec);
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
   const isPaused = useChildbirthTimerStore(selectIsTimerPaused);
+  const isUrgent = useChildbirthTimerStore(selectIsUrgent);
   const contractions = useChildbirthTimerStore(selectContractions);
   const onPress = useChildbirthTimerStore(selectToggleTimer);
   const onReset = useChildbirthTimerStore(selectResetTimer);
@@ -32,28 +34,21 @@ export const useChildbirthTimer = () => {
   const tickNow = useChildbirthTimerStore(selectTickNow);
 
   useFocusEffect(useCallback(() => {
-    if (hasTimerData && !isPaused) {
-      tickNow();
-    }
-  }, [hasTimerData, isPaused, tickNow]));
-
-  useEffect(() => {
     if (!hasTimerData || isPaused) {
-      return undefined;
+      return;
     }
 
     tickNow();
 
-    const intervalId = setInterval(() => {
-      tickNow();
-    }, 1000);
+    const intervalId = setInterval(tickNow, 1000);
 
     return () => clearInterval(intervalId);
-  }, [hasTimerData, isPaused, tickNow]);
+  }, [hasTimerData, isPaused, tickNow]));
 
   return {
     isActive,
     isPaused,
+    isUrgent,
     currentDurationSec,
     latestIntervalSec,
     averageIntervalSec,

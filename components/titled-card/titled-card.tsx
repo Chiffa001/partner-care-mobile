@@ -11,6 +11,8 @@ type TitledCardProps = {
   innerClassName?: string;
   headerClassName?: string;
   outerStyle?: StyleProp<ViewStyle>;
+  innerStyle?: StyleProp<ViewStyle>;
+  headerStyle?: StyleProp<ViewStyle>;
 };
 
 export const TitledCard: FC<TitledCardProps> = ({
@@ -22,6 +24,8 @@ export const TitledCard: FC<TitledCardProps> = ({
   innerClassName,
   headerClassName = 'px-5 py-2.5',
   outerStyle,
+  innerStyle,
+  headerStyle,
 }) => (
   <View
     className={outerClassName}
@@ -29,11 +33,11 @@ export const TitledCard: FC<TitledCardProps> = ({
   >
     <View
       className={`overflow-hidden rounded-[22px] ${innerClassName ?? ''}`}
-      style={{ backgroundColor: bodyBackgroundColor }}
+      style={[{ backgroundColor: bodyBackgroundColor }, innerStyle]}
     >
       <View
         className={headerClassName}
-        style={{ backgroundColor: headerBackgroundColor }}
+        style={[{ backgroundColor: headerBackgroundColor }, headerStyle]}
       >
         {headerContent}
       </View>
