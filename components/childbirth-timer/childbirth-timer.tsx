@@ -101,9 +101,10 @@ export const ChildbirthTimer = () => {
     onPress();
   };
 
-  const primaryButtonLabel = isActive && !isPaused
-    ? t('childbirthScreen.contractions.stopButton')
-    : t('childbirthScreen.contractions.startButton');
+  const primaryButtonLabel =
+    isActive && !isPaused
+      ? t('childbirthScreen.contractions.stopButton')
+      : t('childbirthScreen.contractions.startButton');
 
   const holdFillWidth = holdProgress.interpolate({
     inputRange: [0, 1],
@@ -123,8 +124,12 @@ export const ChildbirthTimer = () => {
         key: `${record.startAt}-${index}`,
         index: index + 1,
         durationText: formatTime(record.durationSec),
-        intervalText: record.intervalSec === null ? '—' : formatTime(record.intervalSec),
-        averageText: intervalsCount === 0 ? '—' : formatTime(sumIntervals / intervalsCount),
+        intervalText:
+          record.intervalSec === null ? '—' : formatTime(record.intervalSec),
+        averageText:
+          intervalsCount === 0
+            ? '—'
+            : formatTime(sumIntervals / intervalsCount),
       };
     });
   }, [contractions]);
@@ -156,6 +161,7 @@ export const ChildbirthTimer = () => {
               )}
             </View>
             <Pressable
+              testID="btn-timer-history"
               className="h-9 w-9 items-center justify-center rounded-full"
               disabled={!hasTimerData}
               onPress={() => setHistoryVisible(true)}
@@ -246,6 +252,7 @@ export const ChildbirthTimer = () => {
 
           <View className="mt-4 flex-row items-center justify-center">
             <Button
+              testID="btn-timer-primary"
               className="h-11 w-[138px] items-center justify-center overflow-hidden rounded-full"
               fullWidth={false}
               style={{ backgroundColor: Colors.accentStrong }}
@@ -276,6 +283,7 @@ export const ChildbirthTimer = () => {
             </Button>
 
             <Button
+              testID="btn-timer-reset"
               className="ml-2 w-auto rounded-full px-4 py-[8px] shadow-none"
               fullWidth={false}
               disabled={!hasTimerData}

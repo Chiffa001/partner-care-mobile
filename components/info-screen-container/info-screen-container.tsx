@@ -12,7 +12,9 @@ export const InfoScreenContainer: FC<Props> = ({ children }) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <ScreenContainer style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
+    <ScreenContainer
+      style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}
+    >
       <View className="h-full w-full flex-col items-center px-6 pb-24 pt-24">
         {children}
       </View>

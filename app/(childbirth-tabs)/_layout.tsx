@@ -10,7 +10,8 @@ const ChildbirthTabsLayout = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const tabBarBottomPadding = Platform.OS === 'ios' ? 8 : Math.max(insets.bottom, 8);
+  const tabBarBottomPadding =
+    Platform.OS === 'ios' ? 8 : Math.max(insets.bottom, 8);
 
   return (
     <Tabs

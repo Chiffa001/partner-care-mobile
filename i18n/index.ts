@@ -13,7 +13,6 @@ const initialLanguage =
     ? deviceLanguageCode
     : fallbackLanguage;
 
-
 const i18nOptions: InitOptions = {
   lng: initialLanguage,
   fallbackLng: fallbackLanguage,
@@ -44,7 +43,8 @@ const i18nOptions: InitOptions = {
         todayCards: {
           state: {
             title: 'Что с ней сейчас',
-            description: 'Беременность - это не «радость 24/7».\nВозможна тревожность и \nусталость.',
+            description:
+              'Беременность - это не «радость 24/7».\nВозможна тревожность и \nусталость.',
           },
           actions: {
             title: 'Что сделать сегодня',
@@ -141,7 +141,8 @@ const i18nOptions: InitOptions = {
               noData: {
                 label: 'Ожидание',
                 dilation: '—',
-                description: 'Запишите хотя бы 2 схватки, чтобы определить фазу родов',
+                description:
+                  'Запишите хотя бы 2 схватки, чтобы определить фазу родов',
                 items: [
                   'Засекайте каждую схватку',
                   'Помогите ей найти удобную позу',
@@ -152,7 +153,8 @@ const i18nOptions: InitOptions = {
               early: {
                 label: 'Латентная фаза',
                 dilation: '1–4 см',
-                description: 'Схватки нерегулярные, раскрытие только начинается',
+                description:
+                  'Схватки нерегулярные, раскрытие только начинается',
                 items: [
                   'Не спешите в роддом — время ещё есть',
                   'Помогите ей двигаться или отдохнуть',
@@ -163,7 +165,8 @@ const i18nOptions: InitOptions = {
               active: {
                 label: 'Активная фаза',
                 dilation: '4–8 см',
-                description: 'Схватки регулярные и усиливаются — скоро в роддом',
+                description:
+                  'Схватки регулярные и усиливаются — скоро в роддом',
                 items: [
                   'Пора готовиться к выезду',
                   'Помогайте с дыханием во время схваток',
@@ -267,7 +270,8 @@ const i18nOptions: InitOptions = {
         todayCards: {
           state: {
             title: 'What she is feeling now',
-            description: 'Pregnancy is not “24/7 joy”.\nAnxiety and \nfatigue are possible.',
+            description:
+              'Pregnancy is not “24/7 joy”.\nAnxiety and \nfatigue are possible.',
           },
           actions: {
             title: 'What to do today',
@@ -364,7 +368,8 @@ const i18nOptions: InitOptions = {
               noData: {
                 label: 'Waiting',
                 dilation: '—',
-                description: 'Record at least 2 contractions to determine the labor phase',
+                description:
+                  'Record at least 2 contractions to determine the labor phase',
                 items: [
                   'Time every contraction',
                   'Help her find a comfortable position',
@@ -375,7 +380,8 @@ const i18nOptions: InitOptions = {
               early: {
                 label: 'Latent phase',
                 dilation: '1–4 cm',
-                description: 'Contractions are irregular, dilation is just beginning',
+                description:
+                  'Contractions are irregular, dilation is just beginning',
                 items: [
                   'No rush to the hospital yet',
                   'Help her walk around or rest',
@@ -386,7 +392,8 @@ const i18nOptions: InitOptions = {
               active: {
                 label: 'Active phase',
                 dilation: '4–8 cm',
-                description: 'Contractions are regular and intensifying — hospital soon',
+                description:
+                  'Contractions are regular and intensifying — hospital soon',
                 items: [
                   'Start preparing to leave',
                   'Help with breathing during contractions',
@@ -397,12 +404,13 @@ const i18nOptions: InitOptions = {
               transition: {
                 label: 'Transition phase',
                 dilation: '8–10 cm',
-                description: 'The most intense contractions — birth is very close',
+                description:
+                  'The most intense contractions — birth is very close',
                 items: [
                   'Head to the hospital immediately',
                   'She is exhausted — stay by her side',
                   'Help her breathe through every contraction',
-                  'Follow the medical staff\'s instructions',
+                  "Follow the medical staff's instructions",
                 ],
               },
             },
@@ -490,7 +498,8 @@ const i18nOptions: InitOptions = {
         todayCards: {
           state: {
             title: 'Co się z nią dzieje teraz',
-            description: 'Ciąża to nie „radość 24/7”.\nMożliwy jest niepokój i \nzmęczenie.',
+            description:
+              'Ciąża to nie „radość 24/7”.\nMożliwy jest niepokój i \nzmęczenie.',
           },
           actions: {
             title: 'Co zrobić dzisiaj',
@@ -587,7 +596,8 @@ const i18nOptions: InitOptions = {
               noData: {
                 label: 'Oczekiwanie',
                 dilation: '—',
-                description: 'Zapisz co najmniej 2 skurcze, aby określić fazę porodu',
+                description:
+                  'Zapisz co najmniej 2 skurcze, aby określić fazę porodu',
                 items: [
                   'Mierz czas każdego skurczu',
                   'Pomóż jej znaleźć wygodną pozycję',
@@ -598,7 +608,8 @@ const i18nOptions: InitOptions = {
               early: {
                 label: 'Faza utajona',
                 dilation: '1–4 cm',
-                description: 'Skurcze nieregularne, rozwarcie dopiero się zaczyna',
+                description:
+                  'Skurcze nieregularne, rozwarcie dopiero się zaczyna',
                 items: [
                   'Nie śpiesz się do szpitala',
                   'Pomóż jej chodzić lub odpocząć',
@@ -609,7 +620,8 @@ const i18nOptions: InitOptions = {
               active: {
                 label: 'Faza aktywna',
                 dilation: '4–8 cm',
-                description: 'Skurcze regularne i narastające — niedługo do szpitala',
+                description:
+                  'Skurcze regularne i narastające — niedługo do szpitala',
                 items: [
                   'Czas przygotować się do wyjazdu',
                   'Pomagaj z oddychaniem podczas skurczów',
@@ -620,7 +632,8 @@ const i18nOptions: InitOptions = {
               transition: {
                 label: 'Faza przejściowa',
                 dilation: '8–10 cm',
-                description: 'Najintensywniejsze skurcze — poród jest bardzo blisko',
+                description:
+                  'Najintensywniejsze skurcze — poród jest bardzo blisko',
                 items: [
                   'Natychmiast jedźcie do szpitala',
                   'Jest bardzo zmęczona — bądź obok',
@@ -713,7 +726,8 @@ const i18nOptions: InitOptions = {
         todayCards: {
           state: {
             title: 'Cómo se siente ahora',
-            description: 'El embarazo no es “alegría 24/7”.\nPuede haber ansiedad \ny cansancio.',
+            description:
+              'El embarazo no es “alegría 24/7”.\nPuede haber ansiedad \ny cansancio.',
           },
           actions: {
             title: 'Qué hacer hoy',
@@ -771,7 +785,8 @@ const i18nOptions: InitOptions = {
               'Cada contracción dura alrededor de 30-60 segundos',
             ],
             pauseLabel: 'Pausa',
-            urgentWarning: 'Las contracciones son frecuentes — hora de ir al hospital',
+            urgentWarning:
+              'Las contracciones son frecuentes — hora de ir al hospital',
           },
           sheIsTired: {
             status: 'Necesita descansar',
@@ -810,7 +825,8 @@ const i18nOptions: InitOptions = {
               noData: {
                 label: 'Esperando',
                 dilation: '—',
-                description: 'Registra al menos 2 contracciones para determinar la fase del parto',
+                description:
+                  'Registra al menos 2 contracciones para determinar la fase del parto',
                 items: [
                   'Cronometra cada contracción',
                   'Ayúdala a encontrar una postura cómoda',
@@ -821,7 +837,8 @@ const i18nOptions: InitOptions = {
               early: {
                 label: 'Fase latente',
                 dilation: '1–4 cm',
-                description: 'Contracciones irregulares, la dilatación recién comienza',
+                description:
+                  'Contracciones irregulares, la dilatación recién comienza',
                 items: [
                   'No hay prisa por ir al hospital todavía',
                   'Ayúdala a caminar o descansar',
@@ -832,7 +849,8 @@ const i18nOptions: InitOptions = {
               active: {
                 label: 'Fase activa',
                 dilation: '4–8 cm',
-                description: 'Contracciones regulares e intensas — pronto al hospital',
+                description:
+                  'Contracciones regulares e intensas — pronto al hospital',
                 items: [
                   'Es hora de prepararse para salir',
                   'Ayuda con la respiración durante las contracciones',
@@ -843,7 +861,8 @@ const i18nOptions: InitOptions = {
               transition: {
                 label: 'Fase de transición',
                 dilation: '8–10 cm',
-                description: 'Las contracciones más intensas — el parto está muy cerca',
+                description:
+                  'Las contracciones más intensas — el parto está muy cerca',
                 items: [
                   'Ve al hospital de inmediato',
                   'Está muy agotada — quédate a su lado',

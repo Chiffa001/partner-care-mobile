@@ -35,7 +35,10 @@ const GuideScreen = () => {
       >
         <View
           className="rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <Text
             className="font-sans text-[19px] leading-[24px]"
@@ -69,7 +72,10 @@ const GuideScreen = () => {
 
         <View
           className="rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <Text
             className="font-sans text-[19px] leading-[24px]"
@@ -89,7 +95,10 @@ const GuideScreen = () => {
 
         <View
           className="rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <Text
             className="font-sans text-[19px] leading-[24px]"

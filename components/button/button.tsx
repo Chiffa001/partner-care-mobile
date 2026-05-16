@@ -8,8 +8,8 @@ type Props = {
   disabledOpacity?: number;
   style?: StyleProp<ViewStyle>;
 } & Omit<PressableProps, 'children' | 'style' | 'className'> & {
-  className?: string;
-};
+    className?: string;
+  };
 
 export const Button: FC<Props> = ({
   children,
@@ -20,11 +20,14 @@ export const Button: FC<Props> = ({
   style,
   ...others
 }) => {
-  const content = typeof children === 'object' ? children : (
-    <Text className="text-center font-sans text-2xl text-buttons-primary-text">
-      {children}
-    </Text>
-  );
+  const content =
+    typeof children === 'object' ? (
+      children
+    ) : (
+      <Text className="text-center font-sans text-2xl text-buttons-primary-text">
+        {children}
+      </Text>
+    );
 
   return (
     <Pressable

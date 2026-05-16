@@ -33,15 +33,27 @@ export const DueDateModal: FC<DueDateModalProps> = ({
   const [draftDate, setDraftDate] = useState(() => startOfDay(selectedDate));
 
   const monthTitle = useMemo(
-    () => new Intl.DateTimeFormat(i18n.language, { month: 'long', year: 'numeric' }).format(displayedMonth),
+    () =>
+      new Intl.DateTimeFormat(i18n.language, {
+        month: 'long',
+        year: 'numeric',
+      }).format(displayedMonth),
     [displayedMonth, i18n.language],
   );
-  const weekdayNames = useMemo(() => getWeekdayNames(i18n.language), [i18n.language]);
-  const calendarDays = useMemo(() => buildCalendarDays(displayedMonth), [displayedMonth]);
+  const weekdayNames = useMemo(
+    () => getWeekdayNames(i18n.language),
+    [i18n.language],
+  );
+  const calendarDays = useMemo(
+    () => buildCalendarDays(displayedMonth),
+    [displayedMonth],
+  );
 
   const handleOpen = () => {
     setDraftDate(startOfDay(selectedDate));
-    setDisplayedMonth(new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1));
+    setDisplayedMonth(
+      new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1),
+    );
   };
 
   return (
@@ -64,7 +76,10 @@ export const DueDateModal: FC<DueDateModalProps> = ({
         >
           <View
             className="border-b px-6 py-3.5"
-            style={{ borderBottomColor: Colors.borderModal, backgroundColor: Colors.bgModalHeader }}
+            style={{
+              borderBottomColor: Colors.borderModal,
+              backgroundColor: Colors.bgModalHeader,
+            }}
           >
             <Text
               className="font-semibold text-[18px] leading-[24px]"
@@ -80,7 +95,14 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 className="h-9 w-9 items-center justify-center rounded-full"
                 style={{ backgroundColor: Colors.bgCalendarControl }}
                 onPress={() => {
-                  setDisplayedMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() - 1, 1));
+                  setDisplayedMonth(
+                    (previous) =>
+                      new Date(
+                        previous.getFullYear(),
+                        previous.getMonth() - 1,
+                        1,
+                      ),
+                  );
                 }}
               >
                 <Ionicons
@@ -101,7 +123,14 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                 className="h-9 w-9 items-center justify-center rounded-full"
                 style={{ backgroundColor: Colors.bgCalendarControl }}
                 onPress={() => {
-                  setDisplayedMonth((previous) => new Date(previous.getFullYear(), previous.getMonth() + 1, 1));
+                  setDisplayedMonth(
+                    (previous) =>
+                      new Date(
+                        previous.getFullYear(),
+                        previous.getMonth() + 1,
+                        1,
+                      ),
+                  );
                 }}
               >
                 <Ionicons
@@ -150,7 +179,14 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                     activeScale={0.94}
                     activeOpacity={isPastDate ? 1 : 0.85}
                   >
-                    <View style={{ width: 32, height: 32, alignItems: 'center', justifyContent: 'center' }}>
+                    <View
+                      style={{
+                        width: 32,
+                        height: 32,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
                       {isSelected ? (
                         <View
                           style={{
@@ -164,7 +200,11 @@ export const DueDateModal: FC<DueDateModalProps> = ({
                       ) : null}
                       <Text
                         className="font-sans text-[14px] leading-[20px]"
-                        style={{ color: isPastDate ? Colors.textDisabled : dayTextColor }}
+                        style={{
+                          color: isPastDate
+                            ? Colors.textDisabled
+                            : dayTextColor,
+                        }}
                       >
                         {date.getDate()}
                       </Text>

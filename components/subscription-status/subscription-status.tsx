@@ -8,10 +8,14 @@ type SubscriptionStatusProps = {
   isActive: boolean;
 };
 
-export const SubscriptionStatus: FC<SubscriptionStatusProps> = ({ isActive }) => (
+export const SubscriptionStatus: FC<SubscriptionStatusProps> = ({
+  isActive,
+}) => (
   <View
     className="h-6 w-6 items-center justify-center rounded-full"
-    style={{ backgroundColor: isActive ? Colors.statusSuccess : Colors.statusDanger }}
+    style={{
+      backgroundColor: isActive ? Colors.statusSuccess : Colors.statusDanger,
+    }}
   >
     <Ionicons
       name={isActive ? 'checkmark' : 'close'}

@@ -9,7 +9,9 @@ const { tMock, useStoreMock, storeState } = vi.hoisted(() => {
 
   return {
     tMock: vi.fn((key: string) => key),
-    useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) => selector(storeState)),
+    useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) =>
+      selector(storeState),
+    ),
     storeState,
   };
 });
@@ -38,9 +40,15 @@ describe('useLaborPhase', () => {
       const result = useLaborPhase();
 
       expect(result.phase).toBe(phase);
-      expect(result.label).toBe(`childbirthScreen.timerScreen.phases.${phase}.label`);
-      expect(result.dilation).toBe(`childbirthScreen.timerScreen.phases.${phase}.dilation`);
-      expect(result.description).toBe(`childbirthScreen.timerScreen.phases.${phase}.description`);
+      expect(result.label).toBe(
+        `childbirthScreen.timerScreen.phases.${phase}.label`,
+      );
+      expect(result.dilation).toBe(
+        `childbirthScreen.timerScreen.phases.${phase}.dilation`,
+      );
+      expect(result.description).toBe(
+        `childbirthScreen.timerScreen.phases.${phase}.description`,
+      );
     },
   );
 
@@ -53,7 +61,9 @@ describe('useLaborPhase', () => {
 
       expect(items).toHaveLength(4);
       items.forEach((item, i) => {
-        expect(item.text).toBe(`childbirthScreen.timerScreen.phases.${phase}.items.${i}`);
+        expect(item.text).toBe(
+          `childbirthScreen.timerScreen.phases.${phase}.items.${i}`,
+        );
         expect(item.type).toBe('positive');
       });
     },
@@ -64,10 +74,20 @@ describe('useLaborPhase', () => {
 
     useLaborPhase();
 
-    expect(tMock).toHaveBeenCalledWith('childbirthScreen.timerScreen.phases.active.label');
-    expect(tMock).toHaveBeenCalledWith('childbirthScreen.timerScreen.phases.active.dilation');
-    expect(tMock).toHaveBeenCalledWith('childbirthScreen.timerScreen.phases.active.description');
-    expect(tMock).toHaveBeenCalledWith('childbirthScreen.timerScreen.phases.active.items.0');
-    expect(tMock).toHaveBeenCalledWith('childbirthScreen.timerScreen.phases.active.items.3');
+    expect(tMock).toHaveBeenCalledWith(
+      'childbirthScreen.timerScreen.phases.active.label',
+    );
+    expect(tMock).toHaveBeenCalledWith(
+      'childbirthScreen.timerScreen.phases.active.dilation',
+    );
+    expect(tMock).toHaveBeenCalledWith(
+      'childbirthScreen.timerScreen.phases.active.description',
+    );
+    expect(tMock).toHaveBeenCalledWith(
+      'childbirthScreen.timerScreen.phases.active.items.0',
+    );
+    expect(tMock).toHaveBeenCalledWith(
+      'childbirthScreen.timerScreen.phases.active.items.3',
+    );
   });
 });

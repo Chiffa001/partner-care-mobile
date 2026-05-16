@@ -4,7 +4,9 @@ type UseCollapsibleContentOptions = {
   enabled: boolean;
 };
 
-export const useCollapsibleContent = ({ enabled }: UseCollapsibleContentOptions) => {
+export const useCollapsibleContent = ({
+  enabled,
+}: UseCollapsibleContentOptions) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleCollapsed = useCallback(() => {

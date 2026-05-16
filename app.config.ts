@@ -8,7 +8,10 @@ const colorsSource = fs.readFileSync(
 );
 
 const Colors = Object.fromEntries(
-  [...colorsSource.matchAll(/(\w+):\s*'([^']+)'/g)].map(([, key, value]) => [key, value]),
+  [...colorsSource.matchAll(/(\w+):\s*'([^']+)'/g)].map(([, key, value]) => [
+    key,
+    value,
+  ]),
 ) as Record<string, string>;
 
 const config: ExpoConfig = {
@@ -22,8 +25,10 @@ const config: ExpoConfig = {
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
+    bundleIdentifier: 'com.partnercare',
   },
   android: {
+    package: 'com.partnercare',
     adaptiveIcon: {
       backgroundColor: Colors.bgAdaptiveIcon,
       foregroundImage: './assets/images/android-icon-foreground.png',

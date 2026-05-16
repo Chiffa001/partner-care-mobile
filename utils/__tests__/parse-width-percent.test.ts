@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { DEFAULT_WIDTH_PERCENT, parseWidthPercent } from './../parse-width-percent';
+import {
+  DEFAULT_WIDTH_PERCENT,
+  parseWidthPercent,
+} from './../parse-width-percent';
 
 describe('parseWidthPercent', () => {
   it('returns default for undefined', () => {
@@ -19,7 +22,9 @@ describe('parseWidthPercent', () => {
 
   it('returns default for non-finite numbers', () => {
     expect(parseWidthPercent(Number.NaN)).toBe(DEFAULT_WIDTH_PERCENT);
-    expect(parseWidthPercent(Number.POSITIVE_INFINITY)).toBe(DEFAULT_WIDTH_PERCENT);
+    expect(parseWidthPercent(Number.POSITIVE_INFINITY)).toBe(
+      DEFAULT_WIDTH_PERCENT,
+    );
   });
 
   it('parses string percentages', () => {

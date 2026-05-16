@@ -10,11 +10,14 @@ const colorsSource = fs.readFileSync(
 );
 
 const Colors = Object.fromEntries(
-  [...colorsSource.matchAll(/(\w+):\s*'([^']+)'/g)].map(([, key, value]) => [key, value]),
+  [...colorsSource.matchAll(/(\w+):\s*'([^']+)'/g)].map(([, key, value]) => [
+    key,
+    value,
+  ]),
 );
 
 export default {
-  content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}',],
+  content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   presets: [nativewindPreset],
   theme: {
     extend: {
@@ -37,7 +40,7 @@ export default {
             bg: Colors.accentStrong,
             text: Colors.white,
           },
-        }
+        },
       },
       fontFamily: {
         sans: ['Poppins-Regular', 'System'],

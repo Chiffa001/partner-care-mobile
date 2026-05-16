@@ -8,22 +8,24 @@ type Options = {
 
 export const usePreloadAssets = (
   sources: ImageSourcePropType[],
-  { blocking = true }: Options = {}
+  { blocking = true }: Options = {},
 ) => {
   const [ready, setReady] = useState(!blocking);
 
   useEffect(() => {
     let isActive = true;
 
-    Asset.loadAsync(sources as Parameters<typeof Asset.loadAsync>[0]).then(() => {
-      if (isActive) {
-        setReady(true);
-      }
-    }).catch(() => {
-      if (isActive) {
-        setReady(true);
-      }
-    });
+    Asset.loadAsync(sources as Parameters<typeof Asset.loadAsync>[0])
+      .then(() => {
+        if (isActive) {
+          setReady(true);
+        }
+      })
+      .catch(() => {
+        if (isActive) {
+          setReady(true);
+        }
+      });
 
     return () => {
       isActive = false;

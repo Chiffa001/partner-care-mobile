@@ -10,7 +10,9 @@ export const parseWidthPercent = (value: number | string | undefined) => {
   if (typeof value === 'string') {
     const parsed = Number.parseFloat(value.replace('%', '').trim());
 
-    return Number.isFinite(parsed) ? clampPercent(parsed) : DEFAULT_WIDTH_PERCENT;
+    return Number.isFinite(parsed)
+      ? clampPercent(parsed)
+      : DEFAULT_WIDTH_PERCENT;
   }
 
   return DEFAULT_WIDTH_PERCENT;

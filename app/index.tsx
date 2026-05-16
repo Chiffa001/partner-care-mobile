@@ -15,13 +15,8 @@ const Index = () => {
       return;
     }
 
-    AsyncStorage
-      .getItem(ONBOARDING_STORAGE_KEY)
-      .then((value) => {
-        setStep(value
-          ? 'tabs'
-          : 'onboarding'
-        );
+    AsyncStorage.getItem(ONBOARDING_STORAGE_KEY).then((value) => {
+      setStep(value ? 'tabs' : 'onboarding');
     });
   }, []);
 

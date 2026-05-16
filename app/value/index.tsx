@@ -18,7 +18,7 @@ const Value = () => {
 
   return (
     <InfoScreenContainer>
-      <View className='gap-5'>
+      <View className="gap-5">
         <Title>
           {t('value.title')}
         </Title>
@@ -28,13 +28,13 @@ const Value = () => {
       </View>
       <Image
         source={coupleImg}
-        resizeMode='contain'
-        className="w-full scale-[2] flex-1"
+        resizeMode="contain"
+        className="w-full flex-1 scale-[2]"
       />
       <View className="mt-auto w-[85%]">
         <Button
           onPress={handleStart}
-          className='py-4'
+          className="py-4"
         >
           {t('value.button')}
         </Button>

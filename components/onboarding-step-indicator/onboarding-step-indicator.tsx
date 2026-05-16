@@ -19,7 +19,9 @@ export const OnboardingStepIndicator: FC<Props> = ({
   const safeCurrent = Math.min(Math.max(1, currentStep), totalSteps);
 
   return (
-    <View className={`flex-row items-center justify-center gap-2 ${className ?? ''}`}>
+    <View
+      className={`flex-row items-center justify-center gap-2 ${className ?? ''}`}
+    >
       {Array.from({ length: totalSteps }).map((_, index) => {
         const isActive = index + 1 === safeCurrent;
 

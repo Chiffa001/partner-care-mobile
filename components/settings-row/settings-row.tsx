@@ -35,7 +35,9 @@ export const SettingsRow: FC<SettingsRowProps> = ({
           ellipsizeMode="tail"
           style={[
             { color: Colors.textRowTitle },
-            Platform.OS === 'android' ? { includeFontPadding: false } : undefined,
+            Platform.OS === 'android'
+              ? { includeFontPadding: false }
+              : undefined,
           ]}
         >
           {title}
@@ -50,7 +52,9 @@ export const SettingsRow: FC<SettingsRowProps> = ({
               ellipsizeMode="tail"
               style={[
                 { color: Colors.textRowValue },
-                Platform.OS === 'android' ? { includeFontPadding: false } : undefined,
+                Platform.OS === 'android'
+                  ? { includeFontPadding: false }
+                  : undefined,
               ]}
             >
               {value}

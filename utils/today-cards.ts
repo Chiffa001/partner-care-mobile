@@ -17,20 +17,21 @@ export type TodayCardsOverrides = {
   donts?: TodayCardTextContent;
 };
 
-const getText = (value: string | undefined, fallback: string) => (
-  value?.trim() ? value : fallback
-);
+const getText = (value: string | undefined, fallback: string) =>
+  value?.trim() ? value : fallback;
 
-const getItems = (value: string[] | undefined, fallback: string[]) => (
-  value && value.length > 0 ? value : fallback
-);
+const getItems = (value: string[] | undefined, fallback: string[]) =>
+  value && value.length > 0 ? value : fallback;
 
 export const buildTodayCards = (
   t: TFunction,
   overrides?: TodayCardsOverrides,
 ) => {
   const stateFallbackDescription = t('todayCards.state.description');
-  const stateDescription = getText(overrides?.state?.description, stateFallbackDescription);
+  const stateDescription = getText(
+    overrides?.state?.description,
+    stateFallbackDescription,
+  );
 
   const actionsFallbackItems = [
     t('todayCards.actions.items.0'),
@@ -60,8 +61,9 @@ export const buildTodayCards = (
     titleColor: Colors.textCardActionsTitle,
     headerBackgroundColor: Colors.bgCardActionsHeader,
     bodyBackgroundColor: Colors.bgCardActionsBody,
-    items: getItems(overrides?.actions?.items, actionsFallbackItems)
-      .map((text) => ({ text, type: 'positive' as const })),
+    items: getItems(overrides?.actions?.items, actionsFallbackItems).map(
+      (text) => ({ text, type: 'positive' as const }),
+    ),
   };
 
   const dontsCard: CardConfig = {
@@ -69,8 +71,9 @@ export const buildTodayCards = (
     titleColor: Colors.textCardStateTitle,
     headerBackgroundColor: Colors.bgCardDontsHeader,
     bodyBackgroundColor: Colors.bgCardDontsBody,
-    items: getItems(overrides?.donts?.items, dontsFallbackItems)
-      .map((text) => ({ text, type: 'negative' as const })),
+    items: getItems(overrides?.donts?.items, dontsFallbackItems).map(
+      (text) => ({ text, type: 'negative' as const }),
+    ),
   };
 
   return {

@@ -15,4 +15,8 @@ export {
   selectToggleTimer,
 } from './selectors';
 export { useChildbirthTimerStore } from './store';
-export type { ChildbirthTimerState, ContractionRecord, LaborPhase } from './types';
+export type {
+  ChildbirthTimerState,
+  ContractionRecord,
+  LaborPhase,
+} from './types';

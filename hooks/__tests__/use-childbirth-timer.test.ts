@@ -23,7 +23,9 @@ const {
     const cleanup = callback();
     effectCleanups.push(cleanup);
   }),
-  useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) => selector(storeState)),
+  useStoreMock: vi.fn((selector: (state: typeof storeState) => unknown) =>
+    selector(storeState),
+  ),
   storeState: {
     isActive: false,
     isPaused: false,
@@ -32,7 +34,11 @@ const {
     latestIntervalSec: 0,
     averageIntervalSec: 0,
     hasTimerData: false,
-    contractions: [] as { startAt: number; durationSec: number; intervalSec: number | null }[],
+    contractions: [] as {
+      startAt: number;
+      durationSec: number;
+      intervalSec: number | null;
+    }[],
     toggleTimer: vi.fn(),
     resetTimer: vi.fn(),
     pauseTimer: vi.fn(),
@@ -55,9 +61,12 @@ vi.mock('@/stores/childbirth-timer-store', () => ({
   selectIsContractionActive: (state: typeof storeState) => state.isActive,
   selectIsTimerPaused: (state: typeof storeState) => state.isPaused,
   selectIsUrgent: (state: typeof storeState) => state.isUrgent,
-  selectCurrentDurationSec: (state: typeof storeState) => state.currentDurationSec,
-  selectLatestIntervalSec: (state: typeof storeState) => state.latestIntervalSec,
-  selectAverageIntervalSec: (state: typeof storeState) => state.averageIntervalSec,
+  selectCurrentDurationSec: (state: typeof storeState) =>
+    state.currentDurationSec,
+  selectLatestIntervalSec: (state: typeof storeState) =>
+    state.latestIntervalSec,
+  selectAverageIntervalSec: (state: typeof storeState) =>
+    state.averageIntervalSec,
   selectHasTimerData: (state: typeof storeState) => state.hasTimerData,
   selectContractions: (state: typeof storeState) => state.contractions,
   selectToggleTimer: (state: typeof storeState) => state.toggleTimer,
@@ -95,7 +104,9 @@ describe('useChildbirthTimer', () => {
     storeState.latestIntervalSec = 7;
     storeState.averageIntervalSec = 9;
     storeState.hasTimerData = true;
-    storeState.contractions = [{ startAt: 1, durationSec: 11, intervalSec: null }];
+    storeState.contractions = [
+      { startAt: 1, durationSec: 11, intervalSec: null },
+    ];
 
     const result = useChildbirthTimer();
 
@@ -125,7 +136,7 @@ describe('useChildbirthTimer', () => {
         intervalCallbacks.push(callback as () => void);
 
         return 321 as unknown as ReturnType<typeof setInterval>;
-      }) as typeof setInterval);
+      }) as unknown as typeof setInterval);
     const clearIntervalSpy = vi
       .spyOn(globalThis, 'clearInterval')
       .mockImplementation(() => undefined);

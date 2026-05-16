@@ -32,7 +32,9 @@ const Settings = () => {
           onPushEnabledChange={setIsPushEnabled}
         />
 
-        <SubscriptionSettingsSection hasActiveSubscription={hasActiveSubscription} />
+        <SubscriptionSettingsSection
+          hasActiveSubscription={hasActiveSubscription}
+        />
       </ScrollView>
     </ScreenContainer>
   );

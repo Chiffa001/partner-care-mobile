@@ -34,43 +34,46 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  const header = useMemo(() => (
-    <View
-      className="mb-2 flex-row border-b pb-2"
-      style={{ borderBottomColor: Colors.borderHistoryHeader }}
-    >
-      <Text
-        className="w-[54px] font-semibold text-[12px] leading-[18px]"
-        style={{ color: Colors.textTertiary }}
+  const header = useMemo(
+    () => (
+      <View
+        className="mb-2 flex-row border-b pb-2"
+        style={{ borderBottomColor: Colors.borderHistoryHeader }}
       >
-        #
-      </Text>
-      <Text
-        className="flex-1 text-right font-semibold text-[12px] leading-[18px]"
-        style={{ color: Colors.textTertiary }}
-        numberOfLines={1}
-        adjustsFontSizeToFit
-        minimumFontScale={0.78}
-      >
-        {t('childbirthScreen.contractions.durationLabel')}
-      </Text>
-      <Text
-        className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
-        style={{ color: Colors.textTertiary }}
-        numberOfLines={1}
-        adjustsFontSizeToFit
-        minimumFontScale={0.78}
-      >
-        {t('childbirthScreen.contractions.intervalLabel')}
-      </Text>
-      <Text
-        className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
-        style={{ color: Colors.textTertiary }}
-      >
-        {t('childbirthScreen.contractions.averageIntervalLabel')}
-      </Text>
-    </View>
-  ), [t]);
+        <Text
+          className="w-[54px] font-semibold text-[12px] leading-[18px]"
+          style={{ color: Colors.textTertiary }}
+        >
+          #
+        </Text>
+        <Text
+          className="flex-1 text-right font-semibold text-[12px] leading-[18px]"
+          style={{ color: Colors.textTertiary }}
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.78}
+        >
+          {t('childbirthScreen.contractions.durationLabel')}
+        </Text>
+        <Text
+          className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
+          style={{ color: Colors.textTertiary }}
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.78}
+        >
+          {t('childbirthScreen.contractions.intervalLabel')}
+        </Text>
+        <Text
+          className="ml-2 flex-1 text-right font-semibold text-[12px] leading-[18px]"
+          style={{ color: Colors.textTertiary }}
+        >
+          {t('childbirthScreen.contractions.averageIntervalLabel')}
+        </Text>
+      </View>
+    ),
+    [t],
+  );
 
   return (
     <Modal
@@ -95,6 +98,7 @@ export const ChildbirthHistoryModal: FC<ChildbirthHistoryModalProps> = ({
                 {t('childbirthScreen.contractions.historyTitle')}
               </Text>
               <Pressable
+                testID="btn-history-close"
                 className="h-8 w-8 items-center justify-center rounded-full"
                 style={{ backgroundColor: Colors.bgButtonMuted }}
                 onPress={onClose}

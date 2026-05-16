@@ -18,10 +18,7 @@ const onboardingImages = [coupleImg, hospitalImg, calendarImg, introImg];
 
 const RootLayout = () => {
   const fontsLoaded = useCustomFonts();
-  const imagesReady = usePreloadAssets(
-    onboardingImages,
-    { blocking: true }
-  );
+  const imagesReady = usePreloadAssets(onboardingImages, { blocking: true });
 
   if (!fontsLoaded || !imagesReady) {
     return (
@@ -33,9 +30,7 @@ const RootLayout = () => {
 
   return (
     <SafeAreaProvider>
-      <View
-        className="flex-1"
-      >
+      <View className="flex-1">
         <StatusBar style="dark" />
         <Stack>
           <Stack.Screen

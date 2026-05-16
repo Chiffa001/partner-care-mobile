@@ -60,7 +60,9 @@ describe('due-date utils', () => {
 
     it('marks current month days correctly', () => {
       const days = buildCalendarDays(new Date(2026, 2, 1));
-      const currentMonthDays = days.filter(({ isCurrentMonth }) => isCurrentMonth);
+      const currentMonthDays = days.filter(
+        ({ isCurrentMonth }) => isCurrentMonth,
+      );
 
       expect(currentMonthDays).toHaveLength(31);
       expect(currentMonthDays[0].date).toEqual(new Date(2026, 2, 1));

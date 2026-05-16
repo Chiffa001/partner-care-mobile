@@ -102,9 +102,7 @@ describe('buildTodayCards', () => {
       { text: 'A1', type: 'positive' },
       { text: 'A2', type: 'positive' },
     ]);
-    expect(cards.dontsCard.items).toEqual([
-      { text: 'D1', type: 'negative' },
-    ]);
+    expect(cards.dontsCard.items).toEqual([{ text: 'D1', type: 'negative' }]);
   });
 
   it('falls back to translation items when override arrays are empty', () => {

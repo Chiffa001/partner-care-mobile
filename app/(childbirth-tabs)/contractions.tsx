@@ -16,10 +16,18 @@ import {
 
 const ContractionsScreen = () => {
   const { t } = useTranslation();
-  const isContractionActive = useChildbirthTimerStore(selectIsContractionActive);
+  const isContractionActive = useChildbirthTimerStore(
+    selectIsContractionActive,
+  );
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
-  const waitingIconScale = usePulseScale({ enabled: !isContractionActive, duration: 700 });
-  const activeIconScale = usePulseScale({ enabled: isContractionActive, duration: 550 });
+  const waitingIconScale = usePulseScale({
+    enabled: !isContractionActive,
+    duration: 700,
+  });
+  const activeIconScale = usePulseScale({
+    enabled: isContractionActive,
+    duration: 550,
+  });
   const statusText = !hasTimerData
     ? t('childbirthScreen.contractions.timerNotStartedHint')
     : isContractionActive
@@ -51,11 +59,16 @@ const ContractionsScreen = () => {
 
         <View
           className="justify-center rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <View className="flex-row items-center justify-center">
             {isContractionActive ? (
-              <Animated.View style={{ transform: [{ scale: activeIconScale }] }}>
+              <Animated.View
+                style={{ transform: [{ scale: activeIconScale }] }}
+              >
                 <Ionicons
                   name="radio-button-on"
                   size={20}
@@ -63,7 +76,9 @@ const ContractionsScreen = () => {
                 />
               </Animated.View>
             ) : (
-              <Animated.View style={{ transform: [{ scale: waitingIconScale }] }}>
+              <Animated.View
+                style={{ transform: [{ scale: waitingIconScale }] }}
+              >
                 <Ionicons
                   name="time-outline"
                   size={20}

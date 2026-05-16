@@ -12,10 +12,9 @@ type NotificationSettingsSectionProps = {
   onPushEnabledChange: (nextValue: boolean) => void;
 };
 
-export const NotificationSettingsSection: FC<NotificationSettingsSectionProps> = ({
-  isPushEnabled,
-  onPushEnabledChange,
-}) => {
+export const NotificationSettingsSection: FC<
+  NotificationSettingsSectionProps
+> = ({ isPushEnabled, onPushEnabledChange }) => {
   const { t } = useTranslation();
 
   return (

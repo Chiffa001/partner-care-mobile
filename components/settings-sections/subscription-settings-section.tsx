@@ -11,9 +11,9 @@ type SubscriptionSettingsSectionProps = {
   hasActiveSubscription: boolean;
 };
 
-export const SubscriptionSettingsSection: FC<SubscriptionSettingsSectionProps> = ({
-  hasActiveSubscription,
-}) => {
+export const SubscriptionSettingsSection: FC<
+  SubscriptionSettingsSectionProps
+> = ({ hasActiveSubscription }) => {
   const { t } = useTranslation();
 
   return (

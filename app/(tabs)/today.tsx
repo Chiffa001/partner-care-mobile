@@ -35,13 +35,9 @@ const Today = () => {
           collapsible={false}
         />
 
-        <InsightCard
-          {...actionsCard}
-        />
+        <InsightCard {...actionsCard} />
 
-        <InsightCard
-          {...dontsCard}
-        />
+        <InsightCard {...dontsCard} />
       </ScrollView>
     </ScreenContainer>
   );

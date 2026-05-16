@@ -16,7 +16,9 @@ import {
 
 const TimerScreen = () => {
   const { t } = useTranslation();
-  const isContractionActive = useChildbirthTimerStore(selectIsContractionActive);
+  const isContractionActive = useChildbirthTimerStore(
+    selectIsContractionActive,
+  );
   const hasTimerData = useChildbirthTimerStore(selectHasTimerData);
   const {
     phase,
@@ -25,8 +27,14 @@ const TimerScreen = () => {
     description: phaseDescription,
     items: phaseItems,
   } = useLaborPhase();
-  const waitingIconScale = usePulseScale({ enabled: !isContractionActive, duration: 700 });
-  const activeIconScale = usePulseScale({ enabled: isContractionActive, duration: 550 });
+  const waitingIconScale = usePulseScale({
+    enabled: !isContractionActive,
+    duration: 700,
+  });
+  const activeIconScale = usePulseScale({
+    enabled: isContractionActive,
+    duration: 550,
+  });
   const statusText = !hasTimerData
     ? t('childbirthScreen.contractions.timerNotStartedHint')
     : isContractionActive
@@ -42,11 +50,16 @@ const TimerScreen = () => {
       >
         <View
           className="justify-center rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <View className="flex-row items-center justify-center">
             {isContractionActive ? (
-              <Animated.View style={{ transform: [{ scale: activeIconScale }] }}>
+              <Animated.View
+                style={{ transform: [{ scale: activeIconScale }] }}
+              >
                 <Ionicons
                   name="radio-button-on"
                   size={20}
@@ -54,7 +67,9 @@ const TimerScreen = () => {
                 />
               </Animated.View>
             ) : (
-              <Animated.View style={{ transform: [{ scale: waitingIconScale }] }}>
+              <Animated.View
+                style={{ transform: [{ scale: waitingIconScale }] }}
+              >
                 <Ionicons
                   name="time-outline"
                   size={20}
@@ -75,11 +90,14 @@ const TimerScreen = () => {
 
         <View
           className="rounded-2xl border px-4 py-3"
-          style={{ borderColor: Colors.borderCard, backgroundColor: Colors.bgCard }}
+          style={{
+            borderColor: Colors.borderCard,
+            backgroundColor: Colors.bgCard,
+          }}
         >
           <View className="flex-row items-center justify-between">
             <Text
-              className="font-sans text-[17px] font-medium leading-[22px]"
+              className="font-medium font-sans text-[17px] leading-[22px]"
               style={{ color: Colors.textPrimary }}
             >
               {phaseLabel}
@@ -90,7 +108,7 @@ const TimerScreen = () => {
                 style={{ backgroundColor: Colors.bgHeaderCard }}
               >
                 <Text
-                  className="font-sans text-[13px] font-medium"
+                  className="font-medium font-sans text-[13px]"
                   style={{ color: Colors.accentTimer }}
                 >
                   {phaseDilation}

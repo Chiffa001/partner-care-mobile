@@ -62,13 +62,20 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>()(
           contractions: [],
         }),
       toggleTimer: () => {
-        const { activeContractionStartAt, activeContractionIntervalSec, contractions } = get();
+        const {
+          activeContractionStartAt,
+          activeContractionIntervalSec,
+          contractions,
+        } = get();
         const currentTimestamp = Date.now();
 
         if (activeContractionStartAt === null) {
           const previousContraction = contractions.at(-1);
           const nextIntervalSec = previousContraction
-            ? (currentTimestamp - (previousContraction.startAt + (previousContraction.durationSec * 1000))) / 1000
+            ? (currentTimestamp -
+                (previousContraction.startAt +
+                  previousContraction.durationSec * 1000)) /
+              1000
             : null;
 
           set({
@@ -106,6 +113,6 @@ export const useChildbirthTimerStore = create<ChildbirthTimerState>()(
         isPaused: state.isPaused,
         contractions: state.contractions,
       }),
-    }
-  )
+    },
+  ),
 );

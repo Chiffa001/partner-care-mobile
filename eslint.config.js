@@ -95,7 +95,7 @@ module.exports = defineConfig([
           unnamedComponents: 'arrow-function',
         },
       ],
-      'curly': ['error', 'all'],
+      curly: ['error', 'all'],
       'padding-line-between-statements': [
         'error',
         { blankLine: 'always', prev: 'import', next: '*' },

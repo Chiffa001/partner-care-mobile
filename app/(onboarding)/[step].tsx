@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import type { ImageSourcePropType} from 'react-native';
+import type { ImageSourcePropType } from 'react-native';
 import { Image, View } from 'react-native';
 
 import coupleImg from '@/assets/images/bg/onboarding-1.png';
@@ -16,10 +16,13 @@ import { ONBOARDING_STORAGE_KEY } from '@/constants/storage';
 
 type Step = `${number}`;
 
-const steps: Record<Step, {
-  image: ImageSourcePropType;
-  scale: number;
-}> = {
+const steps: Record<
+  Step,
+  {
+    image: ImageSourcePropType;
+    scale: number;
+  }
+> = {
   1: {
     image: coupleImg,
     scale: 1.1,
@@ -55,7 +58,7 @@ const OnboardingStep = () => {
     router.replace('/(tabs)/today');
   };
 
-  const {scale, image} = steps[step];
+  const { scale, image } = steps[step];
 
   return (
     <InfoScreenContainer>
@@ -73,7 +76,7 @@ const OnboardingStep = () => {
       <Image
         style={{ transform: [{ scale }] }}
         source={image}
-        resizeMode='center'
+        resizeMode="center"
         className="w-full flex-1"
       />
       <OnboardingStepIndicator
@@ -84,7 +87,7 @@ const OnboardingStep = () => {
       <View className="mt-auto w-[85%]">
         <Button
           onPress={handleNext}
-          className='py-4'
+          className="py-4"
         >
           {t(`onboarding${step}.button`)}
         </Button>

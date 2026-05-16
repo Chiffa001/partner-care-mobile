@@ -8,14 +8,7 @@ import {
   useState,
 } from 'react';
 import type { ImageSourcePropType } from 'react-native';
-import {
-  Animated,
-  Easing,
-  Image,
-  Pressable,
-  Text,
-  View,
-} from 'react-native';
+import { Animated, Easing, Image, Pressable, Text, View } from 'react-native';
 
 import { TitledCard } from '@/components/titled-card';
 import { Colors } from '@/constants/colors';
@@ -71,10 +64,9 @@ export const InsightCard: FC<InsightCardProps> = ({
   const hasDescription = Boolean(description);
   const hasImage = Boolean(imageSource);
   const canCollapse = collapsible && !isLoading && (hasDescription || hasItems);
-  const {
-    isCollapsed,
-    toggleCollapsed,
-  } = useCollapsibleContent({ enabled: canCollapse });
+  const { isCollapsed, toggleCollapsed } = useCollapsibleContent({
+    enabled: canCollapse,
+  });
   const skeletonColor = Colors.skeletonPrimary;
   const skeletonSecondaryColor = Colors.skeletonSecondary;
 
@@ -96,27 +88,32 @@ export const InsightCard: FC<InsightCardProps> = ({
   }, [collapseProgress, isCollapsed]);
 
   const chevronAnimatedStyle = {
-    transform: [{
-      rotate: chevronRotationProgress.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '180deg'],
-      }),
-    }],
+    transform: [
+      {
+        rotate: chevronRotationProgress.interpolate({
+          inputRange: [0, 1],
+          outputRange: ['0deg', '180deg'],
+        }),
+      },
+    ],
   };
   const contentAnimatedStyle = {
     opacity: collapseProgress,
-    transform: [{
-      translateY: collapseProgress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [-6, 0],
-      }),
-    }],
-    height: contentHeight > 0
-      ? collapseProgress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, contentHeight],
-      })
-      : undefined,
+    transform: [
+      {
+        translateY: collapseProgress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [-6, 0],
+        }),
+      },
+    ],
+    height:
+      contentHeight > 0
+        ? collapseProgress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, contentHeight],
+          })
+        : undefined,
   };
 
   const animateHeaderPressIn = () => {
@@ -261,7 +258,9 @@ export const InsightCard: FC<InsightCardProps> = ({
     descriptionSection = (
       <View
         className="relative min-h-[148px] px-5 py-4"
-        onLayout={(event) => setDescriptionAreaWidth(event.nativeEvent.layout.width)}
+        onLayout={(event) =>
+          setDescriptionAreaWidth(event.nativeEvent.layout.width)
+        }
       >
         {hasImage ? (
           <Image
@@ -279,9 +278,11 @@ export const InsightCard: FC<InsightCardProps> = ({
         <Text
           className="font-sans text-[16px] leading-[24px] text-paragraphs-primary"
           style={{
-            maxWidth: descriptionAreaWidth && normalizedDescriptionWidthPercent < 100
-              ? (descriptionAreaWidth * normalizedDescriptionWidthPercent) / 100
-              : undefined,
+            maxWidth:
+              descriptionAreaWidth && normalizedDescriptionWidthPercent < 100
+                ? (descriptionAreaWidth * normalizedDescriptionWidthPercent) /
+                  100
+                : undefined,
           }}
         >
           {description}
@@ -296,7 +297,9 @@ export const InsightCard: FC<InsightCardProps> = ({
         {items.map(({ text, type }, index) => {
           const isNegative = type === 'negative';
           const iconName = isNegative ? 'close' : 'checkmark';
-          const iconBgColor = isNegative ? Colors.statusDanger : Colors.statusSuccess;
+          const iconBgColor = isNegative
+            ? Colors.statusDanger
+            : Colors.statusSuccess;
           const showDivider = index < items.length - 1;
 
           return (
@@ -314,7 +317,10 @@ export const InsightCard: FC<InsightCardProps> = ({
                 </View>
                 <Text
                   className="flex-1 font-sans text-[16px] leading-[20px] text-paragraphs-primary"
-                  style={{ textAlignVertical: 'center', includeFontPadding: false }}
+                  style={{
+                    textAlignVertical: 'center',
+                    includeFontPadding: false,
+                  }}
                 >
                   {text}
                 </Text>

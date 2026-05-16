@@ -46,7 +46,10 @@ export const CommunicationToneModal: FC<CommunicationToneModalProps> = ({
       >
         <View
           className="border-b px-6 py-3.5"
-          style={{ borderBottomColor: Colors.borderModal, backgroundColor: Colors.bgModalHeader }}
+          style={{
+            borderBottomColor: Colors.borderModal,
+            backgroundColor: Colors.bgModalHeader,
+          }}
         >
           <Text
             className="font-semibold text-[18px] leading-[24px]"

@@ -1,50 +1,62 @@
-# Welcome to your Expo app 👋
+# Partner Care
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Мобильное приложение для партнёра, поддерживающего женщину во время беременности и родов.
 
-## Get started
+## Что умеет приложение
 
-1. Install dependencies
+- **Ежедневные рекомендации** — что делать и чего избегать партнёру в текущий день беременности
+- **Трекер схваток** — таймер с паузой, история схваток, расчёт интервалов и длительности
+- **Фазы родов** — автоматическое определение ранней, активной и переходной фазы по паттерну схваток
+- **Гид для партнёра** — обучающий контент о родах и роли поддерживающего
 
-   ```bash
-   npm install
-   ```
+## Стек
 
-2. Start the app
+- **React Native** + **Expo** (~54) — кроссплатформенная сборка (iOS / Android)
+- **Expo Router** — файловая маршрутизация
+- **Zustand** — стейт-менеджмент с селекторами
+- **NativeWind** — Tailwind CSS для React Native
+- **i18next** — локализация (ru, en, pl, es)
+- **React Native Reanimated** — анимации
+- **Vitest** — юнит-тесты для сторов и хуков
+- **TypeScript** — строгая типизация
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Запуск
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Далее открыть в iOS-симуляторе, Android-эмуляторе или Expo Go.
 
-## Learn more
+## Тесты
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+# Юнит-тесты
+npm test
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Проверка типов
+npm run typecheck
+```
 
-## Join the community
+## E2E-тесты (Maestro)
 
-Join our community of developers creating universal apps.
+Тесты лежат в `e2e/flows/`. Покрывают онбординг, таб Today, трекер схваток, гид и настройки.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Требования:** установленный [Maestro](https://maestro.mobile.dev) и запущенный Android-эмулятор с установленным APK.
+
+```bash
+# Установить Maestro (один раз)
+curl -Ls "https://get.maestro.mobile.dev" | bash
+
+# Собрать и установить APK на эмулятор
+npx expo run:android
+
+# Запустить все e2e-тесты
+maestro test --app-id com.partnercare e2e/flows/
+
+# Запустить один флоу
+maestro test --app-id com.partnercare e2e/flows/03-childbirth-timer.yaml
+```
+
+CI запускает e2e автоматически на каждый пуш в `main` через GitHub Actions (Android-эмулятор на бесплатном Ubuntu runner).

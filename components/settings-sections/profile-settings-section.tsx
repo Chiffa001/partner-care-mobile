@@ -34,23 +34,30 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
   onFirstPregnancyChange,
 }) => {
   const { t, i18n } = useTranslation();
-  const closeToneModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closeToneModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const [dueDate, setDueDate] = useState(getDefaultDueDate);
   const [isDueDateModalVisible, setIsDueDateModalVisible] = useState(false);
-  const [communicationTone, setCommunicationTone] = useState<CommunicationTone>('soft');
-  const [isCommunicationToneModalVisible, setIsCommunicationToneModalVisible] = useState(false);
+  const [communicationTone, setCommunicationTone] =
+    useState<CommunicationTone>('soft');
+  const [isCommunicationToneModalVisible, setIsCommunicationToneModalVisible] =
+    useState(false);
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
   const communicationToneOptions = getCommunicationToneOptions(t);
   const languageOptions = useMemo(
-    () => supportedLanguages.map((language) => ({
-      value: language,
-      title: t(`settingsScreen.language.options.${language}`),
-    })),
+    () =>
+      supportedLanguages.map((language) => ({
+        value: language,
+        title: t(`settingsScreen.language.options.${language}`),
+      })),
     [t],
   );
   const pregnancyWeeks = getWeeksFromDueDate(dueDate);
   const pregnancyWeeksLabel = `${pregnancyWeeks} ${t('settingsScreen.values.weeksForms.one')}`;
-  const currentLanguage = supportedLanguages.includes(i18n.resolvedLanguage as AppLanguage)
+  const currentLanguage = supportedLanguages.includes(
+    i18n.resolvedLanguage as AppLanguage,
+  )
     ? (i18n.resolvedLanguage as AppLanguage)
     : 'ru';
 
@@ -127,6 +134,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
           withDivider
           rightControl={(
             <SettingsSwitch
+              testID="switch-living-together"
               value={isLivingTogether}
               onValueChange={onLivingTogetherChange}
             />
@@ -144,6 +152,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
           withDivider
           rightControl={(
             <SettingsSwitch
+              testID="switch-first-pregnancy"
               value={isFirstPregnancy}
               onValueChange={onFirstPregnancyChange}
             />
@@ -158,7 +167,9 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
         />
         <SettingsRow
           title={t('settingsScreen.rows.communicationStyle')}
-          value={t(`settingsScreen.communicationTone.options.${communicationTone}.title`)}
+          value={t(
+            `settingsScreen.communicationTone.options.${communicationTone}.title`,
+          )}
           withDivider
           withChevron
           onPress={() => setIsCommunicationToneModalVisible(true)}

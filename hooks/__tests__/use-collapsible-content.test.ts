@@ -2,11 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useCollapsibleContent } from '../use-collapsible-content';
 
-const {
-  setCollapsedMock,
-  useCallbackMock,
-  useStateMock,
-} = vi.hoisted(() => {
+const { setCollapsedMock, useCallbackMock, useStateMock } = vi.hoisted(() => {
   const setCollapsed = vi.fn();
 
   return {

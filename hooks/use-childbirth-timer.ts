@@ -33,17 +33,19 @@ export const useChildbirthTimer = () => {
   const onStartAfterPause = useChildbirthTimerStore(selectStartAfterPause);
   const tickNow = useChildbirthTimerStore(selectTickNow);
 
-  useFocusEffect(useCallback(() => {
-    if (!hasTimerData || isPaused) {
-      return;
-    }
+  useFocusEffect(
+    useCallback(() => {
+      if (!hasTimerData || isPaused) {
+        return;
+      }
 
-    tickNow();
+      tickNow();
 
-    const intervalId = setInterval(tickNow, 1000);
+      const intervalId = setInterval(tickNow, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [hasTimerData, isPaused, tickNow]));
+      return () => clearInterval(intervalId);
+    }, [hasTimerData, isPaused, tickNow]),
+  );
 
   return {
     isActive,
