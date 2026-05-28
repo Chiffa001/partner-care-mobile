@@ -6,16 +6,16 @@ import { Text, View } from 'react-native';
 import { SettingsRow } from '@/components/settings-row';
 import { SettingsSwitch } from '@/components/settings-switch';
 import { Colors } from '@/constants/colors';
+import {
+  selectIsPushEnabled,
+  selectSetPushEnabled,
+  useProfileStore,
+} from '@/stores/profile-store';
 
-type NotificationSettingsSectionProps = {
-  isPushEnabled: boolean;
-  onPushEnabledChange: (nextValue: boolean) => void;
-};
-
-export const NotificationSettingsSection: FC<
-  NotificationSettingsSectionProps
-> = ({ isPushEnabled, onPushEnabledChange }) => {
+export const NotificationSettingsSection: FC = () => {
   const { t } = useTranslation();
+  const isPushEnabled = useProfileStore(selectIsPushEnabled);
+  const setPushEnabled = useProfileStore(selectSetPushEnabled);
 
   return (
     <>
@@ -42,7 +42,7 @@ export const NotificationSettingsSection: FC<
           rightControl={(
             <SettingsSwitch
               value={isPushEnabled}
-              onValueChange={onPushEnabledChange}
+              onValueChange={setPushEnabled}
             />
           )}
           leftIcon={(

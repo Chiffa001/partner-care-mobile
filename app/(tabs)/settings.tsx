@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ScrollView } from 'react-native';
 
 import { ScreenContainer } from '@/components/screen-container';
@@ -9,10 +8,7 @@ import {
 } from '@/components/settings-sections';
 
 const Settings = () => {
-  const [isLivingTogether, setIsLivingTogether] = useState(true);
-  const [isFirstPregnancy, setIsFirstPregnancy] = useState(true);
-  const [isPushEnabled, setIsPushEnabled] = useState(true);
-  const [hasActiveSubscription] = useState<boolean>(true);
+  const hasActiveSubscription = true;
 
   return (
     <ScreenContainer className="items-stretch justify-start">
@@ -20,17 +16,9 @@ const Settings = () => {
         contentContainerClassName="px-4 pb-8 pt-4"
         showsVerticalScrollIndicator={false}
       >
-        <ProfileSettingsSection
-          isLivingTogether={isLivingTogether}
-          onLivingTogetherChange={setIsLivingTogether}
-          isFirstPregnancy={isFirstPregnancy}
-          onFirstPregnancyChange={setIsFirstPregnancy}
-        />
+        <ProfileSettingsSection />
 
-        <NotificationSettingsSection
-          isPushEnabled={isPushEnabled}
-          onPushEnabledChange={setIsPushEnabled}
-        />
+        <NotificationSettingsSection />
 
         <SubscriptionSettingsSection
           hasActiveSubscription={hasActiveSubscription}

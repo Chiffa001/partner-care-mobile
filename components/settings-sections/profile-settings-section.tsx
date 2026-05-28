@@ -10,37 +10,45 @@ import { SettingsRow } from '@/components/settings-row';
 import { SettingsSwitch } from '@/components/settings-switch';
 import { Colors } from '@/constants/colors';
 import {
-  type CommunicationTone,
+  selectCommunicationTone,
+  selectDueDate,
+  selectIsFirstPregnancy,
+  selectIsLivingTogether,
+  selectSetCommunicationTone,
+  selectSetDueDate,
+  selectSetFirstPregnancy,
+  selectSetLivingTogether,
+  useProfileStore,
+} from '@/stores/profile-store';
+import {
   getCommunicationToneOptions,
   isCommunicationTone,
 } from '@/utils/communication-tone-options';
 import { getDefaultDueDate } from '@/utils/due-date/get-default-due-date';
 import { getWeeksFromDueDate } from '@/utils/due-date/get-weeks-from-due-date';
 
-type ProfileSettingsSectionProps = {
-  isLivingTogether: boolean;
-  onLivingTogetherChange: (nextValue: boolean) => void;
-  isFirstPregnancy: boolean;
-  onFirstPregnancyChange: (nextValue: boolean) => void;
-};
-
 type AppLanguage = 'ru' | 'en' | 'pl' | 'es';
 const supportedLanguages: AppLanguage[] = ['ru', 'en', 'pl', 'es'];
 
-export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
-  isLivingTogether,
-  onLivingTogetherChange,
-  isFirstPregnancy,
-  onFirstPregnancyChange,
-}) => {
+export const ProfileSettingsSection: FC = () => {
   const { t, i18n } = useTranslation();
   const closeToneModalTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
-  const [dueDate, setDueDate] = useState(getDefaultDueDate);
+  const storedDueDate = useProfileStore(selectDueDate);
+  const setStoredDueDate = useProfileStore(selectSetDueDate);
+  const isLivingTogether = useProfileStore(selectIsLivingTogether);
+  const setLivingTogether = useProfileStore(selectSetLivingTogether);
+  const isFirstPregnancy = useProfileStore(selectIsFirstPregnancy);
+  const setFirstPregnancy = useProfileStore(selectSetFirstPregnancy);
+  const communicationTone = useProfileStore(selectCommunicationTone);
+  const setCommunicationTone = useProfileStore(selectSetCommunicationTone);
+  const dueDate = useMemo(
+    () =>
+      storedDueDate === null ? getDefaultDueDate() : new Date(storedDueDate),
+    [storedDueDate],
+  );
   const [isDueDateModalVisible, setIsDueDateModalVisible] = useState(false);
-  const [communicationTone, setCommunicationTone] =
-    useState<CommunicationTone>('soft');
   const [isCommunicationToneModalVisible, setIsCommunicationToneModalVisible] =
     useState(false);
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false);
@@ -136,7 +144,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <SettingsSwitch
               testID="switch-living-together"
               value={isLivingTogether}
-              onValueChange={onLivingTogetherChange}
+              onValueChange={setLivingTogether}
             />
           )}
           leftIcon={(
@@ -154,7 +162,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
             <SettingsSwitch
               testID="switch-first-pregnancy"
               value={isFirstPregnancy}
-              onValueChange={onFirstPregnancyChange}
+              onValueChange={setFirstPregnancy}
             />
           )}
           leftIcon={(
@@ -210,7 +218,7 @@ export const ProfileSettingsSection: FC<ProfileSettingsSectionProps> = ({
         selectedDate={dueDate}
         onClose={() => setIsDueDateModalVisible(false)}
         onConfirm={(nextDueDate) => {
-          setDueDate(nextDueDate);
+          setStoredDueDate(nextDueDate.getTime());
           setIsDueDateModalVisible(false);
         }}
       />

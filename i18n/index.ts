@@ -40,6 +40,12 @@ const i18nOptions: InitOptions = {
           description: 'На чём стоит сосредоточиться сейчас',
           button: 'Начать',
         },
+        onboardingDueDate: {
+          title: 'Когда ждёте малыша?',
+          description: 'Подскажем, что важно именно на вашем сроке',
+          fieldLabel: 'Предполагаемая дата родов',
+          button: 'Готово',
+        },
         todayCards: {
           state: {
             title: 'Что с ней сейчас',
@@ -62,6 +68,71 @@ const i18nOptions: InitOptions = {
               'Не требовать объяснений',
             ],
           },
+          trimesters: {
+            1: {
+              state: {
+                description:
+                  'Первый триместр — токсикоз, усталость и перепады настроения. Ей может быть тяжело, даже если внешне всё спокойно.',
+              },
+              actions: {
+                items: [
+                  'Возьми на себя готовку и запахи, которые её раздражают',
+                  'Будь терпелив к перепадам настроения',
+                  'Помоги ей отдыхать — сон сейчас особенно важен',
+                ],
+              },
+              donts: {
+                items: [
+                  'Не преуменьшай токсикоз и усталость',
+                  'Не строй активных планов без её сил',
+                  'Не настаивай на еде, если её тошнит',
+                ],
+              },
+            },
+            2: {
+              state: {
+                description:
+                  'Второй триместр — обычно самый спокойный. Самочувствие лучше, появляется энергия и первые шевеления малыша.',
+              },
+              actions: {
+                items: [
+                  'Сходите вместе на УЗИ и к врачу',
+                  'Гуляйте и проводите время вдвоём',
+                  'Начните спокойно готовиться к малышу',
+                ],
+              },
+              donts: {
+                items: [
+                  'Не забывай про неё за подготовкой к ребёнку',
+                  'Не игнорируй её новые тревоги',
+                  'Не перегружай делами «пока есть силы»',
+                ],
+              },
+            },
+            3: {
+              state: {
+                description:
+                  'Третий триместр — тяжело физически: одышка, отёки, плохой сон и нарастающая тревога перед родами.',
+              },
+              actions: {
+                items: [
+                  'Помогай с бытом — наклоняться и носить ей тяжело',
+                  'Соберите сумку в роддом заранее',
+                  'Будь на связи и готов выехать в любой момент',
+                ],
+              },
+              donts: {
+                items: [
+                  'Не оставляй её одну надолго',
+                  'Не обесценивай страх перед родами',
+                  'Не планируй дальние поездки',
+                ],
+              },
+            },
+          },
+        },
+        todayScreen: {
+          weekLabel: 'Неделя {{week}}',
         },
         tabs: {
           today: 'Сегодня',
@@ -267,6 +338,12 @@ const i18nOptions: InitOptions = {
           description: 'What to focus on right now',
           button: 'Start',
         },
+        onboardingDueDate: {
+          title: 'When is the baby due?',
+          description: "We'll tailor tips to your stage of pregnancy",
+          fieldLabel: 'Estimated due date',
+          button: 'Done',
+        },
         todayCards: {
           state: {
             title: 'What she is feeling now',
@@ -289,6 +366,71 @@ const i18nOptions: InitOptions = {
               "Don't demand explanations",
             ],
           },
+          trimesters: {
+            1: {
+              state: {
+                description:
+                  'First trimester — nausea, fatigue and mood swings. It can be hard for her even when she looks fine.',
+              },
+              actions: {
+                items: [
+                  'Take over cooking and smells that bother her',
+                  'Be patient with her mood swings',
+                  'Help her rest — sleep matters most right now',
+                ],
+              },
+              donts: {
+                items: [
+                  "Don't downplay her nausea and fatigue",
+                  "Don't make plans beyond her energy",
+                  "Don't push food when she feels sick",
+                ],
+              },
+            },
+            2: {
+              state: {
+                description:
+                  'Second trimester — usually the calmest. She feels better, with more energy and the first kicks.',
+              },
+              actions: {
+                items: [
+                  'Go to the ultrasound and check-ups together',
+                  'Take walks and spend time as a couple',
+                  'Start preparing for the baby without rushing',
+                ],
+              },
+              donts: {
+                items: [
+                  "Don't forget about her amid the baby prep",
+                  "Don't dismiss her new worries",
+                  "Don't overload her 'while she still can'",
+                ],
+              },
+            },
+            3: {
+              state: {
+                description:
+                  'Third trimester — physically tough: shortness of breath, swelling, poor sleep and rising anxiety before birth.',
+              },
+              actions: {
+                items: [
+                  'Help with chores — bending and lifting are hard for her',
+                  'Pack the hospital bag in advance',
+                  'Stay reachable and ready to leave anytime',
+                ],
+              },
+              donts: {
+                items: [
+                  "Don't leave her alone for long",
+                  "Don't dismiss her fear of labor",
+                  "Don't plan far-away trips",
+                ],
+              },
+            },
+          },
+        },
+        todayScreen: {
+          weekLabel: 'Week {{week}}',
         },
         tabs: {
           today: 'Today',
@@ -495,6 +637,12 @@ const i18nOptions: InitOptions = {
           description: 'Na czym warto skupić się teraz',
           button: 'Start',
         },
+        onboardingDueDate: {
+          title: 'Kiedy spodziewacie się dziecka?',
+          description: 'Dopasujemy wskazówki do Waszego etapu ciąży',
+          fieldLabel: 'Przewidywany termin porodu',
+          button: 'Gotowe',
+        },
         todayCards: {
           state: {
             title: 'Co się z nią dzieje teraz',
@@ -517,6 +665,71 @@ const i18nOptions: InitOptions = {
               'Nie wymagaj wyjaśnień',
             ],
           },
+          trimesters: {
+            1: {
+              state: {
+                description:
+                  'Pierwszy trymestr — mdłości, zmęczenie i wahania nastroju. Może być jej ciężko, nawet gdy wygląda dobrze.',
+              },
+              actions: {
+                items: [
+                  'Przejmij gotowanie i zapachy, które jej przeszkadzają',
+                  'Bądź cierpliwy wobec wahań nastroju',
+                  'Pomóż jej odpoczywać — sen jest teraz najważniejszy',
+                ],
+              },
+              donts: {
+                items: [
+                  'Nie bagatelizuj mdłości i zmęczenia',
+                  'Nie planuj rzeczy ponad jej siły',
+                  'Nie namawiaj do jedzenia, gdy jej niedobrze',
+                ],
+              },
+            },
+            2: {
+              state: {
+                description:
+                  'Drugi trymestr — zwykle najspokojniejszy. Czuje się lepiej, ma więcej energii i pierwsze ruchy dziecka.',
+              },
+              actions: {
+                items: [
+                  'Idźcie razem na USG i wizyty u lekarza',
+                  'Spacerujcie i spędzajcie czas we dwoje',
+                  'Zacznijcie spokojnie przygotowania do dziecka',
+                ],
+              },
+              donts: {
+                items: [
+                  'Nie zapominaj o niej w przygotowaniach do dziecka',
+                  'Nie lekceważ jej nowych obaw',
+                  'Nie obciążaj jej zadaniami „póki ma siły”',
+                ],
+              },
+            },
+            3: {
+              state: {
+                description:
+                  'Trzeci trymestr — fizycznie trudny: zadyszka, obrzęki, gorszy sen i rosnący lęk przed porodem.',
+              },
+              actions: {
+                items: [
+                  'Pomagaj w domu — schylanie i noszenie są dla niej trudne',
+                  'Spakujcie torbę do szpitala z wyprzedzeniem',
+                  'Bądź pod telefonem i gotowy wyjechać w każdej chwili',
+                ],
+              },
+              donts: {
+                items: [
+                  'Nie zostawiaj jej długo samej',
+                  'Nie lekceważ jej lęku przed porodem',
+                  'Nie planuj dalekich wyjazdów',
+                ],
+              },
+            },
+          },
+        },
+        todayScreen: {
+          weekLabel: 'Tydzień {{week}}',
         },
         tabs: {
           today: 'Dzisiaj',
@@ -723,6 +936,12 @@ const i18nOptions: InitOptions = {
           description: 'En qué conviene centrarse ahora',
           button: 'Empezar',
         },
+        onboardingDueDate: {
+          title: '¿Cuándo esperan al bebé?',
+          description: 'Adaptaremos los consejos a tu etapa del embarazo',
+          fieldLabel: 'Fecha probable de parto',
+          button: 'Listo',
+        },
         todayCards: {
           state: {
             title: 'Cómo se siente ahora',
@@ -745,6 +964,71 @@ const i18nOptions: InitOptions = {
               'No exijas explicaciones',
             ],
           },
+          trimesters: {
+            1: {
+              state: {
+                description:
+                  'Primer trimestre: náuseas, cansancio y cambios de humor. Puede costarle aunque por fuera parezca estar bien.',
+              },
+              actions: {
+                items: [
+                  'Encárgate de cocinar y de los olores que le molestan',
+                  'Ten paciencia con sus cambios de humor',
+                  'Ayúdala a descansar: dormir es lo más importante ahora',
+                ],
+              },
+              donts: {
+                items: [
+                  'No minimices sus náuseas y su cansancio',
+                  'No hagas planes que superen sus fuerzas',
+                  'No insistas con la comida si tiene náuseas',
+                ],
+              },
+            },
+            2: {
+              state: {
+                description:
+                  'Segundo trimestre: suele ser el más tranquilo. Se siente mejor, con más energía y las primeras pataditas.',
+              },
+              actions: {
+                items: [
+                  'Vayan juntos a la ecografía y a las consultas',
+                  'Salgan a pasear y pasen tiempo en pareja',
+                  'Empiecen a preparar la llegada del bebé sin prisa',
+                ],
+              },
+              donts: {
+                items: [
+                  'No te olvides de ella entre los preparativos',
+                  'No restes importancia a sus nuevas preocupaciones',
+                  'No la sobrecargues «mientras puede»',
+                ],
+              },
+            },
+            3: {
+              state: {
+                description:
+                  'Tercer trimestre: físicamente duro: falta de aire, hinchazón, mal sueño y más ansiedad ante el parto.',
+              },
+              actions: {
+                items: [
+                  'Ayuda con las tareas: agacharse y cargar le cuesta',
+                  'Preparen la bolsa del hospital con antelación',
+                  'Mantente localizable y listo para salir en cualquier momento',
+                ],
+              },
+              donts: {
+                items: [
+                  'No la dejes sola mucho tiempo',
+                  'No minimices su miedo al parto',
+                  'No planifiques viajes lejos',
+                ],
+              },
+            },
+          },
+        },
+        todayScreen: {
+          weekLabel: 'Semana {{week}}',
         },
         tabs: {
           today: 'Hoy',

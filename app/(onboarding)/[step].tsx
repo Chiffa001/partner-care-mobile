@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import type { ImageSourcePropType } from 'react-native';
@@ -12,7 +11,6 @@ import { InfoScreenContainer } from '@/components/info-screen-container';
 import { OnboardingStepIndicator } from '@/components/onboarding-step-indicator';
 import { Subtitle } from '@/components/subtitle';
 import { Title } from '@/components/title';
-import { ONBOARDING_STORAGE_KEY } from '@/constants/storage';
 
 type Step = `${number}`;
 
@@ -54,8 +52,7 @@ const OnboardingStep = () => {
       return;
     }
 
-    AsyncStorage.setItem(ONBOARDING_STORAGE_KEY, 'true');
-    router.replace('/(tabs)/today');
+    router.replace('/(onboarding)/due-date');
   };
 
   const { scale, image } = steps[step];
