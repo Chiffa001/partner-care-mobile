@@ -80,6 +80,10 @@ export const Colors = {
   skeletonPrimary: '#E8E1DE',
   skeletonSecondary: '#EDE7E4',
 
+  // Web phone frame
+  bgPhoneBackdrop: '#E7DEDA',
+  phoneBezel: '#1F1F23',
+
   // Neutral
   white: '#FFFFFF',
   black: '#000000',

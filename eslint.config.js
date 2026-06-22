@@ -15,6 +15,11 @@ module.exports = defineConfig([
       react: reactPlugin,
     },
     rules: {
+      // React Compiler rules from eslint-config-expo; not used here and they
+      // false-positive on Reanimated/Animated.Value patterns.
+      'react-hooks/refs': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/set-state-in-effect': 'off',
       semi: ['error', 'always'],
       '@typescript-eslint/consistent-type-imports': [
         'error',

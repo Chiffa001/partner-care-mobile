@@ -105,11 +105,16 @@ const ContractionsScreen = () => {
           items={whatToDoItems}
         />
 
-        <Image
-          source={laborContractionsImage}
-          resizeMode="cover"
-          className="h-[220px] w-full rounded-[20px]"
-        />
+        <View
+          className="w-full overflow-hidden rounded-[20px]"
+          style={{ height: 220 }}
+        >
+          <Image
+            source={laborContractionsImage}
+            resizeMode="cover"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </View>
       </ScrollView>
     </ScreenContainer>
   );

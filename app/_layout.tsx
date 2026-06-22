@@ -11,6 +11,7 @@ import coupleImg from '@/assets/images/bg/onboarding-1.png';
 import hospitalImg from '@/assets/images/bg/onboarding-2.png';
 import calendarImg from '@/assets/images/bg/onboarding-3.png';
 import { AppLoader } from '@/components/app-loader';
+import { PhoneFrame } from '@/components/phone-frame';
 import { useCustomFonts } from '@/hooks/use-custom-fonts';
 import { usePreloadAssets } from '@/hooks/use-preload-assets';
 
@@ -23,38 +24,42 @@ const RootLayout = () => {
   if (!fontsLoaded || !imagesReady) {
     return (
       <SafeAreaProvider>
-        <AppLoader />
+        <PhoneFrame>
+          <AppLoader />
+        </PhoneFrame>
       </SafeAreaProvider>
     );
   }
 
   return (
     <SafeAreaProvider>
-      <View className="flex-1">
-        <StatusBar style="dark" />
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{ headerShown: false, animation: 'none' }}
-          />
-          <Stack.Screen
-            name="value/index"
-            options={{ headerShown: false, animation: 'none' }}
-          />
-          <Stack.Screen
-            name="(onboarding)"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="(tabs)"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="(childbirth-tabs)"
-            options={{ headerShown: false }}
-          />
-        </Stack>
-      </View>
+      <PhoneFrame>
+        <View className="flex-1">
+          <StatusBar style="dark" />
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{ headerShown: false, animation: 'none' }}
+            />
+            <Stack.Screen
+              name="value/index"
+              options={{ headerShown: false, animation: 'none' }}
+            />
+            <Stack.Screen
+              name="(onboarding)"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(tabs)"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="(childbirth-tabs)"
+              options={{ headerShown: false }}
+            />
+          </Stack>
+        </View>
+      </PhoneFrame>
     </SafeAreaProvider>
   );
 };

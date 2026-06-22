@@ -52,7 +52,7 @@ vi.mock('react', () => ({
   useEffect: useEffectMock,
 }));
 
-vi.mock('@react-navigation/native', () => ({
+vi.mock('expo-router', () => ({
   useFocusEffect: useFocusEffectMock,
 }));
 

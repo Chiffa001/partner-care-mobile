@@ -64,11 +64,16 @@ const GuideScreen = () => {
           bodyBackgroundColor={Colors.bgCardBody}
         />
 
-        <Image
-          source={sheIsTiredImage}
-          resizeMode="contain"
-          className="h-[200px] w-full"
-        />
+        <View
+          className="w-full overflow-hidden"
+          style={{ height: 200 }}
+        >
+          <Image
+            source={sheIsTiredImage}
+            resizeMode="contain"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </View>
 
         <View
           className="rounded-2xl border px-4 py-3"

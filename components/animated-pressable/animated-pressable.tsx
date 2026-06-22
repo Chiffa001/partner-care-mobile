@@ -2,7 +2,6 @@ import type { FC, ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Pressable } from 'react-native';
 import Animated, {
-  type AnimatedStyle,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -47,15 +46,10 @@ export const AnimatedPressable: FC<AnimatedPressableProps> = ({
     opacity.value = withTiming(1, { duration: 130 });
   };
 
-  const animatedPressableStyle: AnimatedStyle<StyleProp<ViewStyle>> = [
-    style,
-    animatedStyle,
-  ];
-
   return (
     <ReanimatedPressable
       className={className}
-      style={animatedPressableStyle}
+      style={[style, animatedStyle]}
       disabled={disabled}
       onPress={onPress}
       onPressIn={animatePressedIn}
