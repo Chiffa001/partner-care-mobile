@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const colorsSource = fs.readFileSync(
-  path.join(process.cwd(), 'src/constants/colors.ts'),
+  path.join(process.cwd(), 'src/shared/config/colors.ts'),
   'utf8',
 );
 

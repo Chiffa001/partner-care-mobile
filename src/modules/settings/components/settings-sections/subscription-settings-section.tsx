@@ -1,0 +1,53 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Text, View } from 'react-native';
+
+import { SettingsRow } from '@/modules/settings/components/settings-row';
+import { SubscriptionStatus } from '@/modules/settings/components/subscription-status';
+import { Colors } from '@/shared/config/colors';
+
+type SubscriptionSettingsSectionProps = {
+  hasActiveSubscription: boolean;
+};
+
+export const SubscriptionSettingsSection: FC<
+  SubscriptionSettingsSectionProps
+> = ({ hasActiveSubscription }) => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Text
+        className="mb-3 ml-1 font-semibold text-[16px] leading-[24px]"
+        style={{ color: Colors.textSecondary }}
+      >
+        {t('settingsScreen.sections.subscription')}
+      </Text>
+
+      <View
+        className="overflow-hidden rounded-[22px] px-4"
+        style={{
+          backgroundColor: Colors.bgSettings,
+          shadowColor: Colors.black,
+          shadowOffset: { width: 0, height: 3 },
+          shadowOpacity: 0.08,
+          shadowRadius: 8,
+          elevation: 3,
+        }}
+      >
+        <SettingsRow
+          title={t('settingsScreen.rows.mySubscription')}
+          rightControl={<SubscriptionStatus isActive={hasActiveSubscription} />}
+          leftIcon={(
+            <MaterialCommunityIcons
+              name="wallet-membership"
+              size={28}
+              color={Colors.statusSuccessMuted}
+            />
+          )}
+        />
+      </View>
+    </>
+  );
+};

@@ -1,5 +1,5 @@
 import './global.css';
-import '@/i18n';
+import '@/shared/i18n';
 
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -10,10 +10,10 @@ import introImg from '@/assets/images/bg/intro.png';
 import coupleImg from '@/assets/images/bg/onboarding-1.png';
 import hospitalImg from '@/assets/images/bg/onboarding-2.png';
 import calendarImg from '@/assets/images/bg/onboarding-3.png';
-import { AppLoader } from '@/components/app-loader';
-import { PhoneFrame } from '@/components/phone-frame';
-import { useCustomFonts } from '@/hooks/use-custom-fonts';
-import { usePreloadAssets } from '@/hooks/use-preload-assets';
+import { useCustomFonts } from '@/shared/hooks/use-custom-fonts';
+import { usePreloadAssets } from '@/shared/hooks/use-preload-assets';
+import { AppLoader } from '@/shared/ui/app-loader';
+import { PhoneFrame } from '@/shared/ui/phone-frame';
 
 const onboardingImages = [coupleImg, hospitalImg, calendarImg, introImg];
 

@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Redirect } from 'expo-router';
 import { useEffect, useState } from 'react';
 
-import { AppLoader } from '@/components/app-loader';
-import { ONBOARDING_STORAGE_KEY } from '@/constants/storage';
+import { ONBOARDING_STORAGE_KEY } from '@/shared/config/storage';
+import { AppLoader } from '@/shared/ui/app-loader';
 
 const Index = () => {
   const [step, setStep] = useState<'tabs' | 'onboarding' | null>(null);

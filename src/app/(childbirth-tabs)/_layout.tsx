@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Platform, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/shared/config/colors';
 
 const ChildbirthTabsLayout = () => {
   const { t } = useTranslation();
