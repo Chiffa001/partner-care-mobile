@@ -1,1 +1,1 @@
-export { default } from '@/modules/settings/screens/settings-screen';
+export { SettingsScreen as default } from '@/modules/settings';

@@ -1,1 +1,1 @@
-export { default } from '@/modules/childbirth/screens/contractions-screen';
+export { ContractionsScreen as default } from '@/modules/childbirth';

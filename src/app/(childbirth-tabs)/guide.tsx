@@ -1,1 +1,1 @@
-export { default } from '@/modules/childbirth/screens/guide-screen';
+export { GuideScreen as default } from '@/modules/childbirth';

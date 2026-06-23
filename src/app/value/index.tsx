@@ -1,1 +1,1 @@
-export { default } from '@/modules/intro/screens/intro-screen';
+export { IntroScreen as default } from '@/modules/intro';

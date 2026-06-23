@@ -1,1 +1,1 @@
-export { default } from '@/modules/today/screens/today-screen';
+export { TodayScreen as default } from '@/modules/today';

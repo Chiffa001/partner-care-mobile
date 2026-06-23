@@ -1,1 +1,1 @@
-export { default } from '@/modules/onboarding/screens/onboarding-step-screen';
+export { OnboardingStepScreen as default } from '@/modules/onboarding';

@@ -1,1 +1,1 @@
-export { default } from '@/modules/childbirth/screens/timer-screen';
+export { TimerScreen as default } from '@/modules/childbirth';
