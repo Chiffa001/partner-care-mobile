@@ -15,6 +15,11 @@ module.exports = defineConfig([
       react: reactPlugin,
     },
     rules: {
+      // React Compiler rules from eslint-config-expo; not used here and they
+      // false-positive on Reanimated/Animated.Value patterns.
+      'react-hooks/refs': 'off',
+      'react-hooks/immutability': 'off',
+      'react-hooks/set-state-in-effect': 'off',
       semi: ['error', 'always'],
       '@typescript-eslint/consistent-type-imports': [
         'error',
@@ -103,6 +108,63 @@ module.exports = defineConfig([
         { blankLine: 'always', prev: '*', next: 'return' },
         { blankLine: 'always', prev: '*', next: 'function' },
         { blankLine: 'always', prev: 'block-like', next: '*' },
+      ],
+    },
+  },
+  {
+    // Module boundaries. shared/ may not depend on modules/, and a module may
+    // not reach into another module's internals (modules are independent —
+    // promote anything genuinely shared into shared/). app/ is the composition
+    // root and may import module public APIs.
+    files: ['src/**/*.{ts,tsx}'],
+    settings: {
+      'import/resolver': {
+        typescript: { project: './tsconfig.json' },
+        node: true,
+      },
+    },
+    rules: {
+      'import/no-restricted-paths': [
+        'error',
+        {
+          zones: [
+            {
+              target: './src/shared',
+              from: './src/modules',
+              message: 'shared/ must not import from modules/.',
+            },
+            {
+              target: './src/modules/childbirth',
+              from: './src/modules',
+              except: ['./childbirth'],
+              message: "A module must not import another module's internals.",
+            },
+            {
+              target: './src/modules/settings',
+              from: './src/modules',
+              except: ['./settings'],
+              message: "A module must not import another module's internals.",
+            },
+            {
+              target: './src/modules/today',
+              from: './src/modules',
+              except: ['./today'],
+              message: "A module must not import another module's internals.",
+            },
+            {
+              target: './src/modules/onboarding',
+              from: './src/modules',
+              except: ['./onboarding'],
+              message: "A module must not import another module's internals.",
+            },
+            {
+              target: './src/modules/intro',
+              from: './src/modules',
+              except: ['./intro'],
+              message: "A module must not import another module's internals.",
+            },
+          ],
+        },
       ],
     },
   },

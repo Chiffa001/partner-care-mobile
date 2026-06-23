@@ -5,7 +5,7 @@ import path from 'node:path';
 import nativewindPreset from 'nativewind/preset';
 
 const colorsSource = fs.readFileSync(
-  path.join(process.cwd(), 'constants/colors.ts'),
+  path.join(process.cwd(), 'src/shared/config/colors.ts'),
   'utf8',
 );
 
@@ -17,7 +17,7 @@ const Colors = Object.fromEntries(
 );
 
 export default {
-  content: ['./app/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   presets: [nativewindPreset],
   theme: {
     extend: {

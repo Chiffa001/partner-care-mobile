@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const colorsSource = fs.readFileSync(
-  path.join(process.cwd(), 'constants/colors.ts'),
+  path.join(process.cwd(), 'src/shared/config/colors.ts'),
   'utf8',
 );
 
@@ -19,10 +19,9 @@ const config: ExpoConfig = {
   slug: 'partner-care',
   version: '1.0.0',
   orientation: 'portrait',
-  icon: './assets/images/icon.png',
+  icon: './src/assets/images/icon.png',
   scheme: 'partnercare',
   userInterfaceStyle: 'automatic',
-  newArchEnabled: true,
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.partnercare',
@@ -31,23 +30,22 @@ const config: ExpoConfig = {
     package: 'com.partnercare',
     adaptiveIcon: {
       backgroundColor: Colors.bgAdaptiveIcon,
-      foregroundImage: './assets/images/android-icon-foreground.png',
-      backgroundImage: './assets/images/android-icon-background.png',
-      monochromeImage: './assets/images/android-icon-monochrome.png',
+      foregroundImage: './src/assets/images/android-icon-foreground.png',
+      backgroundImage: './src/assets/images/android-icon-background.png',
+      monochromeImage: './src/assets/images/android-icon-monochrome.png',
     },
-    edgeToEdgeEnabled: true,
     predictiveBackGestureEnabled: false,
   },
   web: {
     output: 'static',
-    favicon: './assets/images/favicon.png',
+    favicon: './src/assets/images/favicon.png',
   },
   plugins: [
     'expo-router',
     [
       'expo-splash-screen',
       {
-        image: './assets/images/splash-icon.png',
+        image: './src/assets/images/splash-icon.png',
         imageWidth: 200,
         resizeMode: 'contain',
         backgroundColor: Colors.white,

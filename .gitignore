@@ -36,6 +36,12 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# playwright (e2e)
+/playwright-report/
+/blob-report/
+/test-results/
+/playwright/.cache/
+
 app-example
 
 # generated native folders
