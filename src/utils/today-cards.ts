@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next';
 
 import type { InsightCardProps } from '@/components/insight-card';
+
 import { Colors } from '../constants/colors';
 
 type CardConfig = Omit<InsightCardProps, 'imageSource'>;

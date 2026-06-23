@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
 import { Colors } from '../../constants/colors';
-
 import { buildTodayCards } from '../today-cards';
 
 const translations: Record<string, string> = {

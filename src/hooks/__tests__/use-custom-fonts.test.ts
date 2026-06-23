@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Colors } from '../../constants/colors';
-
 import { useCustomFonts } from '../use-custom-fonts';
 
 const { TextInputMock, TextMock, useFontsMock } = vi.hoisted(() => ({
