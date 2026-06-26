@@ -6,10 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import introImg from '@/assets/images/bg/intro.png';
-import coupleImg from '@/assets/images/bg/onboarding-1.png';
-import hospitalImg from '@/assets/images/bg/onboarding-2.png';
-import calendarImg from '@/assets/images/bg/onboarding-3.png';
+import introImg from '@/assets/images/bg/intro.webp';
+import coupleImg from '@/assets/images/bg/onboarding-1.webp';
+import hospitalImg from '@/assets/images/bg/onboarding-2.webp';
+import calendarImg from '@/assets/images/bg/onboarding-3.webp';
 import { useCustomFonts } from '@/shared/hooks/use-custom-fonts';
 import { usePreloadAssets } from '@/shared/hooks/use-preload-assets';
 import { AppLoader } from '@/shared/ui/app-loader';

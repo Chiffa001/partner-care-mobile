@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Image, View } from 'react-native';
 
-import coupleImg from '@/assets/images/bg/intro.png';
+import coupleImg from '@/assets/images/bg/intro.webp';
 import { Button } from '@/shared/ui/button';
 import { InfoScreenContainer } from '@/shared/ui/info-screen-container';
 import { Subtitle } from '@/shared/ui/subtitle';
@@ -13,7 +13,7 @@ const Value = () => {
   const { replace } = useRouter();
 
   const handleStart = () => {
-    replace('/(onboarding)/1');
+    replace('/onboarding');
   };
 
   return (
@@ -26,11 +26,12 @@ const Value = () => {
           {t('value.description')}
         </Subtitle>
       </View>
-      <Image
-        source={coupleImg}
-        resizeMode="contain"
-        className="w-full flex-1 scale-[2]"
-      />
+      <View className="my-5 aspect-[327/407] w-full overflow-hidden rounded-3xl">
+        <Image
+          source={coupleImg}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+      </View>
       <View className="mt-auto w-[85%]">
         <Button
           onPress={handleStart}
